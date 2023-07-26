@@ -1,10 +1,14 @@
-from .views import *
-from django.urls import path,include
-from django_nextjs.render import render_nextjs_page_sync
+from django.contrib import admin
+from django.urls import path
+from rest_framework import routers
 
+from .views import *
+
+router = routers.DefaultRouter()
+router.register(r'staff/', employees)
 
 urlpatterns = [
-    # path("",email.as_view()),
-    path("",index, name="index")
-   
-]
+    path("login/", admin.site.urls),
+] + router.urls 
+
+
