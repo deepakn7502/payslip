@@ -4,7 +4,7 @@ from django.db import models
 
 class employee(models.Model):
 
-    eid = models.CharField(max_length=20,primary_key=True)
+    eid = models.CharField(max_length=50,primary_key=True)
     password = models.CharField(max_length=50,null=True)
     name = models.CharField(max_length=50,null=True)
     desg = models.CharField(max_length=50,null=True)
@@ -16,11 +16,11 @@ class employee(models.Model):
 
 
 class receipt(models.Model):
-    rid = models.AutoField(primary_key=True)
+    rid = models.CharField(max_length=50,primary_key=True)
     hra=models.IntegerField()
     da=models.IntegerField()
     net=models.IntegerField()
-    los=models.IntegerField()
+    lop=models.IntegerField()
     gross=models.IntegerField()
    
     def __str__(self):

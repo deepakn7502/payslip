@@ -77,16 +77,36 @@ WSGI_APPLICATION = "payslip.wsgi.application"
 
 DATABASES = {
     "default": {
-         'ENGINE': 'django.db.backends.postgresql',
+         'ENGINE': 'django.db.backends.mysql',
         'NAME':"payslip",
-        'USER':'postgres',
-        'PASSWORD':'1234',
+        'USER':'root',
+        'PASSWORD':'',
         'HOST':'127.0.0.1',
         
+         
+        'OPTIONS':{
+            'init_command':"SET sql_mode='STRICT_TRANS_TABLES' "
+        }
        
     }
 }
 
+
+
+
+
+
+# DATABASES = {
+#     "default": {
+#          'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':"payslip",
+#         'USER':'postgres',
+#         'PASSWORD':'1234',
+#         'HOST':'127.0.0.1',
+        
+       
+#     }
+# }
 
 #  "default": {
 #         "ENGINE": "django.db.backends.sqlite3",
@@ -134,3 +154,11 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'prtdata2023@gmail.com'
+EMAIL_HOST_PASSWORD = 'ktul fttk fbcz eoiz'

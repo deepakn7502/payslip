@@ -1,14 +1,18 @@
-from django.contrib import admin
-from django.urls import path
+
+from django.urls import path,include
 from rest_framework import routers
 
 from .views import *
 
 router = routers.DefaultRouter()
-router.register(r'staff/', employees)
+# router = routers.SimpleRouter()
+router.register(r'validate', employees)
+router.register(r'receipt', receipts)
+
+    
 
 urlpatterns = [
-    path("login/", admin.site.urls),
-] + router.urls 
+    path("login/", login.as_view()),
+    # path("validate/", employees.as_view()),
 
-
+] + router.urls
