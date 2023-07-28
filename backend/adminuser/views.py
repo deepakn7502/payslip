@@ -1,25 +1,45 @@
+from django.shortcuts import render
+
+from django.contrib.auth.models import User
+
 from rest_framework.views import APIView
+from rest_framework import generics,viewsets
 from rest_framework.response import Response
 
-from django.shortcuts import render,HttpResponse
-from .tasks import func
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import NotFound
+from rest_framework import status
 
-from django_nextjs.render import render_nextjs_page_sync
+from .serializer import *
+from .models import *   
+from .utils import *
 
 
+import pyotp
+from datetime import datetime,timedelta
+
+class employees(viewsets.ModelViewSet):
+    queryset = employee.objects.all()
+    serializer_class = emp_serialzer
 
 
+class receipts(viewsets.ModelViewSet):
+    queryset = receipt.objects.all()
+    serializer_class = rep_serialzer
+
+    def create(self,request):
+        # serializer = rep_serialzer(request.data)
+        # serializer.is_valid(raise_exception=True)
+
+        receipt.objects.bulk_create([receipt(**data) for data in request.data] )
+        return Response("Success")
 
 
-class email(APIView):
-    def get(self,request):
-        subject = "TEST MISSION ACCOMPLISHED"
-        message = "THIS MAIL IS TO INFORM THAT MISSION GIVEN ARUNKUMAR.J(BACKEND DEVELOPER) HAS BEEN ACCOMPLISHED WITHIN A DAY AS SAID BY HIM. SO I NEED 5000 INCREMENT FOR MY NEXT MISSION"
-        from_email = 'arunkj203@gmail.com'
-        recipient_list = ['arunkj203@gmail.com','bharath190802@gmail.com','ashwinsanjay35@gmail.com']
-        
-        func.apply_async((subject, message, from_email, recipient_list), countdown=5)  # Schedule email to be sent in 1 hour
-        return Response("Mail Sent")
+class login(APIView):
+    def put(self,requset):
+        fn=requset.data["fn"]
+        if(fn == "send_otp"):
+            return Response(send_otp(requset))
+        if(fn == "verify_otp"):
+            return Response(verify_otp(requset))
 
-def index(request):
-    return render_nextjs_page_sync(request)
