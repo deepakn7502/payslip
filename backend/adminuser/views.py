@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.db.utils import DatabaseError
-from django.db import connection
 from django.contrib.auth.models import User
-from django.apps import apps
+from django.contrib import auth
 
 from rest_framework.views import APIView
 from rest_framework import generics,viewsets
@@ -17,6 +16,7 @@ from .models import *
 from .utils import *
 
 
+
 class employees(viewsets.ModelViewSet):
     queryset = employee.objects.all()
     serializer_class = emp_serialzer
@@ -24,8 +24,6 @@ class employees(viewsets.ModelViewSet):
 class receipts(viewsets.ModelViewSet):
     queryset = receipt.objects.all()
     serializer_class = rep_serialzer
-
-   
 
     def create(self,request):
         try:
@@ -39,6 +37,31 @@ class receipts(viewsets.ModelViewSet):
 
 
 class login(APIView):
+    def post(self,request):
+       data=request.data
+      
+       if list(User.objects.filter(username=data["id"])):
+         
+          user = auth.authenticate(username=data["id"],password=data["password"])
+          if user is not None:
+            print(user)
+            auth.login(request,user)
+            return Response(str(user))
+          else:
+             
+             raise PermissionDenied(detail="Invalid Password")
+       user = employee.objects.filter(eid=data["id"]).values()
+      
+       if user:      
+            if user[0]["password"] == data["password"]:
+                return Response(user[0]["name"])
+            else:
+                raise PermissionDenied(detail="Invalid password.")
+       else:
+                raise PermissionDenied(detail="Invalid Credentials")
+            
+
+
     def put(self,requset):
         fn=requset.data["fn"]
         if(fn == "send_otp"):
