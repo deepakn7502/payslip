@@ -21,5 +21,5 @@ class rep_serialzer(serializers.ModelSerializer):
     # gross=serializers.IntegerField()
     
     class Meta:
-        model = employee
+        model = receipt
         fields = '__all__' 
