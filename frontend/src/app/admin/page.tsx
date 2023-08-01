@@ -12,20 +12,22 @@ const page = () => {
     }
 
     return (
-        <div className='h-screen w-screen bg-slate-500 fixed'>
-            <div className=' bg-white w-full h-1/6 flex justify-between mt-5 items-center'>
+
+        <div className='h-screen w-screen bg-slate-500 fixed flex  justify-center'>
+            {isOpen == false ? <><div className=' bg-white w-full h-1/6 flex justify-between mt-5 items-center'>
                 <form className=' h-24 bg-red-600 w-1/2 px-12 flex justify-evenly items-center'>
                     <input type="text" className='h-12 w-100 ' />
                     <input type="text" className='h-12 w-100' />
                     <button className='h-12 w-40 bg-yellow-300'>Button</button>
                 </form>
-                <div className='bg-red-300 h-24 flex justify-center items-center px-9'><Popup trigger={<button> Trigger</button>} position="right center">
-                    <div>Popup content here !!</div>
-                </Popup></div>
-            </div>
-            <div className='h-full bg-green-500'>
+                <div className='bg-red-300 h-24 flex justify-center items-center px-9'>
+                    <button onClick={togglePopup}>Upload</button>
+                </div>
+            </div><div className='h-full bg-green-500'>
 
-            </div>
+
+                </div></> : <div className='h-[500px] w-[500px] bg-white fixed top-1/2 bottom-1/2'></div>}
+
 
         </div >
     )
