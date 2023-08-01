@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 
 
-
 const page = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [isOpen, setIsOpen] = useState(false)
