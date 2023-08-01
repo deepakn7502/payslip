@@ -14,7 +14,7 @@ const page = () => {
 
     return (
 
-        <div className='h-screen w-screen bg-slate-500 fixed flex  justify-center'>
+        <div className='h-screen w-screen bg-slate-500 fixed '>
             {isOpen == false ? <><div className=' bg-white w-full h-1/6 flex justify-between mt-5 items-center'>
                 <form className=' h-24 bg-red-600 w-1/2 px-12 flex justify-evenly items-center'>
                     <input type="text" className='h-12 w-100 ' />
@@ -27,7 +27,7 @@ const page = () => {
             </div><div className='h-full bg-green-500'>
 
 
-                </div></> : <div className='h-[500px] w-[500px] bg-white fixed top-1/2 bottom-1/2'></div>}
+                </div></> : <div className='h-[500px] w-[500px] bg-white fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[25px]'></div>}
 
 
         </div >
