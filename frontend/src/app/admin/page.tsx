@@ -45,13 +45,13 @@ const page = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [file, setFile] = useState<any>(null);
+  const [file, setFile] = useState<any>([]);
 
   const [show, setShow] = useState(false);
 
   const [data, setData] = useState(dataset);
 
-  const handleChange =  (file: any) => {
+  const handleChange =  ({file}: any) => {
     setFile(file);
     // files.push(file.name);
     console.log({ files });
@@ -83,7 +83,7 @@ const page = () => {
   return (
     <div className="h-full w-full">
       <div className="bg-blue-950 w-full h-24 mt-6 grid grid-cols-7 place-items-center gap-4">
-        <form className="w-full grid grid-cols-5 col-span-3 gap-4 pl-4">
+        <div className="w-full grid grid-cols-5 col-span-3 gap-4 pl-4">
           <input
             type="text"
             className="h-12 w-full col-span-2 rounded-md text-black"
@@ -98,8 +98,8 @@ const page = () => {
           >
             Search
           </button>
-        </form>
-        <form className="w-full grid grid-cols-5 col-span-3 gap-4">
+        </div>
+        <div className="w-full grid grid-cols-5 col-span-3 gap-4">
           <input
             type="text"
             className="h-12 w-full col-span-2 rounded-md text-black"
@@ -111,15 +111,15 @@ const page = () => {
           <button className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black">
             Filter
           </button>
-        </form>
-        <form className="w-full grid grid-cols-1 col-span-1 place-items-center">
+        </div>
+        <div className="w-full grid grid-cols-1 col-span-1 place-items-center">
           <button
             className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black"
             onClick={handleOpen}
           >
             Upload
           </button>
-        </form>
+        </div>
       </div>
       <div className="h-full">
         {show ? (
@@ -180,7 +180,7 @@ const page = () => {
                 <div className="h-[100px] w-full bg-[rgb(246,237,212)] grid grid-cols-2 place-items-center border-dashed border-2 border-black rounded-lg">
                   <div className="w-full flex flex-col items-center">
                     <h1 className="font-bold">Files Uploaded</h1>
-                    {file.name ? (
+                    {file ? (
                       <h1 className={poppins.className}>{file?.name}</h1>
                     ) : (
                       <h1 className={`${poppins.className} `}>
@@ -190,7 +190,7 @@ const page = () => {
                   </div>
                   <div className="w-full flex flex-col items-center">
                     <h1 className="font-bold">File Status</h1>
-                    {file.name ? (
+                    {file ? (
                       <h1 className={` text-green-500  ${poppins.className}`}>
                         Success
                       </h1>
