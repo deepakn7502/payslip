@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    'rest_framework_simplejwt',
     "corsheaders",
     "adminuser"
 ]
@@ -94,7 +95,11 @@ DATABASES = {
 }
 
 
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
 
 
 
@@ -135,13 +140,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-REST_FRAMEWORK = {
-'DEFAULT_AUTHENTICATION_CLASSES': [
-# 'rest_framework.authentication. TokenAuthentication',
- # 'rest_framework.authentication.SessionAuthentication',
-    'rest_framework.authentication.BasicAuthentication',
-]
-}
 
 
 
@@ -189,3 +187,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'prtdata2023@gmail.com'
 EMAIL_HOST_PASSWORD = 'ktul fttk fbcz eoiz'
+
+
+AUTH_USER_MODEL = 'adminuser.employee'

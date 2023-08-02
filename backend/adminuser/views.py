@@ -38,27 +38,16 @@ class receipts(viewsets.ModelViewSet):
 
 class login(APIView):
     def post(self,request):
-       data=request.data
-      
-       if list(User.objects.filter(username=data["id"])):
-         
-          user = auth.authenticate(username=data["id"],password=data["password"])
+       user_c = employee.objects.filter(username=request.data["id"]).values()
+       if user_c:      
+          user = auth.authenticate(username=request.data["id"],password=request.data["password"])
           if user is not None:
             print(user)
             auth.login(request,user)
-            return Response(str(user))
-          else:
-             
-             raise PermissionDenied(detail="Invalid Password")
-       user = employee.objects.filter(eid=data["id"]).values()
-      
-       if user:      
-            if user[0]["password"] == data["password"]:
-                return Response(user[0]["name"])
-            else:
-                raise PermissionDenied(detail="Invalid password.")
+            return Response(str(user_c))
+           
        else:
-                raise PermissionDenied(detail="Invalid Credentials")
+            raise PermissionDenied(detail="Invalid Credentials")
             
 
 
@@ -85,3 +74,20 @@ class login(APIView):
             else:
                 raise PermissionDenied(detail=res[1],code=400)
 
+
+
+
+    #    if list(User.objects.filter(username=data["id"])):
+         
+    #       user = auth.authenticate(username=data["id"],password=data["password"])
+    #       if user is not None:
+    #         print(user)
+    #         auth.login(request,user)
+    #         return Response(str(user))
+    #       else:
+             
+    #          raise PermissionDenied(detail="Invalid Password")
+    #  if user[0]["password"] == data["password"]:
+    #             return Response(user[0]["name"])
+    #         else:
+    #             raise PermissionDenied(detail="Invalid password.")

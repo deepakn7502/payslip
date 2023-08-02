@@ -8,19 +8,23 @@ interface Params
 }
 
 
-const page = ({params} : Params) => {
-//     return (
-//         <div className='h-screen w-screen bg-slate-500'>
-//             {/* <Picker /> */}
-//             <p>{params.name}</p>
-//             <form className='w-full h-24 bg-white'>
-// const page = () => {
-//     // eslint-disable-next-line react-hooks/rules-of-hooks
-//     const [isOpen, setIsOpen] = useState(false)
+const handleFileRead = () => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const data = e.target.result;
+      // Process the Excel data here
+      console.log(data);
+    };
+    reader.readAsBinaryString(file);
+  };
 
-//     const togglePopup = () => {
-//         setIsOpen(!isOpen);
-//     }
+
+const page = ({params} : Params) => {
+    const [isOpen, setIsOpen] = useState(false)
+
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+    }
 
     return (
 
