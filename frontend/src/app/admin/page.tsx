@@ -1,12 +1,6 @@
 "use client";
-import {
-  JSXElementConstructor,
-  PromiseLikeOfReactNode,
-  ReactElement,
-  ReactNode,
-  ReactPortal,
-  useState,
-} from "react";
+import { useState } from "react";
+import { Poppins } from "next/font/google";
 import Modal from "@mui/material/Modal";
 import { FileUploader } from "react-drag-drop-files";
 import Box from "@mui/material/Box";
@@ -71,7 +65,7 @@ const page = ({ params }: Params) => {
     setShow(true);
   };
   return (
-    <div className="h-screen w-screen">
+    <div className="h-full w-full">
       <div className="bg-blue-950 w-full h-24 mt-6 grid grid-cols-7 place-items-center gap-4">
         <form className="w-full grid grid-cols-5 col-span-3 gap-4 pl-4">
           <input
@@ -167,23 +161,10 @@ const page = ({ params }: Params) => {
             <div className="h-[200px] w-full bg-orange-300 grid grid-cols-2 ">
               <div className="w-full flex flex-col items-center">
                 <h1>Files Uploaded</h1>
-                {files?.map(
-                  (
-                    file:
-                      | string
-                      | number
-                      | boolean
-                      | ReactElement<any, string | JSXElementConstructor<any>>
-                      | Iterable<ReactNode>
-                      | ReactPortal
-                      | PromiseLikeOfReactNode
-                      | null
-                      | undefined
-                  ) => {
-                    // eslint-disable-next-line react/jsx-key
-                    return <h1>{file}</h1>;
-                  }
-                )}
+                {files?.map((file: any) => {
+                  // eslint-disable-next-line react/jsx-key
+                  return <h1>{file}</h1>;
+                })}
               </div>
               <div className="w-full flex justify-center">File Status</div>
             </div>
