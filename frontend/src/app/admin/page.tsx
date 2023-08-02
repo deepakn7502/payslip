@@ -70,12 +70,6 @@ const page = () => {
     };
     reader.readAsBinaryString(fileBlob);
   };
-
-
-
-
-
-
   const handleSearch = (e: any) => {
     e.preventDefault();
     setShow(true);
