@@ -11,7 +11,7 @@ import Modal from "@mui/material/Modal";
 import { FileUploader } from "react-drag-drop-files";
 import Box from "@mui/material/Box";
 // import XLSX from "xlsx";
-import * as XLSX from 'xlsx';0
+import * as XLSX from "xlsx";
 
 interface Params {
   params: { name: string };

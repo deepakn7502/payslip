@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-function Login() {
+
   const api = axios.create({
     baseURL: `http://localhost:8000/`,
   });
@@ -24,6 +24,11 @@ function Login() {
       alert(e);
     }
   };
+
+  
+export default function Login() {
+
+  
   return (
     <div>
       <form
@@ -33,6 +38,7 @@ function Login() {
         }}
         className="h-96 bg-white w-96 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-around border-2 rounded-2xl border-blue-500 "
       >
+      <form className="h-96 bg-white w-96 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-around border-2 rounded-2xl border-blue-500">
         <h1 className="text-blue-500 text-3xl uppercase">login</h1>
         <input
           className="h-14 w-10/12 px-4 text-black border-2 border-blue-500 rounded-lg"
@@ -60,6 +66,6 @@ function Login() {
   );
 }
 
-export default Login;
+
 
 // className="bg-[url('/images/vivid-blurred.jpg')]"
