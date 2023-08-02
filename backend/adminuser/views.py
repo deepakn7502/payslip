@@ -27,7 +27,8 @@ class receipts(viewsets.ModelViewSet):
 
     def create(self,request):
         try:
-            receipt.objects.bulk_create([receipt(**data) for data in request.data] )
+            print("file",request.data["file"])
+            # receipt.objects.bulk_create([receipt(**data) for data in request.data] )
             return Response("Success")
         except DatabaseError  as e:
           error_message = str(e.args[1]) if len(e.args) > 1 else str(e)

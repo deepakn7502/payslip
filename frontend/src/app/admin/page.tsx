@@ -10,6 +10,7 @@ import {
 import Modal from "@mui/material/Modal";
 import { FileUploader } from "react-drag-drop-files";
 import Box from "@mui/material/Box";
+import axios from "axios";
 // import XLSX from "xlsx";
 import * as XLSX from "xlsx";
 
@@ -31,6 +32,9 @@ const page = ({ params }: Params) => {
 
     p: 4,
   };
+  const api = axios.create({
+    baseURL: `http://localhost:8000/`,
+  });
 
   const fileTypes = ["xlxs", "xls"];
 
@@ -42,9 +46,16 @@ const page = ({ params }: Params) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState();
+
+  const handleChange = async (file: any) => {
+    setFile(file);
+    // files.push(file.name);
+    // console.log({ files });
+  };
 
   const handleFileRead = () => {
+    const fileBlob = new Blob([file[0]]);
     const reader = new FileReader();
     reader.onload = () => {
       const binaryStr = reader.result;
@@ -54,14 +65,9 @@ const page = ({ params }: Params) => {
       const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
       console.table(jsonData);
     };
-    reader.readAsBinaryString(file);
+    reader.readAsBinaryString(fileBlob);
   };
 
-  const handleChange = (file: any) => {
-    setFile(file[0]);
-    files.push(file.name);
-    console.log({ files });
-  };
   return (
     <div className="h-screen w-screen bg-slate-500 fixed ">
       <div className=" bg-white w-full h-1/6 flex justify-between mt-5 items-center">
@@ -93,27 +99,11 @@ const page = ({ params }: Params) => {
                 </div>
                 <div className="h-[200px] w-full bg-orange-300 grid grid-cols-2 ">
                   <div className="w-full flex flex-col items-center">
-                    <h1>Files Uploaded</h1>
-                    {files?.map(
-                      (
-                        file:
-                          | string
-                          | number
-                          | boolean
-                          | ReactElement<
-                              any,
-                              string | JSXElementConstructor<any>
-                            >
-                          | Iterable<ReactNode>
-                          | ReactPortal
-                          | PromiseLikeOfReactNode
-                          | null
-                          | undefined
-                      ) => {
-                        // eslint-disable-next-line react/jsx-key
-                        return <h1>{file}</h1>;
-                      }
-                    )}
+                    <p>
+                      {file
+                        ? `File name: file`
+                        : "no files uploaded yet"}
+                    </p>
                   </div>
                   <div className="w-full flex justify-center">File Status</div>
                 </div>
@@ -135,3 +125,27 @@ const page = ({ params }: Params) => {
 };
 
 export default page;
+
+{
+  /* <h1>Files Uploaded</h1>
+                    {files?.map(
+                      (
+                        file:
+                          | string
+                          | number
+                          | boolean
+                          | ReactElement<
+                              any,
+                              string | JSXElementConstructor<any>
+                            >
+                          | Iterable<ReactNode>
+                          | ReactPortal
+                          | PromiseLikeOfReactNode
+                          | null
+                          | undefined
+                      ) => {
+                        // eslint-disable-next-line react/jsx-key
+                        return <h1>{file}</h1>;
+                      }
+                    )} */
+}
