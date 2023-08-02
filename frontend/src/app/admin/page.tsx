@@ -22,27 +22,20 @@ const page = () => {
 
     const fileTypes = ["xlxs", "xls"];
 
-    const files: any = [];
 
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    // const [file1, setFile1] = useState(null);
-    // const handleChange1 = ({ file1 }: any) => {
-    //     setFile(file1);
-    // }
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState<any>([]);
     const handleChange = (file: any) => {
         setFile(file);
-        files.push(file.name);
-        console.log(files);
+
+        console.log(file);
     };
     return (
 
@@ -68,30 +61,30 @@ const page = () => {
                                 <h1 className='text-3xl font-bold '>UPLOAD FILE</h1>
                                 <div className="w-full flex flex-col items-center justify-evenly h-[200px]">
                                     <h1 className='text-xl'>Drag and Drop files here or browse</h1>
-                                    <FileUploader handleChange={handleChange} name="file" types={fileTypes} /></div>
-                                <div className='h-[200px] w-full bg-orange-300 grid grid-cols-2 '>
+                                    <FileUploader handleChange={handleChange} label="Upload file" name="file" types={fileTypes} /></div>
+                                <div className='h-1/2 w-full bg-orange-300 grid grid-cols-2 '>
                                     <div className='w-full flex flex-col items-center'><h1>Files Uploaded</h1>
-                                        {files?.map((file: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined) => {
-                                            // eslint-disable-next-line react/jsx-key
-                                            return <h1>{file}</h1>
-                                        })
-                                        }
+                                        <h1>{file?.name}</h1>
                                     </div>
-                                    <div className='w-full flex justify-center'>File Status</div>
+                                    <div className='w-full flex flex-col items-center'><h1>File Status</h1>
+                                        {file.name ? <h1>Success</h1> : <h1></h1>}
+                                    </div>
+
 
                                 </div>
-                                {/* <input type="file" onChange={(e) => { if (e.target.files != null) { setFile(e.target.files[0]) } }} accept=".xlxs,.xls" /> */}
-                                <button className='w-[100px] h-[40px] bg-orange-300 rounded-md' >Upload</button>
+                                <button className='w-[100px] h-[40px] bg-[rgb(255,193,7)] rounded-md' >Upload</button>
                             </div>
                         </Box>
                     </Modal>
                 </div>
-            </div><div className='h-full bg-green-500'>
+            </div>
+            <div className='h-full bg-green-500'>
 
 
             </div>
 
         </div >
+
     )
 }
 
