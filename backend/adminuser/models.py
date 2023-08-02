@@ -1,19 +1,24 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
 
+# class employee(models.Model):
+    
+    
+  
+  
+#     eid = models.CharField(max_length=50,primary_key=True)
+#     password = models.CharField(max_length=50)
+#     name = models.CharField(max_length=50)
+#     desg = models.CharField(max_length=50)
+#     dept = models.CharField(max_length=20)    
+#     mail = models.EmailField(max_length=254)
+      
+  
 
-class employee(models.Model):
-
-    eid = models.CharField(max_length=50,primary_key=True)
-    password = models.CharField(max_length=50)
-    name = models.CharField(max_length=50)
-    desg = models.CharField(max_length=50)
-    dept = models.CharField(max_length=20)    
-    mail = models.EmailField(max_length=254)
-
-    def __str__(self):
-        return self.eid
+    # def __str__(self):
+    #     return self.eid
 
 
 class receipt(models.Model):
@@ -32,4 +37,11 @@ class receipt(models.Model):
     def __str__(self):
         return self.rid
 
+class employee(AbstractUser):
+    eid = models.CharField(max_length=50,primary_key=True)
+    desg = models.CharField(max_length=50)
+    dept = models.CharField(max_length=20)    
 
+    
+    def __str__(self):
+        return self.eid
