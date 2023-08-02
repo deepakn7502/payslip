@@ -17,9 +17,21 @@
 }
 body {
   color: rgb(var(--foreground-rgb));
-  background: url("../app/images/uchicha.jpg");
+  /* background: url("../app/images/uchicha.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,td{
+  width: fit-content;
+  padding: 0.5rem 1rem;
 }

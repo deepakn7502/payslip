@@ -7,9 +7,9 @@ import Box from "@mui/material/Box";
 import axios from "axios";
 // import XLSX from "xlsx";
 import * as XLSX from "xlsx";
-
+import dataset from "../images/data.json";
 import { IoIosCloseCircle } from "react-icons/io";
-import { Params } from "react-router-dom";
+
 
 const poppins = Poppins({
   weight: ["400"],
@@ -45,7 +45,11 @@ const page = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [file, setFile] = useState<any>([]);
+  const [file, setFile] = useState<any>(null);
+
+  const [show, setShow] = useState(false);
+
+  const [data, setData] = useState(dataset);
 
   const handleChange =  (file: any) => {
     setFile(file);
@@ -67,17 +71,93 @@ const page = () => {
     reader.readAsBinaryString(fileBlob);
   };
 
+
+
+
+
+
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    setShow(true);
+  };
   return (
-    <div className="h-screen w-screen bg-slate-500 fixed ">
-      <div className=" bg-white w-full h-1/6 flex justify-between mt-5 items-center">
-        <form className=" h-24 bg-red-600 w-1/2 px-12 flex justify-evenly items-center">
-          <input type="text" className="h-12 w-100 " />
-          <input type="text" className="h-12 w-100" />
-          <button className="h-12 w-40 bg-yellow-300">Button</button>
+    <div className="h-full w-full">
+      <div className="bg-blue-950 w-full h-24 mt-6 grid grid-cols-7 place-items-center gap-4">
+        <form className="w-full grid grid-cols-5 col-span-3 gap-4 pl-4">
+          <input
+            type="text"
+            className="h-12 w-full col-span-2 rounded-md text-black"
+          />
+          <input
+            type="text"
+            className="h-12 w-full col-span-2 rounded-md text-black"
+          />
+          <button
+            className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
         </form>
-        <div className="bg-red-300 h-24 flex justify-center items-center px-9">
-          <button onClick={handleOpen}>Upload</button>
-          <Modal
+        <form className="w-full grid grid-cols-5 col-span-3 gap-4">
+          <input
+            type="text"
+            className="h-12 w-full col-span-2 rounded-md text-black"
+          />
+          <input
+            type="text"
+            className="h-12 w-full col-span-2 rounded-md text-black"
+          />
+          <button className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black">
+            Filter
+          </button>
+        </form>
+        <form className="w-full grid grid-cols-1 col-span-1 place-items-center">
+          <button
+            className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black"
+            onClick={handleOpen}
+          >
+            Upload
+          </button>
+        </form>
+      </div>
+      <div className="h-full">
+        {show ? (
+          <div>
+            <table className="w-4/5 mx-auto my-4">
+              <thead>
+                <tr className="h-12 bg-blue-950">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Department</th>
+                  <th>Designation</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.map((person) => {
+                  return (
+                    <tr className="h-8 text-black text-center">
+                      <td>{person.id}</td>
+                      <td>{person.first_name}</td>
+                      <td>{person.department}</td>
+                      <td>{person.designation}</td>
+                      <td>{person.email}</td>
+                      <td>{person.phoneno}</td>
+                      <td>{person.status}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
+      <Modal
             open={open}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
@@ -128,14 +208,12 @@ const page = () => {
               </div>
             </Box>
           </Modal>
-        </div>
-      </div>
-      <div className="h-full bg-green-500"></div>
     </div>
   );
 };
 
 export default page;
+
 
 {
   /* <h1>Files Uploaded</h1>
@@ -160,3 +238,6 @@ export default page;
                       }
                     )} */
 }
+
+
+// import XLSX from "xlsx";
