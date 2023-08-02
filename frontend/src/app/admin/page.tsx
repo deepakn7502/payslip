@@ -1,11 +1,21 @@
 "use client"
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import { Poppins } from 'next/font/google';
 import Modal from '@mui/material/Modal';
 import { FileUploader } from "react-drag-drop-files";
 import Box from '@mui/material/Box';
 import { IoIosCloseCircle } from "react-icons/io";
+import { Tooltip } from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
+const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref,
+) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const poppins = Poppins({
     weight: ["400"],
@@ -34,7 +44,8 @@ const page = () => {
 
 
 
-
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [snack, setSnack] = useState(false);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [open, setOpen] = useState(false);
@@ -44,8 +55,15 @@ const page = () => {
     const [file, setFile] = useState<any>([]);
     const handleChange = (file: any) => {
         setFile(file);
+        setSnack(true);
         console.log(file);
     };
+
+    const Remove = () => {
+        setFile([]);
+
+        console.log(file);
+    }
 
     return (
 
@@ -77,7 +95,16 @@ const page = () => {
                                         {file.name ? <h1 className={poppins.className}>{file?.name}</h1> : <h1 className={`${poppins.className} `}>No Files Uploaded</h1>}
                                     </div>
                                     <div className='w-full flex flex-col items-center'><h1 className='font-bold'>File Status</h1>
-                                        {file.name ? <h1 className={` text-green-500  ${poppins.className}`}>Success</h1> : <h1>--</h1>}
+                                        {file.name ?
+                                            <div className='flex w-[100px] justify-between items-center'> <h1 className={` text-green-500  ${poppins.className}`}>Success</h1>
+                                                <Tooltip title="Remove uploaded File"><div className='cursor-pointer' onClick={Remove}><IoIosCloseCircle size={20} /><Snackbar open={true} autoHideDuration={6000} onClose={() => setSnack(false)}>
+                                                    <Alert onClose={() => setSnack(false)} severity="error" sx={{ width: "100%" }}>
+                                                        File Removed
+                                                    </Alert>
+                                                </Snackbar></div></Tooltip>
+
+                                            </div>
+                                            : <h1>--</h1>}
                                     </div>
                                 </div>
                                 <button className='w-[100px] h-[40px] bg-[rgb(255,193,7)] rounded-md' >Upload</button>
@@ -90,8 +117,14 @@ const page = () => {
 
 
             </div>
+            <Stack spacing={2} sx={{ width: '100%' }}><Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    File Removed!
+                </Alert>
+            </Snackbar></Stack>
 
         </div >
+
 
     )
 }
