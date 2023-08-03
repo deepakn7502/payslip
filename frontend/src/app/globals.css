@@ -36,3 +36,7 @@ th,td{
   width: fit-content;
   padding: 0.5rem 1rem;
 }
+
+.otp-container{
+  width: 100%;
+}
