@@ -1,34 +1,36 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
 
-  const api = axios.create({
-    baseURL: `http://localhost:8000/`,
-  });
+const api = axios.create({
+  baseURL: `http://localhost:8000/`,
+});
 
-  const [username, setUser] = useState("");
-  const [password, setpass] = useState("");
-  const { push } = useRouter();
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const [username, setUser] = useState("");
+const [password, setpass] = useState("");
+const { push } = useRouter();
 
-  let login = async () => {
-    try {
-      const res = await api.post("staff/login/", {
-        id: username,
-        password: password,
-      });
+let login = async () => {
+  try {
+    const res = await api.post("staff/login/", {
+      id: username,
+      password: password,
+    });
 
-      push(`/admin/${res.data}`);
-    } catch (e) {
-      alert(e);
-    }
-  };
+    push(`/admin/${res.data}`);
+  } catch (e) {
+    alert(e);
+  }
+};
 
-  
+
 export default function Login() {
 
-  
+
   return (
     <div>
       <form

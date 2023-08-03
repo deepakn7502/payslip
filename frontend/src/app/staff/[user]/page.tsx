@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 export default function User() {
 
-  
+
   const currencies = [
     {
       value: 'JANUARY',
@@ -37,7 +37,7 @@ export default function User() {
     {
       value: 'August',
       label: 'August',
-    },{
+    }, {
       value: 'September',
       label: 'September',
     },
@@ -57,22 +57,23 @@ export default function User() {
 
   return (
     <div className="bg-cover bg-center bg-white" >
-      <div className=" bg-blue-500 fixed top top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-1/4 w-1/2 align-text-top">
-        <p className="text-white  ">Select PAY YEAR AND MONTH</p>
-        <TextField className='bg-white w-1/5'
-          select
-          label="Select Month"
-          defaultValue="January"
+      <div className=" bg-blue-500 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-col items-center  h-1/4 w-1/2 rounded-md text-center">
+        <p className="text-white text-[25px]">Select PAY YEAR AND MONTH</p>
+        <div className='flex-row py-2'>
+          <TextField className='bg-white w-1/5 h-fit'
+            select
+            label="Select Month"
+            defaultValue="January"
           // helperText="Please select your Month"
-        >
-          {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        
+          >
+            {currencies.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
 
+        </div>
       </div>
     </div>
   );
