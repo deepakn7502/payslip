@@ -2,11 +2,22 @@
 import { useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
-
+import Button from "@mui/material/Button";
 import { Alert } from "@mui/material";
+import ContactlessIcon from "@mui/icons-material/Contactless";
+import image from "../../images/pec-logo.png";
+import Image from "next/image";
+import Avatar from "@mui/material/Avatar";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { Blinker } from "next/font/google";
+
+const blinker = Blinker({
+  weight: ["400"],
+  subsets: ["latin"],
+  style: 'normal'
 
 
-
+})
 
 
 export default function User() {
@@ -15,8 +26,7 @@ export default function User() {
     { length: currentYear - 2010 },
     (_, index) => 2011 + index
   );
-
-
+  console.log(years)
 
   // Year Selection
 
@@ -24,22 +34,18 @@ export default function User() {
   const YearTextField = () => {
     return (
       <TextField
-        className="bg-white w-1/5 h-fit justify-between rounded-md"
+        className="bg-white w-1/3 h-fit justify-between rounded-md"
         label="Year"
-        variant="outlined"
         select
         value={selectedYear}
         onChange={(event) => {
           setSelectedYear(event.target.value);
         }}
-        InputProps={{
-          inputProps: { min: 2011, max: new Date().getFullYear() },
-        }}
       >
         {years.map((year) => (
-          <option key={year} value={year}>
+          <MenuItem key={year} value={year}>
             {year}
-          </option>
+          </MenuItem>
         ))}
       </TextField>
     );
@@ -47,8 +53,8 @@ export default function User() {
 
   const currencies = [
     {
-      value: "JANUARY",
-      label: "JANUARY",
+      value: "January",
+      label: "January",
     },
     {
       value: "February",
@@ -95,12 +101,11 @@ export default function User() {
       label: "December",
     },
   ];
-
+ 
   const [month, setmonth] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
   const [alertContent, setAlertContent] = useState("");
-  const [type, setType] = useState<any>("");
-
+  const [type, setType] = useState("");
 
   let timebar = () => {
     let progressTimeout: any;
@@ -120,44 +125,46 @@ export default function User() {
   //Pdf generation
   let generatePDF = () => {
     if (month && selectedYear) {
-
       setAlertContent("Payslip");
-      setType("success")
+      setType("success");
       setOpenAlert(true);
       timebar();
-    }
-    else {
-
+      // console.log("if");
+    } else {
       setAlertContent("Field cannot be empty!!");
-      setType("info")
+      setType("error");
       setOpenAlert(true);
       timebar();
-
-
-
+      console.log("else");
     }
-  }
-
-
-
-
-
+  };
 
   return (
-    <div className="bg-cover bg-center bg-white font-serif">
-      <div className=" bg-blue-500 fixed flex top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-around   h-1/4 w-1/2 rounded-md text-center">
-        <p className="text-white text-[25px] font-serif">Select PaySlip Year & Month</p>
-        <div className="flex-row py-2 w-[80%] flex items-center justify-around">
+    <div className="bg-cover bg-center bg-white ">
+      <div className="bg-blue-950 h-[75px] w-full grid grid-cols-11 items-center text-center">
+        <Image src={image} alt="Logo"  height={200} width={200} priority={true} className="col-span-2 " />
 
-
+        <h1 className={` ${blinker.className} col-start-4 col-end-9 text-[37px] font-[]`}>
+          PANIMALAR ENGINEERING COLLEGE
+        </h1>
+        <div className="col-start-10 col-end-13 flex items-center justify-around ">
+          <Avatar src="/broken-image.jpg" />
+          <p className="text-xl">Bharath</p>
+          <ExitToAppIcon fontSize="large" className="cursor-pointer"></ExitToAppIcon>
+        </div>
+      </div>
+      <div className=" bg-blue-950 fixed flex top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-around   h-1/3 w-[40%] rounded-md text-center px-4 py-2">
+        <p className="text-white text-[25px] ">
+          Select Pay Slip Year & Month
+        </p>
+        <div className="flex-row w-[80%] flex items-center justify-around py-[10px]">
           <TextField
-            className="bg-white w-1/5 h-fit rounded-md"
+            className="bg-white w-1/3 h-fit rounded-md"
             label="Month"
             select
             onChange={(e) => {
               setmonth(e.target.value);
             }}
-
           >
             {currencies.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -169,12 +176,18 @@ export default function User() {
           {YearTextField()}
         </div>
         <div className="font-serif">
-          <button className="" color="success" onClick={generatePDF}>Generate Pay Slip</button>
-
+          <button
+            className="bg-yellow-300 rounded text-black px-4 py-2 flex justify-around"
+            onClick={generatePDF}
+          >
+            <p>Generate Pay Slip</p>
+            <ContactlessIcon></ContactlessIcon>
+          </button>
         </div>
       </div>
       {openAlert ? (
-        <Alert variant="filled"
+        <Alert
+          variant="filled"
           severity={type}
           sx={{
             top: "20px",
@@ -195,4 +208,3 @@ export default function User() {
     </div>
   );
 }
-
