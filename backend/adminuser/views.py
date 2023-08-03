@@ -27,25 +27,31 @@ class receipts(viewsets.ModelViewSet):
 
     def create(self,request):
         try:
-            print("file",request.data["file"])
-            # receipt.objects.bulk_create([receipt(**data) for data in request.data] )
+            
+            receipt.objects.bulk_create([receipt(**data) for data in request.data] )
             return Response("Success")
         except DatabaseError  as e:
           error_message = str(e.args[1]) if len(e.args) > 1 else str(e)
           raise ParseError(detail=str(e.args[1]), code=400)
         except Exception  as e:
           raise ParseError(detail=str(e), code=400)
-
+    def list(self, request, *args, **kwargs):
+        data = receipt.objects.select_related('eid').all()
+        serializer = rep_serialzer(data, many=True)
+        # print(data)
+        return Response(serializer.data)
+    
+    
 
 class login(APIView):
     def post(self,request):
-       user_c = employee.objects.filter(username=request.data["id"]).values()
+       user_c = employee.objects.filter(username=request.data["username"]).values()
        if user_c:      
-          user = auth.authenticate(username=request.data["id"],password=request.data["password"])
+          user = auth.authenticate(username=request.data["username"],password=request.data["password"])
           if user is not None:
             print(user)
             auth.login(request,user)
-            return Response(str(user_c))
+            return Response({"user": user})
            
        else:
             raise PermissionDenied(detail="Invalid Credentials")
