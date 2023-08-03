@@ -16,7 +16,7 @@
   }
 }
 body {
-  color: rgb(var(--foreground-rgb));
+  color: black;
   /* background: url("../app/images/uchicha.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,6 +33,6 @@ td {
 }
 
 th,td{
-  width: fit-content;
+  width: max-content;
   padding: 0.5rem 1rem;
 }

@@ -20,6 +20,8 @@ class rep_serialzer(serializers.ModelSerializer):
     # los=serializers.IntegerField()
     # gross=serializers.IntegerField()
     
+    eid = emp_serialzer()
+
     class Meta:
         model = receipt
         fields = '__all__' 
