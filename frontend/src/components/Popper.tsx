@@ -67,19 +67,11 @@ export default function Popper({
             Upload
           </button>
         </div>
-        <Stack sx={{ width: "100%" }}>
-          {" "}
-          <Snackbar
-            anchorOrigin={{ horizontal: "center", vertical: "top" }}
-            open={snack}
-            autoHideDuration={2000}
-            onClose={closeSnack}
-          >
-            <Alert onClose={closeSnack} severity="error" sx={{ width: "100%" }}>
-              File Removed!
-            </Alert>
-          </Snackbar>
-        </Stack>
+        <Stack sx={{ width: '100%' }}>  <Snackbar anchorOrigin={{ 'horizontal': 'center', 'vertical': 'top' }} open={snack} autoHideDuration={2000} onClose={closeSnack}>
+          <Alert onClose={closeSnack} severity="error" sx={{ width: "100%" }}>
+            File Removed!
+          </Alert>
+        </Snackbar></Stack>
       </Box>
     </Modal>
   );
