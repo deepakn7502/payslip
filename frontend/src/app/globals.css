@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@300&display=swap');
+
+
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -17,12 +20,16 @@
 }
 body {
   color: rgb(var(--foreground-rgb));
-  /* background: url("../app/images/uchicha.jpg"); */
+  
   background-repeat: no-repeat;
   background-size: cover;
   
   background-position: center;
   background-attachment: fixed;
+}
+*{
+  font-family: 'Blinker', sans-serif;
+
 }
 
 table,
