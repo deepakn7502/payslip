@@ -18,6 +18,8 @@ from .serializer import *
 from .models import *   
 from .utils import *
 
+import json
+
 
 
 class employees(viewsets.ModelViewSet):
@@ -58,13 +60,19 @@ class receipts(viewsets.ModelViewSet):
             return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
-       try:
+      #  try:
           id = kwargs['pk']
-          data = receipt.objects.filter(eid=id).select_related('eid').all()
-          serializer = rep_serialzer(data, many=True)
-          return Response(serializer.data)
-       except Exception  as e:
-          raise ParseError(detail=str(e), code=400)
+          month =  request.query_params.get("month").upper() + "-" + request.query_params.get("year")[2:]
+          data = receipt.objects.filter(eid=id,month = month).select_related('eid').all()
+          serializer = json.loads(json.dumps(rep_serialzer(data, many=True).data))[0]
+          if(not serializer["status"]):
+            up = receipt.objects.get(eid=id,month = month)
+            up.status = True
+            up.save()
+            serializer["status"] = True
+          return Response(serializer)
+      #  except Exception  as e:
+      #     raise ParseError(detail=str(e), code=400)
       
     
 
@@ -87,6 +95,7 @@ class login(APIView):
             else:
                 return Response({
                 "eid":user.eid,
+                "name":user.first_name,
                 "user":"staff",
                   "access_token" : access_token,
                    "refresh_token" : str(refresh)

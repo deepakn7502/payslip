@@ -32,7 +32,8 @@ let login = async () => {
       if (user === "admin") {
         push(`/admin`);
       } else {
-        push(`/staff/${res.data["eid"]}`);
+      sessionStorage.setItem("eid", res.data["eid"]);
+        push(`/staff/${res.data["name"]}`);
       }
     } catch (e) {
       alert(e);

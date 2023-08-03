@@ -188,9 +188,10 @@ const page = () => {
         {show ? (
           <div>
             <table className="w-4/5 mx-auto my-4">
-              <thead>
+            <thead>
                 <tr className="h-12 bg-blue-950">
                   <th>ID</th>
+                  <th>RID</th>
                   <th>Name</th>
                   <th>Department</th>
                   <th>Designation</th>
@@ -200,16 +201,17 @@ const page = () => {
                 </tr>
               </thead>
               <tbody>
-                {dataset?.map((person: any) => {
+                {data?.map((person: any) => {
                   return (
                     <tr className="h-8 text-black text-center">
-                      <td>{person.id}</td>
-                      <td>{person.first_name}</td>
-                      <td>{person.department}</td>
-                      <td>{person.designation}</td>
-                      <td>{person.email}</td>
-                      <td>{person.phoneno}</td>
-                      <td>{person.status}</td>
+                      <td>{person.eid.eid}</td>
+                      <td>{person.rid}</td>
+                      <td>{person.eid.first_name}</td>
+                      <td>{person.eid.department}</td>
+                      <td>{person.eid.designation}</td>
+                      <td>{person.eid.email}</td>
+                      <td>{person.eid.phoneno}</td>
+                      <td>{person.status ? "Viewed" : "Not Viewed"}</td>
                     </tr>
                   );
                 })}
