@@ -73,8 +73,6 @@ const page = () => {
 
   const handleChange = (file: any) => {
     setFile(file);
-    // files.push(file.name);
-    // console.log({ files });
   };
 
 
@@ -221,7 +219,8 @@ const page = () => {
         open={open}
         handleClose={handleClose}
         style={style}
-        handleChange={upload}
+        handleChange={handleChange}
+        upload={upload}
         fileTypes={fileTypes}
         poppins={poppins}
         file={file}

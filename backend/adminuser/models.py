@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from django.contrib.auth.hashers import make_password
 
 
 # class employee(models.Model):
@@ -24,8 +24,14 @@ class employee(AbstractUser):
     eid = models.CharField(max_length=50,primary_key=True)
     designation = models.CharField(max_length=50)
     department = models.CharField(max_length=20)    
-    phoneno = models.IntegerField(max_length=10)
+    phoneno = models.CharField(max_length=10)
     
+    def save(self, *args, **kwargs):
+        # Hash the password using make_password
+        self.password = make_password(self.password)
+        self.username = self.eid
+        super(employee, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.eid
 class receipt(models.Model):

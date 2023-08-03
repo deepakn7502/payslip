@@ -11,6 +11,7 @@ export default function Popper({
   poppins,
   file,
   Remove,
+  upload,
   snack,
   closeSnack,
 }: any) {
@@ -63,7 +64,7 @@ export default function Popper({
               )}
             </div>
           </div>
-          <button className="w-28 h-10 bg-yellow-300 rounded-md font-bold">
+          <button onClick={upload} className="w-28 h-10 bg-yellow-300 rounded-md font-bold">
             Upload
           </button>
         </div>
