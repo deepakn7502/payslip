@@ -1,5 +1,6 @@
+
 "use client"
-import { forwardRef, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { Poppins } from 'next/font/google';
 import Modal from '@mui/material/Modal';
 import { FileUploader } from "react-drag-drop-files";
@@ -36,12 +37,14 @@ const page = () => {
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
-
         p: 4,
     };
 
     const fileTypes = ["xlsx", "xls"];
 
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [reload, setReload] = useState(false);
 
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -64,10 +67,18 @@ const page = () => {
     };
 
     const Remove = () => {
+        setReload(!reload);
         setSnack(true);
+
         setFile([]);
+
         console.log(file);
     };
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+
+
+
+
 
     return (
 
@@ -93,7 +104,8 @@ const page = () => {
                                 <h1 className='text-3xl font-bold '>UPLOAD FILE</h1>
                                 <div className="w-full flex flex-col items-center justify-evenly h-[200px]">
                                     <h1 className='text-xl font-bold'>Drag and Drop files here or browse</h1>
-                                    <FileUploader handleChange={handleChange} label="Upload file" name="file" types={fileTypes} /></div>
+                                    {reload == true ? <div><FileUploader handleChange={handleChange} label="Upload file" name="file" types={fileTypes} /></div> : <div> <FileUploader handleChange={handleChange} label="Upload file" name="file" types={fileTypes} /></div>}
+                                </div>
                                 <div className='h-[100px] w-full bg-[rgb(246,237,212)] grid grid-cols-2 place-items-center border-dashed border-2 border-black rounded-lg'>
                                     <div className='w-full flex flex-col items-center'><h1 className='font-bold'>Files Uploaded</h1>
                                         {file.name ? <h1 className={poppins.className}>{file?.name}</h1> : <h1 className={`${poppins.className} `}>No Files Uploaded</h1>}
@@ -107,7 +119,7 @@ const page = () => {
                                             : <h1>--</h1>}
                                     </div>
                                 </div>
-                                <button className='w-28 h-10 bg-yellow-300 rounded-md' >Upload</button>
+                                <button className='w-28 h-10 bg-yellow-300 rounded-md font-bold' >Upload</button>
                             </div>
                             <Stack sx={{ width: '100%' }}>  <Snackbar anchorOrigin={{ 'horizontal': 'center', 'vertical': 'top' }} open={snack} autoHideDuration={2000} onClose={closeSnack}>
                                 <Alert onClose={closeSnack} severity="error" sx={{ width: "100%" }}>

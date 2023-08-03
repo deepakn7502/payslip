@@ -99,7 +99,7 @@ export default function User() {
   const [month, setmonth] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
   const [alertContent, setAlertContent] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState<any>("");
 
 
   let timebar = () => {
