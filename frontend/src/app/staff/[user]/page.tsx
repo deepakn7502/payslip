@@ -2,7 +2,7 @@
 import { useState } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
-import Button from '@mui/material/Button';
+
 import { Alert } from "@mui/material";
 
 
@@ -18,7 +18,7 @@ export default function User() {
 
 
 
-// Year Selection
+  // Year Selection
 
   const [selectedYear, setSelectedYear] = useState("");
   const YearTextField = () => {
@@ -100,14 +100,12 @@ export default function User() {
   const [openAlert, setOpenAlert] = useState(false);
   const [alertContent, setAlertContent] = useState("");
   const [type, setType] = useState("");
-  
-  
-  let timebar = () => 
-  {
-    let  progressTimeout:any;
-    let dismissTimeout:any;
-    const startDismissTimer = () => 
-    {
+
+
+  let timebar = () => {
+    let progressTimeout: any;
+    let dismissTimeout: any;
+    const startDismissTimer = () => {
       dismissTimeout = setTimeout(() => {
         setOpenAlert(false);
       }, 3000);
@@ -118,26 +116,25 @@ export default function User() {
       clearTimeout(dismissTimeout);
     };
   };
-  
-//Pdf generation
-let generatePDF = () => {
-  if (month && selectedYear ) {
-    
-    setAlertContent("Payslip");
-    setType("success")
-    setOpenAlert(true);
-    timebar();
-  } 
-  else 
-  {
-    
-    setAlertContent("Field cannot be empty!!");
-    setType("info")
-    setOpenAlert(true);
-    timebar(); 
 
-  
-      
+  //Pdf generation
+  let generatePDF = () => {
+    if (month && selectedYear) {
+
+      setAlertContent("Payslip");
+      setType("success")
+      setOpenAlert(true);
+      timebar();
+    }
+    else {
+
+      setAlertContent("Field cannot be empty!!");
+      setType("info")
+      setOpenAlert(true);
+      timebar();
+
+
+
     }
   }
 
@@ -152,7 +149,7 @@ let generatePDF = () => {
         <p className="text-white text-[25px] font-serif">Select PaySlip Year & Month</p>
         <div className="flex-row py-2 w-[80%] flex items-center justify-around">
 
-          
+
           <TextField
             className="bg-white w-1/5 h-fit rounded-md"
             label="Month"
@@ -160,7 +157,7 @@ let generatePDF = () => {
             onChange={(e) => {
               setmonth(e.target.value);
             }}
-            
+
           >
             {currencies.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -172,29 +169,29 @@ let generatePDF = () => {
           {YearTextField()}
         </div>
         <div className="font-serif">
-        <button className="" color="success" onClick={generatePDF}>Generate Pay Slip</button>
+          <button className="" color="success" onClick={generatePDF}>Generate Pay Slip</button>
 
         </div>
       </div>
       {openAlert ? (
-          <Alert variant="filled"
-            severity={type}
-            sx={{
-              top:"20px",
-              left:"45%",
-              width:"auto",
-               position: "absolute",
-               zIndex: 100,
-                    }}
-            onClose={() => {
-              setOpenAlert(false);
-            }}
-          >
-        {alertContent}
-          </Alert>
-        ) : (
-          <></>
-        )}
+        <Alert variant="filled"
+          severity={type}
+          sx={{
+            top: "20px",
+            left: "45%",
+            width: "auto",
+            position: "absolute",
+            zIndex: 100,
+          }}
+          onClose={() => {
+            setOpenAlert(false);
+          }}
+        >
+          {alertContent}
+        </Alert>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
