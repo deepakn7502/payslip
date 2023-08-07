@@ -1,4 +1,5 @@
-[{
+[
+  {
     "eid_id": 1000,
     "month": "APR-23",
     "basic": 30514,
@@ -11,10 +12,11 @@
     "miscellaneous": 34426,
     "esi": 78289,
     "deductions": 29871,
-    "totalearnings": 20811,
-    "totaldeductions": 12129,
+    "total_earnings": 20811,
+    "total_deductions": 12129,
     "net_salary": 23337
-  }, {
+  },
+  {
     "eid_id": 88094,
     "month": "OCT-23",
     "basic": 35074,
@@ -27,10 +29,11 @@
     "miscellaneous": 36788,
     "esi": 38501,
     "deductions": 42431,
-    "totalearnings": 63447,
-    "totaldeductions": 14345,
+    "total_earnings": 63447,
+    "total_deductions": 14345,
     "net_salary": 71616
-  }, {
+  },
+  {
     "eid_id": 77948,
     "month": "MAR-23",
     "basic": 46360,
@@ -43,10 +46,11 @@
     "miscellaneous": 76873,
     "esi": 57917,
     "deductions": 61781,
-    "totalearnings": 45070,
-    "totaldeductions": 8974,
+    "total_earnings": 45070,
+    "total_deductions": 8974,
     "net_salary": 28719
-  }, {
+  },
+  {
     "eid_id": 27725,
     "month": "MAR-23",
     "basic": 98888,
@@ -59,10 +63,11 @@
     "miscellaneous": 37231,
     "esi": 50314,
     "deductions": 42999,
-    "totalearnings": 25878,
-    "totaldeductions": 12505,
+    "total_earnings": 25878,
+    "total_deductions": 12505,
     "net_salary": 16081
-  }, {
+  },
+  {
     "eid_id": 72323,
     "month": "SEP-23",
     "basic": 75215,
@@ -75,10 +80,11 @@
     "miscellaneous": 33141,
     "esi": 70998,
     "deductions": 43091,
-    "totalearnings": 30573,
-    "totaldeductions": 15160,
+    "total_earnings": 30573,
+    "total_deductions": 15160,
     "net_salary": 46845
-  }, {
+  },
+  {
     "eid_id": 52602,
     "month": "JUN-23",
     "basic": 81519,
@@ -91,10 +97,11 @@
     "miscellaneous": 52088,
     "esi": 31989,
     "deductions": 61943,
-    "totalearnings": 41407,
-    "totaldeductions": 9685,
+    "total_earnings": 41407,
+    "total_deductions": 9685,
     "net_salary": 35842
-  }, {
+  },
+  {
     "eid_id": 61915,
     "month": "MAY-23",
     "basic": 20242,
@@ -107,10 +114,11 @@
     "miscellaneous": 22147,
     "esi": 21074,
     "deductions": 29327,
-    "totalearnings": 32900,
-    "totaldeductions": 10536,
+    "total_earnings": 32900,
+    "total_deductions": 10536,
     "net_salary": 64527
-  }, {
+  },
+  {
     "eid_id": 5918,
     "month": "JAN-23",
     "basic": 99432,
@@ -123,10 +131,11 @@
     "miscellaneous": 16531,
     "esi": 72422,
     "deductions": 51371,
-    "totalearnings": 27400,
-    "totaldeductions": 14430,
+    "total_earnings": 27400,
+    "total_deductions": 14430,
     "net_salary": 43215
-  }, {
+  },
+  {
     "eid_id": 891,
     "month": "MAY-23",
     "basic": 93745,
@@ -139,10 +148,11 @@
     "miscellaneous": 25141,
     "esi": 33639,
     "deductions": 17658,
-    "totalearnings": 59066,
-    "totaldeductions": 11536,
+    "total_earnings": 59066,
+    "total_deductions": 11536,
     "net_salary": 34079
-  }, {
+  },
+  {
     "eid_id": 17238,
     "month": "APR-23",
     "basic": 50621,
@@ -155,10 +165,11 @@
     "miscellaneous": 30521,
     "esi": 47937,
     "deductions": 33033,
-    "totalearnings": 77472,
-    "totaldeductions": 8513,
+    "total_earnings": 77472,
+    "total_deductions": 8513,
     "net_salary": 46286
-  }, {
+  },
+  {
     "eid_id": 13886,
     "month": "AUG-23",
     "basic": 26857,
@@ -171,10 +182,11 @@
     "miscellaneous": 16653,
     "esi": 39183,
     "deductions": 65931,
-    "totalearnings": 63484,
-    "totaldeductions": 15629,
+    "total_earnings": 63484,
+    "total_deductions": 15629,
     "net_salary": 30984
-  }, {
+  },
+  {
     "eid_id": 55856,
     "month": "DEC-23",
     "basic": 96121,
@@ -187,10 +199,11 @@
     "miscellaneous": 69897,
     "esi": 43874,
     "deductions": 70495,
-    "totalearnings": 45034,
-    "totaldeductions": 10105,
+    "total_earnings": 45034,
+    "total_deductions": 10105,
     "net_salary": 52273
-  }, {
+  },
+  {
     "eid_id": 46715,
     "month": "MAY-23",
     "basic": 86559,
@@ -203,10 +216,11 @@
     "miscellaneous": 34857,
     "esi": 44115,
     "deductions": 56102,
-    "totalearnings": 39068,
-    "totaldeductions": 8521,
+    "total_earnings": 39068,
+    "total_deductions": 8521,
     "net_salary": 25034
-  }, {
+  },
+  {
     "eid_id": 3206,
     "month": "OCT-23",
     "basic": 18559,
@@ -219,10 +233,11 @@
     "miscellaneous": 76448,
     "esi": 69735,
     "deductions": 39944,
-    "totalearnings": 20854,
-    "totaldeductions": 10611,
+    "total_earnings": 20854,
+    "total_deductions": 10611,
     "net_salary": 47167
-  }, {
+  },
+  {
     "eid_id": 81560,
     "month": "AUG-23",
     "basic": 35030,
@@ -235,10 +250,11 @@
     "miscellaneous": 76254,
     "esi": 29155,
     "deductions": 69330,
-    "totalearnings": 62344,
-    "totaldeductions": 14328,
+    "total_earnings": 62344,
+    "total_deductions": 14328,
     "net_salary": 17325
-  }, {
+  },
+  {
     "eid_id": 50202,
     "month": "AUG-23",
     "basic": 35679,
@@ -251,10 +267,11 @@
     "miscellaneous": 47143,
     "esi": 33480,
     "deductions": 69101,
-    "totalearnings": 36773,
-    "totaldeductions": 11378,
+    "total_earnings": 36773,
+    "total_deductions": 11378,
     "net_salary": 34634
-  }, {
+  },
+  {
     "eid_id": 25909,
     "month": "MAR-23",
     "basic": 38542,
@@ -267,10 +284,11 @@
     "miscellaneous": 26055,
     "esi": 27891,
     "deductions": 44512,
-    "totalearnings": 64215,
-    "totaldeductions": 13577,
+    "total_earnings": 64215,
+    "total_deductions": 13577,
     "net_salary": 57007
-  }, {
+  },
+  {
     "eid_id": 61995,
     "month": "APR-23",
     "basic": 45441,
@@ -283,10 +301,11 @@
     "miscellaneous": 37686,
     "esi": 49034,
     "deductions": 36401,
-    "totalearnings": 25388,
-    "totaldeductions": 8693,
+    "total_earnings": 25388,
+    "total_deductions": 8693,
     "net_salary": 17803
-  }, {
+  },
+  {
     "eid_id": 54072,
     "month": "SEP-23",
     "basic": 84049,
@@ -299,10 +318,11 @@
     "miscellaneous": 59010,
     "esi": 20253,
     "deductions": 21426,
-    "totalearnings": 69807,
-    "totaldeductions": 9466,
+    "total_earnings": 69807,
+    "total_deductions": 9466,
     "net_salary": 59546
-  }, {
+  },
+  {
     "eid_id": 21161,
     "month": "MAY-23",
     "basic": 39852,
@@ -315,10 +335,11 @@
     "miscellaneous": 75474,
     "esi": 48374,
     "deductions": 28547,
-    "totalearnings": 79432,
-    "totaldeductions": 14859,
+    "total_earnings": 79432,
+    "total_deductions": 14859,
     "net_salary": 32876
-  }, {
+  },
+  {
     "eid_id": 8531,
     "month": "DEC-23",
     "basic": 45201,
@@ -331,10 +352,11 @@
     "miscellaneous": 35783,
     "esi": 42809,
     "deductions": 56946,
-    "totalearnings": 40666,
-    "totaldeductions": 15562,
+    "total_earnings": 40666,
+    "total_deductions": 15562,
     "net_salary": 65458
-  }, {
+  },
+  {
     "eid_id": 33318,
     "month": "JAN-23",
     "basic": 26454,
@@ -347,10 +369,11 @@
     "miscellaneous": 54455,
     "esi": 20380,
     "deductions": 60597,
-    "totalearnings": 41363,
-    "totaldeductions": 13055,
+    "total_earnings": 41363,
+    "total_deductions": 13055,
     "net_salary": 72554
-  }, {
+  },
+  {
     "eid_id": 97019,
     "month": "JUL-23",
     "basic": 50853,
@@ -363,10 +386,11 @@
     "miscellaneous": 70764,
     "esi": 55499,
     "deductions": 69818,
-    "totalearnings": 41815,
-    "totaldeductions": 12977,
+    "total_earnings": 41815,
+    "total_deductions": 12977,
     "net_salary": 54671
-  }, {
+  },
+  {
     "eid_id": 47551,
     "month": "JAN-23",
     "basic": 19700,
@@ -379,10 +403,11 @@
     "miscellaneous": 60769,
     "esi": 79921,
     "deductions": 57535,
-    "totalearnings": 74916,
-    "totaldeductions": 14885,
+    "total_earnings": 74916,
+    "total_deductions": 14885,
     "net_salary": 24442
-  }, {
+  },
+  {
     "eid_id": 31774,
     "month": "APR-23",
     "basic": 56250,
@@ -395,10 +420,11 @@
     "miscellaneous": 26446,
     "esi": 73466,
     "deductions": 30112,
-    "totalearnings": 32521,
-    "totaldeductions": 9479,
+    "total_earnings": 32521,
+    "total_deductions": 9479,
     "net_salary": 27848
-  }, {
+  },
+  {
     "eid_id": 83283,
     "month": "MAY-23",
     "basic": 64379,
@@ -411,10 +437,11 @@
     "miscellaneous": 37710,
     "esi": 54559,
     "deductions": 76407,
-    "totalearnings": 79093,
-    "totaldeductions": 8585,
+    "total_earnings": 79093,
+    "total_deductions": 8585,
     "net_salary": 23006
-  }, {
+  },
+  {
     "eid_id": 21269,
     "month": "NOV-23",
     "basic": 31656,
@@ -427,10 +454,11 @@
     "miscellaneous": 27294,
     "esi": 65414,
     "deductions": 66308,
-    "totalearnings": 75635,
-    "totaldeductions": 9427,
+    "total_earnings": 75635,
+    "total_deductions": 9427,
     "net_salary": 70328
-  }, {
+  },
+  {
     "eid_id": 22872,
     "month": "JUL-23",
     "basic": 34384,
@@ -443,10 +471,11 @@
     "miscellaneous": 47734,
     "esi": 62114,
     "deductions": 40062,
-    "totalearnings": 75154,
-    "totaldeductions": 15397,
+    "total_earnings": 75154,
+    "total_deductions": 15397,
     "net_salary": 64736
-  }, {
+  },
+  {
     "eid_id": 26478,
     "month": "JAN-23",
     "basic": 48767,
@@ -459,10 +488,11 @@
     "miscellaneous": 41060,
     "esi": 44608,
     "deductions": 26079,
-    "totalearnings": 43906,
-    "totaldeductions": 9518,
+    "total_earnings": 43906,
+    "total_deductions": 9518,
     "net_salary": 62932
-  }, {
+  },
+  {
     "eid_id": 4139,
     "month": "MAR-23",
     "basic": 31504,
@@ -475,10 +505,11 @@
     "miscellaneous": 65203,
     "esi": 22368,
     "deductions": 29163,
-    "totalearnings": 71433,
-    "totaldeductions": 15438,
+    "total_earnings": 71433,
+    "total_deductions": 15438,
     "net_salary": 70881
-  }, {
+  },
+  {
     "eid_id": 80592,
     "month": "JAN-23",
     "basic": 88684,
@@ -491,10 +522,11 @@
     "miscellaneous": 30598,
     "esi": 36700,
     "deductions": 17432,
-    "totalearnings": 20007,
-    "totaldeductions": 10142,
+    "total_earnings": 20007,
+    "total_deductions": 10142,
     "net_salary": 16018
-  }, {
+  },
+  {
     "eid_id": 99906,
     "month": "JUL-23",
     "basic": 33386,
@@ -507,10 +539,11 @@
     "miscellaneous": 56334,
     "esi": 55436,
     "deductions": 66560,
-    "totalearnings": 43370,
-    "totaldeductions": 14262,
+    "total_earnings": 43370,
+    "total_deductions": 14262,
     "net_salary": 28076
-  }, {
+  },
+  {
     "eid_id": 45646,
     "month": "NOV-23",
     "basic": 99169,
@@ -523,10 +556,11 @@
     "miscellaneous": 39525,
     "esi": 45815,
     "deductions": 77272,
-    "totalearnings": 63097,
-    "totaldeductions": 12750,
+    "total_earnings": 63097,
+    "total_deductions": 12750,
     "net_salary": 46632
-  }, {
+  },
+  {
     "eid_id": 88559,
     "month": "MAY-23",
     "basic": 85219,
@@ -539,10 +573,11 @@
     "miscellaneous": 70951,
     "esi": 46925,
     "deductions": 49295,
-    "totalearnings": 21293,
-    "totaldeductions": 8243,
+    "total_earnings": 21293,
+    "total_deductions": 8243,
     "net_salary": 49465
-  }, {
+  },
+  {
     "eid_id": 51484,
     "month": "MAR-23",
     "basic": 25131,
@@ -555,10 +590,11 @@
     "miscellaneous": 76697,
     "esi": 61943,
     "deductions": 22189,
-    "totalearnings": 56507,
-    "totaldeductions": 12771,
+    "total_earnings": 56507,
+    "total_deductions": 12771,
     "net_salary": 67591
-  }, {
+  },
+  {
     "eid_id": 78025,
     "month": "JUN-23",
     "basic": 30388,
@@ -571,10 +607,11 @@
     "miscellaneous": 44538,
     "esi": 41743,
     "deductions": 73727,
-    "totalearnings": 53580,
-    "totaldeductions": 12144,
+    "total_earnings": 53580,
+    "total_deductions": 12144,
     "net_salary": 44910
-  }, {
+  },
+  {
     "eid_id": 16770,
     "month": "APR-23",
     "basic": 24172,
@@ -587,10 +624,11 @@
     "miscellaneous": 36106,
     "esi": 43903,
     "deductions": 28474,
-    "totalearnings": 62086,
-    "totaldeductions": 11797,
+    "total_earnings": 62086,
+    "total_deductions": 11797,
     "net_salary": 49906
-  }, {
+  },
+  {
     "eid_id": 15259,
     "month": "NOV-23",
     "basic": 29765,
@@ -603,10 +641,11 @@
     "miscellaneous": 19641,
     "esi": 41994,
     "deductions": 39155,
-    "totalearnings": 22240,
-    "totaldeductions": 13472,
+    "total_earnings": 22240,
+    "total_deductions": 13472,
     "net_salary": 33443
-  }, {
+  },
+  {
     "eid_id": 40153,
     "month": "OCT-23",
     "basic": 92312,
@@ -619,10 +658,11 @@
     "miscellaneous": 18712,
     "esi": 33757,
     "deductions": 65817,
-    "totalearnings": 50601,
-    "totaldeductions": 10851,
+    "total_earnings": 50601,
+    "total_deductions": 10851,
     "net_salary": 26498
-  }, {
+  },
+  {
     "eid_id": 2317,
     "month": "DEC-23",
     "basic": 19031,
@@ -635,10 +675,11 @@
     "miscellaneous": 76193,
     "esi": 65046,
     "deductions": 55175,
-    "totalearnings": 65492,
-    "totaldeductions": 13000,
+    "total_earnings": 65492,
+    "total_deductions": 13000,
     "net_salary": 29488
-  }, {
+  },
+  {
     "eid_id": 10007,
     "month": "JUN-23",
     "basic": 55648,
@@ -651,10 +692,11 @@
     "miscellaneous": 76346,
     "esi": 75802,
     "deductions": 48092,
-    "totalearnings": 66039,
-    "totaldeductions": 11841,
+    "total_earnings": 66039,
+    "total_deductions": 11841,
     "net_salary": 35382
-  }, {
+  },
+  {
     "eid_id": 36892,
     "month": "FEB-23",
     "basic": 46598,
@@ -667,10 +709,11 @@
     "miscellaneous": 72266,
     "esi": 51080,
     "deductions": 41416,
-    "totalearnings": 61720,
-    "totaldeductions": 10160,
+    "total_earnings": 61720,
+    "total_deductions": 10160,
     "net_salary": 41533
-  }, {
+  },
+  {
     "eid_id": 48615,
     "month": "FEB-23",
     "basic": 53392,
@@ -683,10 +726,11 @@
     "miscellaneous": 68364,
     "esi": 17105,
     "deductions": 28331,
-    "totalearnings": 69845,
-    "totaldeductions": 13003,
+    "total_earnings": 69845,
+    "total_deductions": 13003,
     "net_salary": 49683
-  }, {
+  },
+  {
     "eid_id": 56952,
     "month": "MAY-23",
     "basic": 72422,
@@ -699,10 +743,11 @@
     "miscellaneous": 78907,
     "esi": 75739,
     "deductions": 51899,
-    "totalearnings": 21686,
-    "totaldeductions": 12847,
+    "total_earnings": 21686,
+    "total_deductions": 12847,
     "net_salary": 41761
-  }, {
+  },
+  {
     "eid_id": 40855,
     "month": "DEC-23",
     "basic": 97548,
@@ -715,10 +760,11 @@
     "miscellaneous": 78565,
     "esi": 67091,
     "deductions": 25425,
-    "totalearnings": 76378,
-    "totaldeductions": 13726,
+    "total_earnings": 76378,
+    "total_deductions": 13726,
     "net_salary": 36591
-  }, {
+  },
+  {
     "eid_id": 79488,
     "month": "MAY-23",
     "basic": 81705,
@@ -731,10 +777,11 @@
     "miscellaneous": 48796,
     "esi": 69756,
     "deductions": 49556,
-    "totalearnings": 60476,
-    "totaldeductions": 11634,
+    "total_earnings": 60476,
+    "total_deductions": 11634,
     "net_salary": 27604
-  }, {
+  },
+  {
     "eid_id": 19756,
     "month": "FEB-23",
     "basic": 20266,
@@ -747,10 +794,11 @@
     "miscellaneous": 28847,
     "esi": 68405,
     "deductions": 78496,
-    "totalearnings": 69843,
-    "totaldeductions": 8431,
+    "total_earnings": 69843,
+    "total_deductions": 8431,
     "net_salary": 70650
-  }, {
+  },
+  {
     "eid_id": 49198,
     "month": "DEC-23",
     "basic": 58141,
@@ -763,10 +811,11 @@
     "miscellaneous": 26221,
     "esi": 42597,
     "deductions": 30577,
-    "totalearnings": 71148,
-    "totaldeductions": 14909,
+    "total_earnings": 71148,
+    "total_deductions": 14909,
     "net_salary": 16496
-  }, {
+  },
+  {
     "eid_id": 33080,
     "month": "FEB-23",
     "basic": 18373,
@@ -779,10 +828,11 @@
     "miscellaneous": 38628,
     "esi": 50144,
     "deductions": 71330,
-    "totalearnings": 65571,
-    "totaldeductions": 13849,
+    "total_earnings": 65571,
+    "total_deductions": 13849,
     "net_salary": 31658
-  }, {
+  },
+  {
     "eid_id": 70299,
     "month": "FEB-23",
     "basic": 42296,
@@ -795,8 +845,8 @@
     "miscellaneous": 24227,
     "esi": 20199,
     "deductions": 67077,
-    "totalearnings": 54211,
-    "totaldeductions": 14221,
+    "total_earnings": 54211,
+    "total_deductions": 14221,
     "net_salary": 72948
-  }]
-  
+  }
+]
