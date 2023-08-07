@@ -216,7 +216,7 @@ export default function User({ params }: Params) {
           variant="filled"
           severity={type}
           sx={{
-            bottom: "3%",
+            bottom: "3",
             left: "5%",
             width: "auto",
             position: "absolute",

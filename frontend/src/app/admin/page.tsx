@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 
 import dataset from "../images/data.json";
 import { IoIosCloseCircle } from "react-icons/io";
-import { Tooltip } from "@mui/material";
+import { MenuItem, TextField, Tooltip } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
@@ -136,6 +136,129 @@ const page = () => {
     }
   };
 
+  
+    const currentYear = new Date().getFullYear();
+    const years = Array.from(
+      { length: currentYear - 2010 },
+      (_, index) => 2011 + index
+    );
+
+  const [selectedYear, setSelectedYear] = useState("");
+  const YearTextField = () => {
+    return (
+      <TextField
+        className="bg-white w-full h-12  justify-between rounded-md border-transparent"
+        label="Year"
+        select
+        value={selectedYear}
+        onChange={(event) => {
+          setSelectedYear(event.target.value);
+        }}
+      >
+        {years.map((year) => (
+          <MenuItem key={year} value={year}>
+            {year}
+          </MenuItem>
+        ))}
+      </TextField>
+    );
+  };
+
+  const currencies = [
+    {
+      value: "jan",
+      label: "January",
+    },
+    {
+      value: "feb",
+      label: "February",
+    },
+    {
+      value: "mar",
+      label: "March",
+    },
+    {
+      value: "apr",
+      label: "April",
+    },
+    {
+      value: "may",
+      label: "May",
+    },
+    {
+      value: "jun",
+      label: "June",
+    },
+    {
+      value: "jul",
+      label: "July",
+    },
+    {
+      value: "aug",
+      label: "August",
+    },
+    {
+      value: "sep",
+      label: "September",
+    },
+    {
+      value: "oct",
+      label: "October",
+    },
+    {
+      value: "nov",
+      label: "November",
+    },
+    {
+      value: "dec",
+      label: "December",
+    },
+  ];
+
+
+  const fields = [
+    {
+      value: "employeeid",
+      label: "Employee Id",
+    },
+    {
+      value: "name",
+      label: "Name",
+    },
+    {
+      value: "department",
+      label: "Department",
+    },
+    {
+      value: "designation",
+      label: "Designation",
+    },
+    {
+      value: "status",
+      label: "Status",
+    },
+    
+  ];
+
+  const [month, setmonth] = useState("");
+  const [openAlert, setOpenAlert] = useState(false);
+  const [alertContent, setAlertContent] = useState("");
+  const [type, setType] = useState("");
+
+  let timebar = () => {
+    let progressTimeout: any;
+    let dismissTimeout: any;
+    const startDismissTimer = () => {
+      dismissTimeout = setTimeout(() => {
+        setOpenAlert(false);
+      }, 3000);
+    };
+    startDismissTimer();
+    return () => {
+      clearInterval(progressTimeout);
+      clearTimeout(dismissTimeout);
+    };
+  };
 
 
 
@@ -147,14 +270,21 @@ const page = () => {
     <div className="w-full h-full">
       <div className="bg-blue-950 w-full h-24 mt-6 grid grid-cols-7 place-items-center gap-4 ">
         <div className="w-full grid grid-cols-5 col-span-3 gap-4 pl-4">
-          <input
-            type="text"
-            className="h-12 w-full col-span-2 rounded-md text-black"
-          />
-          <input
-            type="text"
-            className="h-12 w-full col-span-2 rounded-md text-black"
-          />
+        <TextField
+            className="bg-white w-full h-12 rounded-md"
+            label="Month"
+            select
+            onChange={(e) => {
+              setmonth(e.target.value);
+            }}
+          >
+            {currencies.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          {YearTextField()}
           <button
             className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black"
             onClick={handleSearch}
@@ -163,12 +293,23 @@ const page = () => {
           </button>
         </div>
         <div className="w-full grid grid-cols-5 col-span-3 gap-4">
+        <TextField
+            className="bg-white w-full h-12 rounded-md"
+            label="Search By"
+            select
+            onChange={(e) => {
+              setmonth(e.target.value);
+            }}
+          >
+            {fields.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
           <input
             type="text"
-            className="h-12 w-full col-span-2 rounded-md text-black"
-          />
-          <input
-            type="text"
+            placeholder='type here...'
             className="h-12 w-full col-span-2 rounded-md text-black"
           />
           <button className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black">
@@ -188,15 +329,14 @@ const page = () => {
         {show ? (
           <div>
             <table className="w-4/5 mx-auto my-4">
-            <thead>
-                <tr className="h-12 bg-blue-950">
-                  <th>ID</th>
-                  <th>RID</th>
+            <thead className="  ">
+                <tr className="h-12 bg-blue-950 text-slate-50">
+                  <th >Employee Id</th>
+                  
                   <th>Name</th>
                   <th>Department</th>
                   <th>Designation</th>
-                  <th>Email</th>
-                  <th>Phone</th>
+                
                   <th>Status</th>
                 </tr>
               </thead>
@@ -205,12 +345,11 @@ const page = () => {
                   return (
                     <tr className="h-8 text-black text-center">
                       <td>{person.eid.eid}</td>
-                      <td>{person.rid}</td>
+                    
                       <td>{person.eid.first_name}</td>
                       <td>{person.eid.department}</td>
                       <td>{person.eid.designation}</td>
-                      <td>{person.eid.email}</td>
-                      <td>{person.eid.phoneno}</td>
+                    
                       <td>{person.status ? "Viewed" : "Not Viewed"}</td>
                     </tr>
                   );
