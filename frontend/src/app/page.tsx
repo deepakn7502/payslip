@@ -73,7 +73,7 @@ let login = async () => {
         >
           Login
         </button>
-        <button className="text-white">Forgot Password?</button>
+        <button className="text-white">Forgot Password?</button>  
       </form>
     </div>
   );
