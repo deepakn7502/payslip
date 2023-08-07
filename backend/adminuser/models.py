@@ -46,12 +46,15 @@ class employee(AbstractUser):
         return self.eid
 class receipt(models.Model):
     # rid = models.CharField(max_length=50,primary_key=True)
+
     basic = models.IntegerField()
+    lop=models.IntegerField()
+    basic1 = models.IntegerField()
     hra=models.IntegerField()
     da=models.IntegerField()
-    lop=models.IntegerField()
+    
     # gross=models.IntegerField()
-    month= models.CharField(max_length=50)
+    
     pf=  models.IntegerField()
     pt=  models.IntegerField()
     it=  models.IntegerField()
@@ -61,7 +64,10 @@ class receipt(models.Model):
     total_deductions=  models.IntegerField()
     total_earnings=  models.IntegerField()
     net_salary=  models.IntegerField()
+
+    month= models.CharField(max_length=50)
     status = models.BooleanField(default=False)
+
     eid = models.ForeignKey(
         employee,
         on_delete=models.CASCADE,
