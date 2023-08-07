@@ -155,7 +155,7 @@ export default function User({ params }: Params) {
 
   return (
     <div className="bg-cover bg-center bg-white ">
-      <div className="bg-blue-950 h-[75px] w-full grid grid-cols-11 items-center text-center">
+      <div className="bg-blue-950 h-[75px]  text-white w-full grid grid-cols-11 items-center text-center">
         <Image
           src={image}
           alt="Logo"
@@ -166,9 +166,9 @@ export default function User({ params }: Params) {
         />
 
         <h1
-          className={` ${blinker.className} col-start-4 col-end-9 text-[37px] font-[]`}
+          className={` ${blinker.className}   col-start-4 col-end-9 text-[32px]`}
         >
-          PANIMALAR ENGINEERING COLLEGE
+          PANIMALAR ENGINEERING COLLEGE<br></br> <p className=" text-red-700 text-[23px]">An Autonomous Institution</p>
         </h1>
         <div className="col-start-10 col-end-13 flex items-center justify-around ">
           <Avatar src="/broken-image.jpg" />

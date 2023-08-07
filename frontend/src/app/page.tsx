@@ -1,14 +1,8 @@
-"use client";
-import React, { useState } from "react";
-import axios from "axios";
+"use client"
+import Link from "next/link";
+import { useState } from "react";
+import api from "./axios";
 import { useRouter } from "next/navigation";
-
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-});
-
-
-
 
 export default function Login() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -73,7 +67,9 @@ let login = async () => {
         >
           Login
         </button>
-        <button className="text-white">Forgot Password?</button>  
+        <Link className="text-white hover:underline" href="/forgot-password">
+          Forgot Password?
+        </Link>
       </form>
     </div>
   );
