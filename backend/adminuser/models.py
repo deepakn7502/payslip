@@ -52,15 +52,15 @@ class receipt(models.Model):
     lop=models.IntegerField()
     # gross=models.IntegerField()
     month= models.CharField(max_length=50)
-    pf=  models.IntegerField(),
-    pt=  models.IntegerField(),
-    it=  models.IntegerField(),
-    miscellaneous=  models.IntegerField(),
-    esi=  models.IntegerField(),
-    deductions=  models.IntegerField(),
-    totaldeductions=  models.IntegerField(),
-    totalearnings=  models.IntegerField(),
-    net_salary=  models.IntegerField(),
+    pf=  models.IntegerField()
+    pt=  models.IntegerField()
+    it=  models.IntegerField()
+    miscellaneous=  models.IntegerField()
+    esi=  models.IntegerField()
+    deductions=  models.IntegerField()
+    totaldeductions=  models.IntegerField()
+    totalearnings=  models.IntegerField()
+    net_salary=  models.IntegerField()
     status = models.BooleanField(default=False)
     eid = models.ForeignKey(
         employee,
