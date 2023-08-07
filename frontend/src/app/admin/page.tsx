@@ -17,6 +17,7 @@ import * as XLSX from "xlsx"
 import axios from "axios"
 // import api from "../axios";
 import Popper from "@/components/Popper";
+import { BiSolidDoughnutChart } from "react-icons/bi";
 
 
 const api = axios.create({
@@ -24,35 +25,35 @@ const api = axios.create({
 });
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
-    props,
-    ref,
+  props,
+  ref,
 ) {
-    return <MuiAlert elevation={10} ref={ref} variant="filled" {...props} />;
+  return <MuiAlert elevation={10} ref={ref} variant="filled" {...props} />;
 });
 
 const poppins = Poppins({
-    weight: ["400"],
-    subsets: ["latin"],
-    style: 'italic'
+  weight: ["400"],
+  subsets: ["latin"],
+  style: 'italic'
 
 })
 
 
 const page = () => {
-    const style = {
-        position: 'absolute' as 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 500,
-        height: 500,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    };
+  const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    height: 500,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
-    const fileTypes = ["xlsx", "xls"];
+  const fileTypes = ["xlsx", "xls"];
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [snack, setSnack] = useState(false);
@@ -70,26 +71,26 @@ const page = () => {
   let file_data: any;
 
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [reload, setReload] = useState(false);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [reload, setReload] = useState(false);
 
 
   const handleChange = (file: any) => {
     setFile(file);
   };
 
-    const closeSnack = () => {
-        setSnack(false);
-    };
+  const closeSnack = () => {
+    setSnack(false);
+  };
 
-    const Remove = () => {
-        setReload(!reload);
-        setSnack(true);
+  const Remove = () => {
+    setReload(!reload);
+    setSnack(true);
 
-        setFile([]);
+    setFile([]);
 
-        console.log(file);
-    };
+    console.log(file);
+  };
 
 
   const upload = () => {
@@ -140,7 +141,7 @@ const page = () => {
 
 
 
-   
+
 
 
   return (
@@ -188,15 +189,13 @@ const page = () => {
         {show ? (
           <div>
             <table className="w-4/5 mx-auto my-4">
-            <thead>
+              <thead>
                 <tr className="h-12 bg-blue-950">
-                  <th>ID</th>
-                  <th>RID</th>
+                  <th>Employee ID</th>
                   <th>Name</th>
                   <th>Department</th>
                   <th>Designation</th>
-                  <th>Email</th>
-                  <th>Phone</th>
+
                   <th>Status</th>
                 </tr>
               </thead>
@@ -205,13 +204,10 @@ const page = () => {
                   return (
                     <tr className="h-8 text-black text-center">
                       <td>{person.eid.eid}</td>
-                      <td>{person.rid}</td>
                       <td>{person.eid.first_name}</td>
                       <td>{person.eid.department}</td>
                       <td>{person.eid.designation}</td>
-                      <td>{person.eid.email}</td>
-                      <td>{person.eid.phoneno}</td>
-                      <td>{person.status ? "Viewed" : "Not Viewed"}</td>
+                      <td>{person.status ? <div><h1>Viewed</h1><BiSolidDoughnutChart color="green"/></div>:<div><h1>Not Viewed</h1><BiSolidDoughnutChart color="red"/></div>}</td>
                     </tr>
                   );
                 })}
@@ -240,7 +236,7 @@ const page = () => {
 };
 
 export default page;
-         
+
 
 
  // return (
