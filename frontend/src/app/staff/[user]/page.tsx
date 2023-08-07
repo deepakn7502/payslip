@@ -166,9 +166,9 @@ export default function User({ params }: Params) {
         />
 
         <h1
-          className={` ${blinker.className}   col-start-4 col-end-9 text-[32px]`}
+          className={` ${blinker.className}   col-start-4 col-end-9 text-[37px] font-[]`}
         >
-          PANIMALAR ENGINEERING COLLEGE<br></br> <p className=" text-red-700 text-[23px]">An Autonomous Institution</p>
+          PANIMALAR ENGINEERING COLLEGE
         </h1>
         <div className="col-start-10 col-end-13 flex items-center justify-around ">
           <Avatar src="/broken-image.jpg" />
