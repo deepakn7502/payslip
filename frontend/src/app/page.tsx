@@ -17,7 +17,7 @@ export default function Login() {
         >
           Login
         </button>
-        <button className="text-white">Forgot Password?</button>
+        <button className="text-white">Forgot Password?</button>  
       </form>
     </div>
   );

@@ -142,7 +142,7 @@ const page = () => {
 
   return (
     <div className="w-full h-full">
-      <div className="bg-blue-950 w-full h-24 mt-6 grid grid-cols-7 place-items-center gap-4">
+      <div className="bg-blue-950 w-full h-24 mt-6 grid grid-cols-7 place-items-center gap-4 ">
         <div className="w-full grid grid-cols-5 col-span-3 gap-4 pl-4">
           <input
             type="text"
