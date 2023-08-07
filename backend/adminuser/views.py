@@ -3,17 +3,22 @@ from django.db.utils import DatabaseError
 from django.contrib.auth.models import User
 from django.contrib import auth
 
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 from rest_framework.views import APIView
 from rest_framework import generics,viewsets
 from rest_framework.response import Response
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import NotFound,ParseError,PermissionDenied
-from rest_framework import status
+from rest_framework import status,permissions
 
 from .serializer import *
 from .models import *   
 from .utils import *
+
+import json
 
 
 
@@ -21,10 +26,22 @@ class employees(viewsets.ModelViewSet):
     queryset = employee.objects.all()
     serializer_class = emp_serialzer
 
+    def create(self,request):
+        try:
+            data=request.data   
+            for i in data:
+               i["username"]=i["eid"]
+               employee.objects.create(**i)
+            return Response("Success")
+        except DatabaseError  as e:
+          error_message = str(e.args[1]) if len(e.args) > 1 else str(e)
+          raise ParseError(detail=str(e.args[1]), code=400)
+        except Exception  as e:
+          raise ParseError(detail=str(e), code=400)
 class receipts(viewsets.ModelViewSet):
     queryset = receipt.objects.all()
     serializer_class = rep_serialzer
-
+ 
     def create(self,request):
         try:
             
@@ -36,11 +53,27 @@ class receipts(viewsets.ModelViewSet):
         except Exception  as e:
           raise ParseError(detail=str(e), code=400)
     def list(self, request, *args, **kwargs):
-        data = receipt.objects.select_related('eid').all()
-        serializer = rep_serialzer(data, many=True)
-        # print(data)
-        return Response(serializer.data)
-    
+         
+            data = receipt.objects.select_related('eid').all()
+            serializer = rep_serialzer(data, many=True)
+            # print(data)
+            return Response(serializer.data)
+
+    def retrieve(self, request, *args, **kwargs):
+      #  try:
+          id = kwargs['pk']
+          month =  request.query_params.get("month").upper() + "-" + request.query_params.get("year")[2:]
+          data = receipt.objects.filter(eid=id,month = month).select_related('eid').all()
+          serializer = json.loads(json.dumps(rep_serialzer(data, many=True).data))[0]
+          if(not serializer["status"]):
+            up = receipt.objects.get(eid=id,month = month)
+            up.status = True
+            up.save()
+            serializer["status"] = True
+          return Response(serializer)
+      #  except Exception  as e:
+      #     raise ParseError(detail=str(e), code=400)
+      
     
 
 class login(APIView):
@@ -49,10 +82,27 @@ class login(APIView):
        if user_c:      
           user = auth.authenticate(username=request.data["username"],password=request.data["password"])
           if user is not None:
-            print(user)
             auth.login(request,user)
-            return Response({"user": user})
-           
+            refresh = RefreshToken.for_user(user)
+            access_token = str(refresh.access_token)
+            if(user.is_superuser):
+               return Response({
+                  "name":user.username,
+                  "user":"admin",
+                  "access_token" : access_token,
+                  "refresh_token" : str(refresh)
+               })
+            else:
+                return Response({
+                "eid":user.eid,
+                "name":user.first_name,
+                "user":"staff",
+                  "access_token" : access_token,
+                   "refresh_token" : str(refresh)
+                })
+          else:
+            raise PermissionDenied(detail="Invalid Password")
+            
        else:
             raise PermissionDenied(detail="Invalid Credentials")
             

@@ -10,23 +10,27 @@ import Image from "next/image";
 import Avatar from "@mui/material/Avatar";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Blinker } from "next/font/google";
+import axios from "axios";
 
 const blinker = Blinker({
   weight: ["400"],
   subsets: ["latin"],
-  style: 'normal'
+  style: "normal",
+});
+interface Params {
+  params: { user: string };
+}
 
+const api = axios.create({
+  baseURL: `http://localhost:8000/`,
+});
 
-})
-
-
-export default function User() {
+export default function User({ params }: Params) {
   const currentYear = new Date().getFullYear();
   const years = Array.from(
     { length: currentYear - 2010 },
     (_, index) => 2011 + index
   );
-  console.log(years)
 
   // Year Selection
 
@@ -53,55 +57,55 @@ export default function User() {
 
   const currencies = [
     {
-      value: "January",
+      value: "jan",
       label: "January",
     },
     {
-      value: "February",
+      value: "feb",
       label: "February",
     },
     {
-      value: "March",
+      value: "mar",
       label: "March",
     },
     {
-      value: "April",
+      value: "apr",
       label: "April",
     },
     {
-      value: "May",
+      value: "may",
       label: "May",
     },
     {
-      value: "June",
+      value: "jun",
       label: "June",
     },
     {
-      value: "July",
+      value: "jul",
       label: "July",
     },
     {
-      value: "August",
+      value: "aug",
       label: "August",
     },
     {
-      value: "September",
+      value: "sep",
       label: "September",
     },
     {
-      value: "October",
+      value: "oct",
       label: "October",
     },
     {
-      value: "November",
+      value: "nov",
       label: "November",
     },
     {
-      value: "December",
+      value: "dec",
       label: "December",
     },
   ];
- 
+
   const [month, setmonth] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
   const [alertContent, setAlertContent] = useState("");
@@ -123,8 +127,18 @@ export default function User() {
   };
 
   //Pdf generation
-  let generatePDF = () => {
+  let generatePDF = async () => {
+    const eid = sessionStorage.getItem("eid")
     if (month && selectedYear) {
+      const res = await api.get("staff/receipt/" + eid + "/", {
+        params: {
+          month: month,
+          year: selectedYear,
+        },
+      });
+
+      console.log(res.data);
+
       setAlertContent("Payslip");
       setType("success");
       setOpenAlert(true);
@@ -142,18 +156,30 @@ export default function User() {
   return (
     <div className="bg-cover bg-center bg-white ">
       <div className="bg-blue-950 h-[75px] w-full grid grid-cols-11 items-center text-center">
-        <Image src={image} alt="Logo"  height={200} width={200} priority={true} className="col-span-2 " />
+        <Image
+          src={image}
+          alt="Logo"
+          height={200}
+          width={200}
+          priority={true}
+          className="col-span-2 "
+        />
 
-        <h1 className={` ${blinker.className} col-start-4 col-end-9 text-[37px] font-[]`}>
+        <h1
+          className={` ${blinker.className} col-start-4 col-end-9 text-[37px] font-[]`}
+        >
           PANIMALAR ENGINEERING COLLEGE
         </h1>
         <div className="col-start-10 col-end-13 flex items-center justify-around ">
           <Avatar src="/broken-image.jpg" />
-          <p className="text-xl">Bharath</p>
-          <ExitToAppIcon fontSize="large" className="cursor-pointer"></ExitToAppIcon>
+          <p className="text-xl">{params.user.replace("%20"," ")}</p>
+          <ExitToAppIcon
+            fontSize="large"
+            className="cursor-pointer"
+          ></ExitToAppIcon>
         </div>
       </div>
-      <div className=" bg-blue-950 fixed flex top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-around   h-1/3 w-[40%] rounded-md text-center px-4 py-2">
+      <div className=" bg-blue-950 fixed flex top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-around   h-1/3 w-[40%] rounded-md text-center px-4 py-2  ">
         <p className="text-white text-[25px] ">
           Select Pay Slip Year & Month
         </p>

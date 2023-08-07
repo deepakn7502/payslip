@@ -11,6 +11,7 @@ export default function Popper({
   poppins,
   file,
   Remove,
+  upload,
   snack,
   closeSnack,
   reload,
@@ -45,7 +46,9 @@ export default function Popper({
                 : <h1>--</h1>}
             </div>
           </div>
-          <button className='w-28 h-10 bg-yellow-300 rounded-md font-bold' >Upload</button>
+          <button onClick={upload} className="w-28 h-10 bg-yellow-300 rounded-md font-bold">
+            Upload
+          </button>
         </div>
         <Stack sx={{ width: '100%' }}>  <Snackbar anchorOrigin={{ 'horizontal': 'center', 'vertical': 'top' }} open={snack} autoHideDuration={2000} onClose={closeSnack}>
           <Alert onClose={closeSnack} severity="error" sx={{ width: "100%" }}>
