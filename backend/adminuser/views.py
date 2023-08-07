@@ -28,10 +28,7 @@ class employees(viewsets.ModelViewSet):
 
     def create(self,request):
         try:
-            data=request.data   
-            for i in data:
-               i["username"]=i["eid"]
-               employee.objects.create(**i)
+            employee.objects.bulk_create([employee(**data) for data in request.data] )
             return Response("Success")
         except DatabaseError  as e:
           error_message = str(e.args[1]) if len(e.args) > 1 else str(e)
