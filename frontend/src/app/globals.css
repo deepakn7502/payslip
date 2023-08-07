@@ -29,6 +29,12 @@ body {
   font-family: "Blinker", sans-serif;
 }
 
-tbody tr td{
+td{
   border: 1px solid black;
+  text-align: center;
+}
+
+td h1{
+  text-transform: uppercase;
+  font-weight: 400;
 }
