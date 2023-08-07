@@ -58,8 +58,8 @@ class receipt(models.Model):
     miscellaneous=  models.IntegerField()
     esi=  models.IntegerField()
     deductions=  models.IntegerField()
-    totaldeductions=  models.IntegerField()
-    totalearnings=  models.IntegerField()
+    total_deductions=  models.IntegerField()
+    total_earnings=  models.IntegerField()
     net_salary=  models.IntegerField()
     status = models.BooleanField(default=False)
     eid = models.ForeignKey(
