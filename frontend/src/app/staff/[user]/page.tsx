@@ -166,9 +166,9 @@ export default function User({ params }: Params) {
         />
 
         <h1
-          className={` ${blinker.className}   col-start-4 col-end-9 text-[37px] font-[]`}
+          className={` ${blinker.className}   col-start-4 col-end-9 text-[50px] font-[]`}
         >
-          PANIMALAR ENGINEERING COLLEGE
+          PAYCHECK SLIPS
         </h1>
         <div className="col-start-10 col-end-13 flex items-center justify-around ">
           <Avatar src="/broken-image.jpg" />
@@ -216,8 +216,8 @@ export default function User({ params }: Params) {
           variant="filled"
           severity={type}
           sx={{
-            top: "20px",
-            left: "45%",
+            bottom: "3%",
+            left: "5%",
             width: "auto",
             position: "absolute",
             zIndex: 100,
