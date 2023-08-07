@@ -25,16 +25,14 @@ body {
   background-position: center;
   background-attachment: fixed;
 }
+
 * {
   font-family: "Blinker", sans-serif;
 }
 
-td{
+tbody tr td {
   border: 1px solid black;
-  text-align: center;
-}
-
-td h1{
+  border-collapse: collapse;
   text-transform: uppercase;
-  font-weight: 400;
+  text-align: left;
 }
