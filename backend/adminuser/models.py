@@ -20,7 +20,14 @@ from django.contrib.auth.models import AbstractUser
     # def __str__(self):
     #     return self.eid
 
-
+class employee(AbstractUser):
+    eid = models.CharField(max_length=50,primary_key=True)
+    designation = models.CharField(max_length=50)
+    department = models.CharField(max_length=20)    
+    phoneno = models.IntegerField(max_length=10)
+    
+    def __str__(self):
+        return self.eid
 class receipt(models.Model):
     rid = models.CharField(max_length=50,primary_key=True)
     hra=models.IntegerField()
@@ -29,19 +36,12 @@ class receipt(models.Model):
     lop=models.IntegerField()
     gross=models.IntegerField()
     month= models.CharField(max_length=50)
+    status = models.BooleanField(default=False)
     eid = models.ForeignKey(
-        "employee",
+        employee,
         on_delete=models.CASCADE,
     )
 
     def __str__(self):
         return self.rid
 
-class employee(AbstractUser):
-    eid = models.CharField(max_length=50,primary_key=True)
-    desg = models.CharField(max_length=50)
-    dept = models.CharField(max_length=20)    
-
-    
-    def __str__(self):
-        return self.eid

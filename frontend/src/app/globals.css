@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@300&display=swap');
+
+
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -24,6 +27,10 @@ body {
   background-position: center;
   background-attachment: fixed;
 }
+*{
+  font-family: 'Blinker', sans-serif;
+
+}
 
 table,
 th,
@@ -33,7 +40,7 @@ td {
 }
 
 th,td{
-  width: fit-content;
+  width: max-content;
   padding: 0.5rem 1rem;
 }
 
