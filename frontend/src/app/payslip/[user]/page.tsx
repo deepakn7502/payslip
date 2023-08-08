@@ -83,21 +83,21 @@ export default function PDF({ params }: Params) {
                 <p>Axis bank</p>
               </td>
               <td className="col-span-1">
-                <h1>branch:</h1>
+                <h1>Branch:</h1>
                 <p>kilpauk</p>
               </td>
             </tr>
             <tr className="grid grid-cols-4">
               <td className="col-span-2">
-                <h1>designation:</h1>
+                <h1>Designation:</h1>
                 <p>asst.professor(lab)</p>
               </td>
               <td className="col-span-1">
-                <h1>pan:</h1>
+                <h1>Pan:</h1>
                 <p>ABCD1234E</p>
               </td>
               <td className="col-span-1">
-                <h1>uan:</h1>
+                <h1>uan :</h1>
                 <p>101464899043</p>
               </td>
             </tr>
@@ -112,25 +112,25 @@ export default function PDF({ params }: Params) {
             <tr className="grid grid-cols-4 ">
               <td>
                 <tr className="">
-                  <h1>basic pay-</h1>
+                  <h1>basic pay :</h1>
                   <p>8841</p>
                 </tr>
                 <tr className="">
-                  <h1>da</h1>
+                  <h1>da :</h1>
                   <p>12024</p>
                 </tr>
                 <tr className="">
-                  <h1>leave</h1>
+                  <h1>leave :</h1>
                   <p>0.00</p>
                 </tr>
               </td>
               <td>
                 <tr className="">
-                  <h1>basic pay-1-</h1>
+                  <h1>basic pay-1 :</h1>
                   <p>8841</p>
                 </tr>
                 <tr className="">
-                  <h1>hra</h1>
+                  <h1>hra :</h1>
                   <p>884</p>
                 </tr>
                 <tr className="">
@@ -140,47 +140,47 @@ export default function PDF({ params }: Params) {
               </td>
               <td>
                 <tr className="">
-                  <h1>p f</h1>
+                  <h1>p f :</h1>
                   <p>2504</p>
                 </tr>
                 <tr className="">
-                  <h1>p t</h1>
+                  <h1>p t :</h1>
                   <p>0</p>
                 </tr>
                 <tr className="">
-                  <h1>i t</h1>
+                  <h1>i t :</h1>
                   <p>0</p>
                 </tr>
               </td>
               <td>
                 <tr className="">
-                  <h1>miscellaneous-</h1>
+                  <h1>miscellaneous :</h1>
                   <p>0</p>
                 </tr>
                 <tr className="">
-                  <h1>esi-</h1>
+                  <h1>esi :</h1>
                   <p>0</p>
                 </tr>
                 <tr className="">
-                  <h1>deductions -</h1>
+                  <h1>deductions :</h1>
                   <p>0</p>
                 </tr>
               </td>
             </tr>
             <tr className="grid grid-cols-2">
               <td className="col-span-1 text-center grid-cols-2">
-                <h1>total earnings(₹):</h1>
-                <p>21749</p>
+                <h1>total earnings(₹) :</h1>
+                <p>21749/-</p>
               </td>
               <td className="col-span-1 text-center grid-cols-2">
-                <h1>total deductions(₹):</h1>
-                <p>2504</p>
+                <h1>total deductions(₹) :</h1>
+                <p>2504/-</p>
               </td>
             </tr>
             <tr className="grid grid-cols-1">
               <td className="text-center grid-cols-4">
-                <h1 className="col-start-2">net salary(₹)</h1>
-                <p>19245</p>
+                <h1 className="col-start-2">net salary(₹) :</h1>
+                <p>19245/-</p>
               </td>
             </tr>
           </tbody>
