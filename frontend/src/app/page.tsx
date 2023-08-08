@@ -1,7 +1,8 @@
 "use client"
 import Link from "next/link";
 import { useState } from "react";
-import api from "./axios";
+// import api from "./axios";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
@@ -9,6 +10,11 @@ export default function Login() {
 const [username, setUser] = useState("");
 const [password, setpass] = useState("");
 const { push } = useRouter();
+
+const api = axios.create({
+  baseURL: `http://localhost:8000/`,
+});
+
 
 let login = async () => {
   // e.preventDefault();
@@ -29,8 +35,8 @@ let login = async () => {
       sessionStorage.setItem("eid", res.data["eid"]);
         push(`/staff/${res.data["name"]}`);
       }
-    } catch (e) {
-      alert(e);
+    } catch (e : any) {
+      alert(e.response.data.detail);
     }
   } else {
     alert("Please enter your credentials!");

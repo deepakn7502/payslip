@@ -128,7 +128,7 @@ const page = () => {
 
     try {
       const res = await api.get("staff/receipt");
-      console.table(res.data);
+        
       setData(res.data);
       setShow(true);
     } catch (e: any) {
@@ -190,13 +190,10 @@ const page = () => {
             <table className="w-4/5 mx-auto my-4">
             <thead>
                 <tr className="h-12 bg-blue-950">
-                  <th>ID</th>
-                  <th>RID</th>
+                  <th>Employee ID</th>    
                   <th>Name</th>
                   <th>Department</th>
                   <th>Designation</th>
-                  <th>Email</th>
-                  <th>Phone</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -205,12 +202,9 @@ const page = () => {
                   return (
                     <tr className="h-8 text-black text-center">
                       <td>{person.eid.eid}</td>
-                      <td>{person.rid}</td>
                       <td>{person.eid.first_name}</td>
                       <td>{person.eid.department}</td>
                       <td>{person.eid.designation}</td>
-                      <td>{person.eid.email}</td>
-                      <td>{person.eid.phoneno}</td>
                       <td>{person.status ? "Viewed" : "Not Viewed"}</td>
                     </tr>
                   );
