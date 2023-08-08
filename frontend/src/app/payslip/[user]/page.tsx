@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import image from "../../images/pec-logo.png";
 import { Blinker } from "next/font/google";
@@ -13,7 +15,20 @@ const blinker = Blinker({
 interface Params {
   params: { user: string };
 }
+
+const api = axios.create({
+  baseURL: `http://localhost:8000/`,
+});
+
 export default function PDF({ params }: Params) {
+  const [data, setdata] = useState([]);
+
+  let getdata = async () => {
+    let res = await api.get("staff/validate/");
+    console.table(res.data);
+    setdata(res.data);
+  };
+
   return (
     <div className="h-screen w-full bg-blue-950">
       <div className="bg-blue-950 h-[75px]  text-white w-full grid grid-cols-11 items-center text-center">

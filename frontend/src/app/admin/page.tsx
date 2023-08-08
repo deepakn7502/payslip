@@ -335,7 +335,6 @@ const page = () => {
                   <th>Name</th>
                   <th>Department</th>
                   <th>Designation</th>
-
                   <th>Status</th>
                 </tr>
               </thead>
@@ -344,7 +343,6 @@ const page = () => {
                   return (
                     <tr className="h-8 text-black text-center">
                       <td>{person.eid.eid}</td>
-
                       <td>{person.eid.first_name}</td>
                       <td>{person.eid.department}</td>
                       <td>{person.eid.designation}</td>

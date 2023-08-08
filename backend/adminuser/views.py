@@ -50,10 +50,10 @@ class receipts(viewsets.ModelViewSet):
         except Exception  as e:
           raise ParseError(detail=str(e), code=400)
     def list(self, request, *args, **kwargs):
-         
+            print("data")
             data = receipt.objects.select_related('eid').all()
             serializer = rep_serialzer(data, many=True)
-            # print(data)
+            print(data)
             return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
@@ -61,7 +61,6 @@ class receipts(viewsets.ModelViewSet):
           id = kwargs['pk']
           month =  request.query_params.get("month").upper() + "-" + request.query_params.get("year")[2:]
           data = receipt.objects.filter(eid=id,month = month).select_related('eid').all()
-          print("data",data)
           if(data):
             print(data)
             serializer = rep_serialzer(data, many=True).data  #json.loads(json.dumps())[0]
