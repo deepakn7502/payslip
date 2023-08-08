@@ -17,7 +17,7 @@
   }
 }
 body {
-  color: white;
+  color: black;
   /* background: url("../app/images/uchicha.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
@@ -36,5 +36,5 @@ tr td {
   text-transform: uppercase;
   text-align: left;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* grid-template-columns: repeat(2,1fr); */
 }
