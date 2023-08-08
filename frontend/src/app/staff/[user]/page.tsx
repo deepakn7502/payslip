@@ -11,6 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Blinker } from "next/font/google";
 import axios from "axios";
+import Navbar from "@/components/Navbar";
 
 const blinker = Blinker({
   weight: ["400"],
@@ -155,30 +156,7 @@ export default function User({ params }: Params) {
 
   return (
     <div className="bg-cover bg-center bg-white ">
-      <div className="bg-blue-950 h-[75px]  text-white w-full grid grid-cols-11 items-center text-center">
-        <Image
-          src={image}
-          alt="Logo"
-          height={200}
-          width={200}
-          priority={true}
-          className="col-span-2 "
-        />
-
-        <h1
-          className={` ${blinker.className}   col-start-4 col-end-9 text-[50px] font-[]`}
-        >
-          PAYCHECK SLIPS
-        </h1>
-        <div className="col-start-10 col-end-13 flex items-center justify-around ">
-          <Avatar src="/broken-image.jpg" />
-          <p className="text-xl">{params.user.replace("%20", " ")}</p>
-          <ExitToAppIcon
-            fontSize="large"
-            className="cursor-pointer"
-          ></ExitToAppIcon>
-        </div>
-      </div>
+      <Navbar params={params} />
       <div className=" bg-blue-950 fixed flex top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-around   h-1/3 w-[40%] rounded-md text-center px-4 py-2  ">
         <p className="text-white text-[25px] ">Select Pay Slip Year & Month</p>
         <div className="flex-row w-[80%] flex items-center justify-around py-[10px]">
