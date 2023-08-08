@@ -38,3 +38,20 @@ tr td {
   display: grid;
   /* grid-template-columns: repeat(2,1fr); */
 }
+
+tr td h1 {
+  color: #555;
+  font-weight: 300;
+}
+
+tr td p {
+  /* padding-left: min(60px, 25%); */
+}
+td tr{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
