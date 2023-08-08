@@ -128,7 +128,7 @@ export default function User({ params }: Params) {
 
   //Pdf generation
   let generatePDF = async () => {
-    const eid = sessionStorage.getItem("eid")
+    const eid = sessionStorage.getItem("eid");
     if (month && selectedYear) {
       const res = await api.get("staff/receipt/" + eid + "/", {
         params: {
@@ -172,7 +172,7 @@ export default function User({ params }: Params) {
         </h1>
         <div className="col-start-10 col-end-13 flex items-center justify-around ">
           <Avatar src="/broken-image.jpg" />
-          <p className="text-xl">{params.user.replace("%20"," ")}</p>
+          <p className="text-xl">{params.user.replace("%20", " ")}</p>
           <ExitToAppIcon
             fontSize="large"
             className="cursor-pointer"
@@ -180,9 +180,7 @@ export default function User({ params }: Params) {
         </div>
       </div>
       <div className=" bg-blue-950 fixed flex top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-around   h-1/3 w-[40%] rounded-md text-center px-4 py-2  ">
-        <p className="text-white text-[25px] ">
-          Select Pay Slip Year & Month
-        </p>
+        <p className="text-white text-[25px] ">Select Pay Slip Year & Month</p>
         <div className="flex-row w-[80%] flex items-center justify-around py-[10px]">
           <TextField
             className="bg-white w-1/3 h-fit rounded-md"
@@ -216,7 +214,7 @@ export default function User({ params }: Params) {
           variant="filled"
           severity={type}
           sx={{
-            bottom: "3%",
+            bottom: "3",
             left: "5%",
             width: "auto",
             position: "absolute",
