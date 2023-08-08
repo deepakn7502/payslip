@@ -16,12 +16,9 @@ import * as XLSX from "xlsx";
 import axios from "axios";
 // import api from "../axios";
 import Popper from "@/components/Popper";
-<<<<<<< HEAD
 import Navbar from "@/components/Navbar";
-=======
 import { BiSolidDoughnutChart } from "react-icons/bi";
 
->>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
 
 const api = axios.create({
   baseURL: `http://localhost:8000/`,
@@ -29,11 +26,7 @@ const api = axios.create({
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
-<<<<<<< HEAD
-  ref
-=======
   ref,
->>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
 ) {
   return <MuiAlert elevation={10} ref={ref} variant="filled" {...props} />;
 });
@@ -41,7 +34,6 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
 const poppins = Poppins({
   weight: ["400"],
   subsets: ["latin"],
-<<<<<<< HEAD
   style: "italic",
 });
 
@@ -55,23 +47,6 @@ const page = () => {
     height: 500,
     bgcolor: "background.paper",
     border: "2px solid #000",
-=======
-  style: 'italic'
-
-})
-
-
-const page = () => {
-  const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 500,
-    height: 500,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
->>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
     boxShadow: 24,
     p: 4,
   };
@@ -93,15 +68,8 @@ const page = () => {
   const [data, setData] = useState([]);
   let file_data: any;
 
-<<<<<<< HEAD
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [reload, setReload] = useState(false);
-=======
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [reload, setReload] = useState(false);
-
->>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
 
   const handleChange = (file: any) => {
     setFile(file);
@@ -116,15 +84,11 @@ const page = () => {
     setSnack(true);
 
     setFile([]);
-<<<<<<< HEAD
-=======
 
-    console.log(file);
+ 
   };
->>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
 
-    console.log(file);
-  };
+
 
   const upload = () => {
     const promise = new Promise((resolve, reject) => {
@@ -162,7 +126,7 @@ const page = () => {
 
     try {
       const res = await api.get("staff/receipt");
-      console.table(res.data);
+        
       setData(res.data);
       setShow(true);
     } catch (e: any) {
@@ -170,8 +134,6 @@ const page = () => {
     }
   };
 
-<<<<<<< HEAD
-=======
   
     const currentYear = new Date().getFullYear();
     const years = Array.from(
@@ -302,7 +264,6 @@ const page = () => {
 
 
 
->>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
   return (
     <div className="w-full h-full">
       {/* <Navbar /> */}
@@ -367,23 +328,7 @@ const page = () => {
         {show ? (
           <div>
             <table className="w-4/5 mx-auto my-4">
-<<<<<<< HEAD
-              <thead>
-                <tr className="h-12 bg-blue-950">
-                  <th>ID</th>
-                  <th>RID</th>
-=======
-<<<<<<< HEAD
-            <thead className="  ">
-                <tr className="h-12 bg-blue-950 text-slate-50">
-                  <th >Employee Id</th>
-                  
->>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
-                  <th>Name</th>
-                  <th>Department</th>
-                  <th>Designation</th>
-                
-=======
+
               <thead>
                 <tr className="h-12 bg-blue-950">
                   <th>Employee ID</th>
@@ -391,7 +336,6 @@ const page = () => {
                   <th>Department</th>
                   <th>Designation</th>
 
->>>>>>> d4744d0076e2ad2bb2db875cf653f7268a7b4710
                   <th>Status</th>
                 </tr>
               </thead>
@@ -400,19 +344,12 @@ const page = () => {
                   return (
                     <tr className="h-8 text-black text-center">
                       <td>{person.eid.eid}</td>
-<<<<<<< HEAD
-                    
-                      <td>{person.eid.first_name}</td>
-                      <td>{person.eid.department}</td>
-                      <td>{person.eid.designation}</td>
-                    
-                      <td>{person.status ? "Viewed" : "Not Viewed"}</td>
-=======
+
                       <td>{person.eid.first_name}</td>
                       <td>{person.eid.department}</td>
                       <td>{person.eid.designation}</td>
                       <td>{person.status ? <div><h1>Viewed</h1><BiSolidDoughnutChart color="green"/></div>:<div><h1>Not Viewed</h1><BiSolidDoughnutChart color="red"/></div>}</td>
->>>>>>> d4744d0076e2ad2bb2db875cf653f7268a7b4710
+
                     </tr>
                   );
                 })}
@@ -441,12 +378,9 @@ const page = () => {
 };
 
 export default page;
-<<<<<<< HEAD
-=======
 
->>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
 
-// return (
+{/* // return (
 
 //     <div className='h-screen w-screen bg-slate-500 fixed '>
 //         <div className=' bg-white w-full h-1/6 flex justify-between mt-5 items-center'>
@@ -459,4 +393,4 @@ export default page;
 //                 <button onClick={handleOpen}>Upload</button>
 //             </div>
 //         </div>
-//         <div className='h-full bg-green-500'>
+//         <div className='h-full bg-green-500'> */}

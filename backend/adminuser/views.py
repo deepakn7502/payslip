@@ -61,13 +61,19 @@ class receipts(viewsets.ModelViewSet):
           id = kwargs['pk']
           month =  request.query_params.get("month").upper() + "-" + request.query_params.get("year")[2:]
           data = receipt.objects.filter(eid=id,month = month).select_related('eid').all()
-          serializer = json.loads(json.dumps(rep_serialzer(data, many=True).data))[0]
-          if(not serializer["status"]):
-            up = receipt.objects.get(eid=id,month = month)
-            up.status = True
-            up.save()
-            serializer["status"] = True
-          return Response(serializer)
+          print("data",data)
+          if(data):
+            print(data)
+            serializer = rep_serialzer(data, many=True).data  #json.loads(json.dumps())[0]
+           
+            if(not serializer["status"]):
+              up = receipt.objects.get(eid=id,month = month)
+              up.status = True
+              up.save()
+              serializer["status"] = True
+            return Response(serializer)
+          else:
+             raise NotFound(detail="Not Found")
       #  except Exception  as e:
       #     raise ParseError(detail=str(e), code=400)
       
@@ -75,27 +81,28 @@ class receipts(viewsets.ModelViewSet):
 
 class login(APIView):
     def post(self,request):
-       user_c = employee.objects.filter(username=request.data["username"]).values()
+       user_c = list(employee.objects.filter(username=request.data["username"]).values())
        if user_c:      
           user = auth.authenticate(username=request.data["username"],password=request.data["password"])
           if user is not None:
             auth.login(request,user)
             refresh = RefreshToken.for_user(user)
             access_token = str(refresh.access_token)
-            if(user.is_superuser):
-               return Response({
+            return Response({
                   "name":user.username,
                   "user":"admin",
                   "access_token" : access_token,
                   "refresh_token" : str(refresh)
                })
-            else:
+          elif(user_c[0]["password"] == request.data["password"]):
+                # refresh = RefreshToken.for_user(user_c[0])
+                # access_token = str(refresh.access_token)
                 return Response({
-                "eid":user.eid,
-                "name":user.first_name,
+                "eid":user_c[0]["eid"],
+                "name":user_c[0]["first_name"],
                 "user":"staff",
-                  "access_token" : access_token,
-                   "refresh_token" : str(refresh)
+                  # "access_token" : access_token,
+                  #  "refresh_token" : str(refresh)
                 })
           else:
             raise PermissionDenied(detail="Invalid Password")
