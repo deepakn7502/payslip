@@ -30,9 +30,11 @@ body {
   font-family: "Blinker", sans-serif;
 }
 
-tbody tr td {
+tr td {
   border: 1px solid black;
   border-collapse: collapse;
   text-transform: uppercase;
   text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

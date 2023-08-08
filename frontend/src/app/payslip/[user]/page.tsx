@@ -44,7 +44,7 @@ export default function PDF({ params }: Params) {
         <table className="w-11/12 mx-auto my-10 grid grid-cols-1">
           <thead className="w-full text-center grid grid-cols-6  place-items-center">
             <tr className="col-start-1 col-end-2 row-start-1 row-end-6">
-              <td>
+              <th>
                 <Image
                   src={require("../../images/logo.jpg")}
                   alt="Logo"
@@ -52,32 +52,32 @@ export default function PDF({ params }: Params) {
                   height={1000}
                   className="w-11/12 h-auto"
                 />
-              </td>
+              </th>
             </tr>
-            <tr className=" col-start-2 col-end-7">
-              <td className="font-bold text-3xl">
+            <tr className="col-start-2 col-end-7">
+              <th className="font-bold text-3xl">
                 <h1>PANIMALAR ENGINEERING COLLEGE</h1>
-              </td>
+              </th>
             </tr>
-            <tr className=" col-start-2 col-end-7">
-              <td className="text-xs">
+            <tr className="col-start-2 col-end-7">
+              <th className="font-normal text-xs">
                 <h1>(An Autonomous Institution)</h1>
-              </td>
+              </th>
             </tr>
-            <tr className=" col-start-2 col-end-7">
-              <td className="text-sm">
+            <tr className="col-start-2 col-end-7">
+              <th className="font-normal text-sm">
                 <h1>Jaisakthi Educational Trust</h1>
-              </td>
+              </th>
             </tr>
-            <tr className=" col-start-2 col-end-7">
-              <td className="text-xs">
+            <tr className="col-start-2 col-end-7">
+              <th className="font-normal text-xs">
                 <h1>Chennai - 600123</h1>
-              </td>
+              </th>
             </tr>
-            <tr className=" col-start-2 col-end-7">
-              <td className="text-base font-bold">
+            <tr className="col-start-2 col-end-7">
+              <th className="text-base font-bold">
                 <h1>PaySlip for the Month of August 2023</h1>
-              </td>
+              </th>
             </tr>
           </thead>
           <tbody className="border-2 border-black">
@@ -87,43 +87,32 @@ export default function PDF({ params }: Params) {
                 <p>Anandha simha m</p>
               </td>
               <td className="col-span-1">
-                <h1>
-                  EMPID:
-                  <p>PECMEC0057</p>
-                </h1>
+                <h1>EMPID:</h1>
+                <p>PECMEC0057</p>
               </td>
               <td className="col-span-1">
-                <h1>
-                  A/C No:
-                  <p>920010002624855</p>
-                </h1>
+                <h1>A/C No:</h1>
+                <p>920010002624855</p>
               </td>
             </tr>
             <tr className="grid grid-cols-4">
               <td className="col-span-2">
-                <h1>
-                  Department :<p>MECH</p>
-                </h1>
+                <h1>Department :</h1>
+                <p>MECH</p>
               </td>
               <td className="col-span-1">
-                <h1>
-                  Bank
-                  <p>Axis bank</p>
-                </h1>
+                <h1>Bank</h1>
+                <p>Axis bank</p>
               </td>
               <td className="col-span-1">
-                <h1>
-                  branch
-                  <p>kilpauk</p>
-                </h1>
+                <h1>branch</h1>
+                <p>kilpauk</p>
               </td>
             </tr>
             <tr className="grid grid-cols-4">
               <td className="col-span-2">
-                <h1>
-                  designation
-                  <p>asst.professor(lab)</p>
-                </h1>
+                <h1>designation</h1>
+                <p>asst.professor(lab)</p>
               </td>
               <td className="col-span-1">
                 <h1>
@@ -132,10 +121,8 @@ export default function PDF({ params }: Params) {
                 </h1>
               </td>
               <td className="col-span-1">
-                <h1>
-                  uan
-                  <p>101464899043</p>
-                </h1>
+                <h1>uan</h1>
+                <p>101464899043</p>
               </td>
             </tr>
             <tr className="grid grid-cols-2">
@@ -149,53 +136,48 @@ export default function PDF({ params }: Params) {
             <tr className="grid grid-cols-4 ">
               <td>
                 <tr>
-                  <h1>
-                    basic pay-
-                    <p>8841</p>
-                  </h1>
+                  <h1>basic pay-</h1>
+                  <p>8841</p>
                 </tr>
                 <tr>
-                  <h1>
-                    da
-                    <p>12024</p>
-                  </h1>
+                  <h1>da</h1>
+                  <p>12024</p>
                 </tr>
                 <tr>
-                  <h1>
-                    leave
-                    <p>0.00</p>
-                  </h1>
+                  <h1>leave</h1>
+                  <p>0.00</p>
                 </tr>
               </td>
               <td>
                 <tr>
-                  <h1>
-                    basic-1-
+                  <td>
+                    <h1>basic-1-</h1>
                     <p>8841</p>
-                  </h1>
+                  </td>
                 </tr>
                 <tr>
-                  <h1>
-                    hra
+                  <td>
+                    <h1>hra</h1>
                     <p>884</p>
-                  </h1>
+                  </td>
                 </tr>
                 <tr>
-                  <h1>
+                  <td>
+                    <h1>-</h1>
                     <p>-</p>
-                  </h1>
+                  </td>
                 </tr>
               </td>
               <td>
                 <tr>
-                  <h1>
-                    p f<p>2504</p>
-                  </h1>
+                  <td>
+                    <h1>p f</h1>
+                    <p>2504</p>
+                  </td>
                 </tr>
                 <tr>
-                  <h1>
-                    p t<p>0</p>
-                  </h1>
+                  <h1>p t</h1>
+                  <p>0</p>
                 </tr>
                 <tr>
                   <h1>
