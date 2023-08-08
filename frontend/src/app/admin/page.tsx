@@ -1,8 +1,7 @@
-
-"use client"
-import { forwardRef, useEffect, useState } from 'react';
-import { Poppins } from 'next/font/google';
-import Modal from '@mui/material/Modal';
+"use client";
+import { forwardRef, useEffect, useState } from "react";
+import { Poppins } from "next/font/google";
+import Modal from "@mui/material/Modal";
 import { FileUploader } from "react-drag-drop-files";
 import Box from "@mui/material/Box";
 
@@ -12,13 +11,17 @@ import { MenuItem, TextField, Tooltip } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
-import * as XLSX from "xlsx"
+import * as XLSX from "xlsx";
 
-import axios from "axios"
+import axios from "axios";
 // import api from "../axios";
 import Popper from "@/components/Popper";
+<<<<<<< HEAD
+import Navbar from "@/components/Navbar";
+=======
 import { BiSolidDoughnutChart } from "react-icons/bi";
 
+>>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
 
 const api = axios.create({
   baseURL: `http://localhost:8000/`,
@@ -26,7 +29,11 @@ const api = axios.create({
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
+<<<<<<< HEAD
+  ref
+=======
   ref,
+>>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
 ) {
   return <MuiAlert elevation={10} ref={ref} variant="filled" {...props} />;
 });
@@ -34,6 +41,21 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
 const poppins = Poppins({
   weight: ["400"],
   subsets: ["latin"],
+<<<<<<< HEAD
+  style: "italic",
+});
+
+const page = () => {
+  const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 500,
+    height: 500,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+=======
   style: 'italic'
 
 })
@@ -49,6 +71,7 @@ const page = () => {
     height: 500,
     bgcolor: 'background.paper',
     border: '2px solid #000',
+>>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
     boxShadow: 24,
     p: 4,
   };
@@ -70,10 +93,15 @@ const page = () => {
   const [data, setData] = useState([]);
   let file_data: any;
 
+<<<<<<< HEAD
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [reload, setReload] = useState(false);
+=======
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [reload, setReload] = useState(false);
 
+>>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
 
   const handleChange = (file: any) => {
     setFile(file);
@@ -88,10 +116,15 @@ const page = () => {
     setSnack(true);
 
     setFile([]);
+<<<<<<< HEAD
+=======
 
     console.log(file);
   };
+>>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
 
+    console.log(file);
+  };
 
   const upload = () => {
     const promise = new Promise((resolve, reject) => {
@@ -137,6 +170,8 @@ const page = () => {
     }
   };
 
+<<<<<<< HEAD
+=======
   
     const currentYear = new Date().getFullYear();
     const years = Array.from(
@@ -267,8 +302,10 @@ const page = () => {
 
 
 
+>>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
   return (
     <div className="w-full h-full">
+      {/* <Navbar /> */}
       <div className="bg-blue-950 w-full h-24 mt-6 grid grid-cols-7 place-items-center gap-4 ">
         <div className="w-full grid grid-cols-5 col-span-3 gap-4 pl-4">
         <TextField
@@ -331,10 +368,17 @@ const page = () => {
           <div>
             <table className="w-4/5 mx-auto my-4">
 <<<<<<< HEAD
+              <thead>
+                <tr className="h-12 bg-blue-950">
+                  <th>ID</th>
+                  <th>RID</th>
+=======
+<<<<<<< HEAD
             <thead className="  ">
                 <tr className="h-12 bg-blue-950 text-slate-50">
                   <th >Employee Id</th>
                   
+>>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
                   <th>Name</th>
                   <th>Department</th>
                   <th>Designation</th>
@@ -397,20 +441,22 @@ const page = () => {
 };
 
 export default page;
+<<<<<<< HEAD
+=======
 
+>>>>>>> f574b644cb82149f676c8c038675bf386c1dd2df
 
+// return (
 
- // return (
-
-    //     <div className='h-screen w-screen bg-slate-500 fixed '>
-    //         <div className=' bg-white w-full h-1/6 flex justify-between mt-5 items-center'>
-    //             <form className=' h-24 bg-red-600 w-1/2 px-12 flex justify-evenly items-center'>
-    //                 <input type="text" className='h-12 w-100 ' />
-    //                 <input type="text" className='h-12 w-100' />
-    //                 <button className='h-12 w-40 bg-yellow-300'>Button</button>
-    //             </form>
-    //             <div className='bg-red-300 h-24 flex justify-center items-center px-9'>
-    //                 <button onClick={handleOpen}>Upload</button>
-    //             </div>
-    //         </div>
-    //         <div className='h-full bg-green-500'>
+//     <div className='h-screen w-screen bg-slate-500 fixed '>
+//         <div className=' bg-white w-full h-1/6 flex justify-between mt-5 items-center'>
+//             <form className=' h-24 bg-red-600 w-1/2 px-12 flex justify-evenly items-center'>
+//                 <input type="text" className='h-12 w-100 ' />
+//                 <input type="text" className='h-12 w-100' />
+//                 <button className='h-12 w-40 bg-yellow-300'>Button</button>
+//             </form>
+//             <div className='bg-red-300 h-24 flex justify-center items-center px-9'>
+//                 <button onClick={handleOpen}>Upload</button>
+//             </div>
+//         </div>
+//         <div className='h-full bg-green-500'>
