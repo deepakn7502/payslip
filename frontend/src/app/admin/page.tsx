@@ -65,6 +65,8 @@ const page = () => {
   const [show, setShow] = useState(false);
 
   const [data, setData] = useState([]);
+  const [filterBy, setFilterBy] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
   let file_data: any;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -121,8 +123,9 @@ const page = () => {
     setShow(true);
     try {
       const res = await api.get("staff/receipt/");
-      console.log(res.data)
+      console.log(res.data);
       setData(res.data);
+      setFilteredData(res.data);
     } catch (e: any) {
       alert(e.response.data.detail);
     }
@@ -131,7 +134,7 @@ const page = () => {
   const currentYear = new Date().getFullYear();
   const years = Array.from(
     { length: currentYear - 2010 },
-    (_, index) => 2011 + index
+    (_, index) => 2023 + index
   );
 
   const [selectedYear, setSelectedYear] = useState("");
@@ -230,6 +233,7 @@ const page = () => {
   ];
 
   const [month, setmonth] = useState("");
+  const [search, setSearch] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
   const [alertContent, setAlertContent] = useState("");
   const [type, setType] = useState("");
@@ -249,6 +253,16 @@ const page = () => {
     };
   };
 
+  const handleFilter = async () => {
+    const temp = data.filter((employee) => {
+      const tempid = employee.eid.first_name;
+      return (
+        tempid.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) > -1
+      );
+    });
+    await setFilteredData(temp);
+  };
+  console.log(data);
   return (
     <div className="w-full h-full">
       <Navbar params={{ user: "Admin" }} />
@@ -282,7 +296,7 @@ const page = () => {
             label="Search By"
             select
             onChange={(e) => {
-              setmonth(e.target.value);
+              setFilterBy(e.target.value);
             }}
           >
             {fields.map((option) => (
@@ -295,8 +309,14 @@ const page = () => {
             type="text"
             placeholder="Type here..."
             className="h-12 w-full col-span-2 rounded-md text-black pl-2"
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
           />
-          <button className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black">
+          <button
+            className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black"
+            onClick={handleFilter}
+          >
             Filter
           </button>
         </div>
@@ -323,7 +343,7 @@ const page = () => {
                 </tr>
               </thead>
               <tbody>
-                {dataset?.map((person: any) => {
+                {filteredData?.map((person: any) => {
                   return (
                     <tr className="h-8 text-black text-center">
                       <td>{person.eid.eid}</td>
@@ -346,6 +366,7 @@ const page = () => {
                     </tr>
                   );
                 })}
+                ;
               </tbody>
             </table>
           </div>
