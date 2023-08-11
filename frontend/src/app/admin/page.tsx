@@ -19,14 +19,13 @@ import Popper from "@/components/Popper";
 import Navbar from "@/components/Navbar";
 import { BiSolidDoughnutChart } from "react-icons/bi";
 
-
 const api = axios.create({
   baseURL: `http://localhost:8000/`,
 });
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
-  ref,
+  ref
 ) {
   return <MuiAlert elevation={10} ref={ref} variant="filled" {...props} />;
 });
@@ -84,11 +83,7 @@ const page = () => {
     setSnack(true);
 
     setFile([]);
-
- 
   };
-
-
 
   const upload = () => {
     const promise = new Promise((resolve, reject) => {
@@ -123,23 +118,21 @@ const page = () => {
 
   const handleSearch = async (e: any) => {
     e.preventDefault();
-
+    setShow(true);
     try {
       const res = await api.get("staff/receipt");
-        
+
       setData(res.data);
-      setShow(true);
     } catch (e: any) {
       alert(e.response.data.detail);
     }
   };
 
-  
-    const currentYear = new Date().getFullYear();
-    const years = Array.from(
-      { length: currentYear - 2010 },
-      (_, index) => 2011 + index
-    );
+  const currentYear = new Date().getFullYear();
+  const years = Array.from(
+    { length: currentYear - 2010 },
+    (_, index) => 2011 + index
+  );
 
   const [selectedYear, setSelectedYear] = useState("");
   const YearTextField = () => {
@@ -213,7 +206,6 @@ const page = () => {
     },
   ];
 
-
   const fields = [
     {
       value: "employeeid",
@@ -235,7 +227,6 @@ const page = () => {
       value: "status",
       label: "Status",
     },
-    
   ];
 
   const [month, setmonth] = useState("");
@@ -258,18 +249,12 @@ const page = () => {
     };
   };
 
-
-
-
-
-
-
   return (
     <div className="w-full h-full">
-      {/* <Navbar /> */}
+      <Navbar params={{ user: "Admin" }} />
       <div className="bg-blue-950 w-full h-24 mt-6 grid grid-cols-7 place-items-center gap-4 ">
         <div className="w-full grid grid-cols-5 col-span-3 gap-4 pl-4">
-        <TextField
+          <TextField
             className="bg-white w-full h-12 rounded-md"
             label="Month"
             select
@@ -292,7 +277,7 @@ const page = () => {
           </button>
         </div>
         <div className="w-full grid grid-cols-5 col-span-3 gap-4">
-        <TextField
+          <TextField
             className="bg-white w-full h-12 rounded-md"
             label="Search By"
             select
@@ -308,8 +293,8 @@ const page = () => {
           </TextField>
           <input
             type="text"
-            placeholder='type here...'
-            className="h-12 w-full col-span-2 rounded-md text-black"
+            placeholder="Type here..."
+            className="h-12 w-full col-span-2 rounded-md text-black pl-2"
           />
           <button className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black">
             Filter
@@ -328,28 +313,36 @@ const page = () => {
         {show ? (
           <div>
             <table className="w-4/5 mx-auto my-4">
-
               <thead>
                 <tr className="h-12 bg-blue-950">
                   <th>Employee ID</th>
                   <th>Name</th>
                   <th>Department</th>
                   <th>Designation</th>
-
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody>
-                {data?.map((person: any) => {
+                {dataset?.map((person: any) => {
                   return (
                     <tr className="h-8 text-black text-center">
                       <td>{person.eid.eid}</td>
-
                       <td>{person.eid.first_name}</td>
                       <td>{person.eid.department}</td>
                       <td>{person.eid.designation}</td>
-                      <td>{person.status ? <div><h1>Viewed</h1><BiSolidDoughnutChart color="green"/></div>:<div><h1>Not Viewed</h1><BiSolidDoughnutChart color="red"/></div>}</td>
-
+                      <td>
+                        {person.status ? (
+                          <div>
+                            <h1>Viewed</h1>
+                            <BiSolidDoughnutChart color="green" />
+                          </div>
+                        ) : (
+                          <div>
+                            <h1>Not Viewed</h1>
+                            <BiSolidDoughnutChart color="red" />
+                          </div>
+                        )}
+                      </td>
                     </tr>
                   );
                 })}
@@ -379,8 +372,8 @@ const page = () => {
 
 export default page;
 
-
-{/* // return (
+{
+  /* // return (
 
 //     <div className='h-screen w-screen bg-slate-500 fixed '>
 //         <div className=' bg-white w-full h-1/6 flex justify-between mt-5 items-center'>
@@ -393,4 +386,5 @@ export default page;
 //                 <button onClick={handleOpen}>Upload</button>
 //             </div>
 //         </div>
-//         <div className='h-full bg-green-500'> */}
+//         <div className='h-full bg-green-500'> */
+}

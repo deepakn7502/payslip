@@ -1,10 +1,13 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import image from "../../images/pec-logo.png";
 import { Blinker } from "next/font/google";
 import { Avatar } from "@mui/material";
 import Navbar from "@/components/Navbar";
+import { useRouter } from "next/navigation";
 
 const blinker = Blinker({
   weight: ["400"],
@@ -14,11 +17,30 @@ const blinker = Blinker({
 interface Params {
   params: { user: string };
 }
+
+const api = axios.create({
+  baseURL: `http://localhost:8000/`,
+});
+
 export default function PDF({ params }: Params) {
+  // const router = useRouter();
+  // const { month, year } = router.query;
+  // const [data, setdata] = useState([]);
+  const alldata = JSON.parse(sessionStorage.getItem("data"));
+  var data  : any;
+  const month = "April";
+  const year = "20230";
+if (alldata) {
+   data  = alldata["data"];
+}
+  console.log("data");
+  console.log(alldata);
   return (
     <div className="h-screen w-full bg-blue-500">
       <Navbar params={params} />
-      <div className="bg-white h-fit w-[950px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl">
+      {
+        alldata ?
+        <div className="bg-white h-fit w-[950px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl">
         <table className="w-11/12 mx-auto my-10 grid grid-cols-1">
           <thead className="w-full text-center grid grid-cols-6  place-items-center">
             <tr className="col-start-1 col-end-2 row-start-1 row-end-6">
@@ -54,7 +76,9 @@ export default function PDF({ params }: Params) {
             </tr>
             <tr className="col-start-2 col-end-7">
               <th className="text-base font-bold">
-                <h1>PaySlip for the Month of August 2023</h1>
+                <h1>
+                  PaySlip for the Month ${month} of ${year}
+                </h1>
               </th>
             </tr>
           </thead>
@@ -62,43 +86,43 @@ export default function PDF({ params }: Params) {
             <tr className="grid grid-cols-4">
               <td className="col-span-2">
                 <h1>Name:</h1>
-                <p>Anandha simha m</p>
+                {/* <p>${data["eid"]["first_name"]}</p> */}
               </td>
               <td className="col-span-1">
                 <h1>EMPID:</h1>
-                <p>PECMEC0057</p>
+                <p>${data.basic}</p>
               </td>
               <td className="col-span-1">
                 <h1>A/C No:</h1>
-                <p>920010002624855</p>
+                <p>${data.first_name}</p>
               </td>
             </tr>
             <tr className="grid grid-cols-4">
               <td className="col-span-2">
                 <h1>Department:</h1>
-                <p>MECH</p>
+                <p>${data.eid.department}</p>
               </td>
               <td className="col-span-1">
                 <h1>Bank:</h1>
-                <p>Axis bank</p>
+                <p>${data.first_name}</p>
               </td>
               <td className="col-span-1">
                 <h1>Branch:</h1>
-                <p>kilpauk</p>
+                <p>${data.first_name}</p>
               </td>
             </tr>
             <tr className="grid grid-cols-4">
               <td className="col-span-2">
                 <h1>Designation:</h1>
-                <p>asst.professor(lab)</p>
+                <p>${data.eid.designation}</p>
               </td>
               <td className="col-span-1">
                 <h1>Pan:</h1>
-                <p>ABCD1234E</p>
+                <p>${data.first_name}</p>
               </td>
               <td className="col-span-1">
                 <h1>uan :</h1>
-                <p>101464899043</p>
+                <p>${data.first_name}</p>
               </td>
             </tr>
             <tr className="grid grid-cols-2">
@@ -113,25 +137,25 @@ export default function PDF({ params }: Params) {
               <td>
                 <tr className="">
                   <h1>basic pay :</h1>
-                  <p>8841</p>
+                  <p>${data.first_name}</p>
                 </tr>
                 <tr className="">
                   <h1>da :</h1>
-                  <p>12024</p>
+                  <p>${data.first_name}</p>
                 </tr>
                 <tr className="">
                   <h1>leave :</h1>
-                  <p>0.00</p>
+                  <p>${data.first_name}</p>
                 </tr>
               </td>
               <td>
                 <tr className="">
                   <h1>basic pay-1 :</h1>
-                  <p>8841</p>
+                  <p>${data.first_name}</p>
                 </tr>
                 <tr className="">
                   <h1>hra :</h1>
-                  <p>884</p>
+                  <p>${data.first_name}</p>
                 </tr>
                 <tr className="">
                   <h1></h1>
@@ -141,51 +165,55 @@ export default function PDF({ params }: Params) {
               <td>
                 <tr className="">
                   <h1>p f :</h1>
-                  <p>2504</p>
+                  <p>${data.first_name}</p>
                 </tr>
                 <tr className="">
                   <h1>p t :</h1>
-                  <p>0</p>
+                  <p>${data.first_name}</p>
                 </tr>
                 <tr className="">
                   <h1>i t :</h1>
-                  <p>0</p>
+                  <p>${data.first_name}</p>
                 </tr>
               </td>
               <td>
                 <tr className="">
                   <h1>miscellaneous :</h1>
-                  <p>0</p>
+                  <p>${data.first_name}</p>
                 </tr>
                 <tr className="">
                   <h1>esi :</h1>
-                  <p>0</p>
+                  <p>${data.first_name}</p>
                 </tr>
                 <tr className="">
                   <h1>deductions :</h1>
-                  <p>0</p>
+                  <p>${data.first_name}</p>
                 </tr>
               </td>
             </tr>
             <tr className="grid grid-cols-2">
               <td className="col-span-1 text-center grid-cols-2">
                 <h1>total earnings(₹) :</h1>
-                <p>21749/-</p>
+                <p>${data.first_name}/-</p>
               </td>
               <td className="col-span-1 text-center grid-cols-2">
                 <h1>total deductions(₹) :</h1>
-                <p>2504/-</p>
+                <p>${data.first_name}/-</p>
               </td>
             </tr>
             <tr className="grid grid-cols-1">
               <td className="text-center grid-cols-4">
                 <h1 className="col-start-2">net salary(₹) :</h1>
-                <p>19245/-</p>
+                <p>${data.first_name}/-</p>
               </td>
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> :
+      <div>Loading</div>
+      }
+
+    
     </div>
   );
 }
