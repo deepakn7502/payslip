@@ -44,7 +44,7 @@ export default function Navbar({ params }: any) {
         PAYCHECK SLIPS
       </h1>
       <div className="col-start-10 col-end-13 flex items-center justify-around ">
-        <Avatar src="/broken-image.jpg" />
+        <Avatar src="../app/images/tobi.png" />
         <p className="text-xl capitalize">{params.user.replace("%20", " ")}</p>
         <ExitToAppIcon
         onClick={logout}
