@@ -149,7 +149,17 @@ export default function User({ params }: Params) {
        }));
       push(`/payslip/${params.user}?month=${month}&year=${selectedYear}`);
      
+      // console.log(res.data.eid);
 
+      sessionStorage.setItem(
+        "data",
+        JSON.stringify({
+          month: month,
+          year: selectedYear,
+          data: res.data,
+        })
+      );
+      push(`/payslip/${params.user}?month=${month}&year=${selectedYear}`);
 
       // setAlertContent("Payslip");
       // setType("success");

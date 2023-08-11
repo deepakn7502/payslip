@@ -28,7 +28,7 @@ export default function Navbar({ params }: any) {
   }
 
   return (
-    <div className="bg-blue-950 h-[75px]  text-white w-full grid grid-cols-11 items-center text-center">
+    <div className="bg-blue-950 h-[75px]  text-white w-full grid grid-cols-11 items-center text-center shadow-custom">
       <Image
         src={image}
         alt="Logo"

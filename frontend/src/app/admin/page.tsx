@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import { forwardRef, useEffect, useState } from "react";
 import { Poppins } from "next/font/google";
@@ -5,7 +6,7 @@ import Modal from "@mui/material/Modal";
 import { FileUploader } from "react-drag-drop-files";
 import Box from "@mui/material/Box";
 
-import dataset from "../images/data.json";
+// import dataset from "../images/data.json";
 import { IoIosCloseCircle } from "react-icons/io";
 import { MenuItem, TextField, Tooltip } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
@@ -120,8 +121,8 @@ const page = () => {
     e.preventDefault();
     setShow(true);
     try {
-      const res = await api.get("staff/receipt");
-
+      const res = await api.get("staff/receipt/");
+      console.log(res.data)
       setData(res.data);
     } catch (e: any) {
       alert(e.response.data.detail);
@@ -314,7 +315,7 @@ const page = () => {
           <div>
             <table className="w-4/5 mx-auto my-4">
               <thead>
-                <tr className="h-12 bg-blue-950">
+                <tr className="h-12 bg-blue-950 text-white">
                   <th>Employee ID</th>
                   <th>Name</th>
                   <th>Department</th>
@@ -323,9 +324,14 @@ const page = () => {
                 </tr>
               </thead>
               <tbody>
-                {dataset?.map((person: any) => {
+                {data?.map((person: any) => {
                   return (
+<<<<<<< HEAD
+                    // eslint-disable-next-line react/jsx-key
                     <tr className="h-8 text-black text-center">
+=======
+                    <tr className="grid grid-cols-5 h-8 text-black text-center">
+>>>>>>> 9d25bdbe0d21f3bb9aac27d3e53199bb1b72efe6
                       <td>{person.eid.eid}</td>
                       <td>{person.eid.first_name}</td>
                       <td>{person.eid.department}</td>

@@ -53,7 +53,7 @@ class receipts(viewsets.ModelViewSet):
         except Exception  as e:
           raise ParseError(detail=str(e), code=400)
     def list(self, request, *args, **kwargs):
-            print("data")
+            # print("data")
             data = receipt.objects.select_related('eid').all()
             serializer = rep_serialzer(data, many=True)
             print(data)
