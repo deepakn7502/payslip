@@ -5,11 +5,7 @@ import Modal from "@mui/material/Modal";
 import { FileUploader } from "react-drag-drop-files";
 import Box from "@mui/material/Box";
 
-<<<<<<< HEAD
 // import dataset from "../images/data.json";
-=======
-import dataset from "../../data/ret_data.json";
->>>>>>> ce56730029d01c90e2bba556666621e7bb5f3050
 import { IoIosCloseCircle } from "react-icons/io";
 import { MenuItem, TextField, Tooltip } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
@@ -318,11 +314,7 @@ const page = () => {
           <div>
             <table className="w-4/5 mx-auto my-4">
               <thead>
-<<<<<<< HEAD
-                <tr className="grid grid-cols-5  h-12 bg-blue-950">
-=======
                 <tr className="h-12 bg-blue-950 text-white">
->>>>>>> ce56730029d01c90e2bba556666621e7bb5f3050
                   <th>Employee ID</th>
                   <th>Name</th>
                   <th>Department</th>
