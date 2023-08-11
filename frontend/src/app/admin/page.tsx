@@ -120,8 +120,8 @@ const page = () => {
     e.preventDefault();
     setShow(true);
     try {
-      const res = await api.get("staff/receipt");
-
+      const res = await api.get("staff/receipt/");
+      console.log(res.data)
       setData(res.data);
     } catch (e: any) {
       alert(e.response.data.detail);
