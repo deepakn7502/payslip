@@ -13,7 +13,7 @@ const blinker = Blinker({
 
 export default function Navbar({ params }: any) {
   return (
-    <div className="bg-blue-950 h-[75px]  text-white w-full grid grid-cols-11 items-center text-center">
+    <div className="bg-blue-950 h-[75px]  text-white w-full grid grid-cols-11 items-center text-center shadow-custom">
       <Image
         src={image}
         alt="Logo"
@@ -30,7 +30,7 @@ export default function Navbar({ params }: any) {
       </h1>
       <div className="col-start-10 col-end-13 flex items-center justify-around ">
         <Avatar src="/broken-image.jpg" />
-        <p className="text-xl">{params.user.replace("%20", " ")}</p>
+        <p className="text-xl capitalize">{params.user.replace("%20", " ")}</p>
         <ExitToAppIcon
           fontSize="large"
           className="cursor-pointer"

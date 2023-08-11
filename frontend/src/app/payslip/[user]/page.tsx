@@ -16,7 +16,7 @@ interface Params {
 }
 export default function PDF({ params }: Params) {
   return (
-    <div className="h-screen w-full bg-blue-950">
+    <div className="h-screen w-full bg-blue-500">
       <Navbar params={params} />
       <div className="bg-white h-fit w-[950px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl">
         <table className="w-11/12 mx-auto my-10 grid grid-cols-1">
