@@ -19,7 +19,7 @@ from .models import *
 from .utils import *
 
 import json
-from bulk_update.helper import bulk_update
+# from bulk_update.helper import bulk_update
 import random
 
 

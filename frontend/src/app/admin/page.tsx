@@ -125,7 +125,7 @@ const page = () => {
     setShow(true);
     try {
       const res = await api.get("staff/receipt/");
-      console.log(res.data);
+      // console.log(res.data);
       setData(res.data);
       setFilteredData(res.data);
     } catch (e: any) {
@@ -213,6 +213,10 @@ const page = () => {
 
   const fields = [
     {
+      value: "",
+      label: "No Filter",
+    },
+    {
       value: "employeeid",
       label: "Employee Id",
     },
@@ -256,15 +260,55 @@ const page = () => {
   };
 
   const handleFilter = async () => {
-    const temp = data.filter((employee) => {
-      const tempid = employee.eid.first_name;
-      return (
-        tempid.toLocaleLowerCase().indexOf(search.toLocaleLowerCase()) > -1
-      );
-    });
-    await setFilteredData(temp);
+    if (filterBy === "") {
+      await setFilteredData(data);
+    } else if (search.length === 0) {
+      alert("Please enter a search term");
+    } else {
+      if (filterBy === "employeeid") {
+        const temp = data.filter((employee) => {
+          const tempid = employee.eid.eid;
+          return tempid
+            .toLocaleLowerCase()
+            .includes(search.toLocaleLowerCase());
+        });
+        await setFilteredData(temp);
+      } else if (filterBy === "name") {
+        const temp = data.filter((employee) => {
+          const tempid = employee.eid.first_name;
+          return tempid
+            .toLocaleLowerCase()
+            .includes(search.toLocaleLowerCase());
+        });
+        await setFilteredData(temp);
+      } else if (filterBy === "department") {
+        const temp = data.filter((employee) => {
+          const tempid = employee.eid.department;
+          return tempid
+            .toLocaleLowerCase()
+            .includes(search.toLocaleLowerCase());
+        });
+        await setFilteredData(temp);
+      } else if (filterBy === "designation") {
+        const temp = data.filter((employee) => {
+          const tempid = employee.eid.designation;
+          return tempid
+            .toLocaleLowerCase()
+            .includes(search.toLocaleLowerCase());
+        });
+        await setFilteredData(temp);
+      } else if (filterBy === "status") {
+        const temp = data.filter((employee) => {
+          const tempid = employee.status;
+          return tempid
+            .toLocaleLowerCase()
+            .includes(search.toLocaleLowerCase());
+        });
+        await setFilteredData(temp);
+      }
+    }
   };
-  console.log(data);
+  // console.log(data);
   return (
     <div className="w-full h-full">
       <Navbar params={{ user: "Admin" }} />
@@ -336,7 +380,7 @@ const page = () => {
           <div>
             <table className="w-4/5 mx-auto my-4">
               <thead>
-                <tr className="h-12 bg-blue-950 text-white">
+                <tr className="grid grid-cols-5 h-12 bg-blue-950 text-white">
                   <th>Employee ID</th>
                   <th>Name</th>
                   <th>Department</th>
@@ -353,12 +397,12 @@ const page = () => {
                       <td>{person.eid.department}</td>
                       <td>{person.eid.designation}</td>
                       <td>
-                        { !person.status ? (
-                          <div  className="flex justify-around">
-                          <h1>Viewed</h1>
+                        {person.status ? (
+                          <div className="flex justify-around">
+                            <h1>Viewed</h1>
                             <MdVisibility color="green" />
                           </div>
-                        ) : ( 
+                        ) : (
                           <div className="flex justify-around">
                             <h1>Not Viewed</h1>
                             <MdVisibilityOff color="red" />
