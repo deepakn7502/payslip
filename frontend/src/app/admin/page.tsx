@@ -266,7 +266,7 @@ const page = () => {
       alert("Please enter a search term");
     } else {
       if (filterBy === "employeeid") {
-        const temp = data.filter((employee) => {
+        const temp = data.filter((employee: any) => {
           const tempid = employee.eid.eid;
           return tempid
             .toLocaleLowerCase()
@@ -274,7 +274,7 @@ const page = () => {
         });
         await setFilteredData(temp);
       } else if (filterBy === "name") {
-        const temp = data.filter((employee) => {
+        const temp = data.filter((employee: any) => {
           const tempid = employee.eid.first_name;
           return tempid
             .toLocaleLowerCase()
@@ -282,7 +282,7 @@ const page = () => {
         });
         await setFilteredData(temp);
       } else if (filterBy === "department") {
-        const temp = data.filter((employee) => {
+        const temp = data.filter((employee: any) => {
           const tempid = employee.eid.department;
           return tempid
             .toLocaleLowerCase()
@@ -290,7 +290,7 @@ const page = () => {
         });
         await setFilteredData(temp);
       } else if (filterBy === "designation") {
-        const temp = data.filter((employee) => {
+        const temp = data.filter((employee: any) => {
           const tempid = employee.eid.designation;
           return tempid
             .toLocaleLowerCase()
@@ -298,7 +298,7 @@ const page = () => {
         });
         await setFilteredData(temp);
       } else if (filterBy === "status") {
-        const temp = data.filter((employee) => {
+        const temp = data.filter((employee: any) => {
           const tempid = employee.status;
           return tempid
             .toLocaleLowerCase()
