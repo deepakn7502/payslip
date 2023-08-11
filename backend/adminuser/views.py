@@ -62,9 +62,7 @@ class receipts(viewsets.ModelViewSet):
           month =  request.query_params.get("month").upper() + "-" + request.query_params.get("year")[2:]
           data = receipt.objects.filter(eid=id,month = month).select_related('eid').all()
           if(data):
-            print(data)
-            serializer = rep_serialzer(data, many=True).data  #json.loads(json.dumps())[0]
-           
+            serializer = rep_serialzer(data, many=True).data[0]  #json.loads(json.dumps())[0]
             if(not serializer["status"]):
               up = receipt.objects.get(eid=id,month = month)
               up.status = True

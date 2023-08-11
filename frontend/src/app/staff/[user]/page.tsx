@@ -12,6 +12,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Blinker } from "next/font/google";
 import axios from "axios";
 import Navbar from "@/components/Navbar";
+import { useRouter } from "next/navigation";
 
 const blinker = Blinker({
   weight: ["400"],
@@ -27,6 +28,8 @@ const api = axios.create({
 });
 
 export default function User({ params }: Params) {
+  const { push } = useRouter();
+
   const currentYear = new Date().getFullYear();
   const years = Array.from(
     { length: currentYear - 2010 },
@@ -110,7 +113,7 @@ export default function User({ params }: Params) {
   const [month, setmonth] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
   const [alertContent, setAlertContent] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState<any>("");
 
   let timebar = () => {
     let progressTimeout: any;
@@ -137,13 +140,21 @@ export default function User({ params }: Params) {
           year: selectedYear,
         },
       });
+      console.table(res.data)
+    
+      sessionStorage.setItem("data",  JSON.stringify( {
+        "month" : month,
+        "year": selectedYear ,
+        "data" : JSON.stringify(res.data)
+       }));
+      push(`/payslip/${params.user}?month=${month}&year=${selectedYear}`);
+     
 
-      console.log(res.data);
 
-      setAlertContent("Payslip");
-      setType("success");
-      setOpenAlert(true);
-      timebar();
+      // setAlertContent("Payslip");
+      // setType("success");
+      // setOpenAlert(true);
+      // timebar();
       // console.log("if");
     } else {
       setAlertContent("Field cannot be empty!!");

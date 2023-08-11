@@ -346,7 +346,8 @@ const page = () => {
                       <td>{person.eid.first_name}</td>
                       <td>{person.eid.department}</td>
                       <td>{person.eid.designation}</td>
-                      <td>{person.status ? <div><h1>Viewed</h1><BiSolidDoughnutChart color="green"/></div>:<div><h1>Not Viewed</h1><BiSolidDoughnutChart color="red"/></div>}</td>
+                      <td>{person.status ? "viewed" : "Not Viewed"}</td>
+                      {/* <td>{person.status ? <div><h1>Viewed</h1><BiSolidDoughnutChart color="green"/></div>:<div><h1>Not Viewed</h1><BiSolidDoughnutChart color="red"/></div>}</td> */}
 
                     </tr>
                   );
