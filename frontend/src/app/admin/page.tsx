@@ -18,7 +18,8 @@ import axios from "axios";
 // import api from "../axios";
 import Popper from "@/components/Popper";
 import Navbar from "@/components/Navbar";
-import { BiSolidDoughnutChart } from "react-icons/bi";
+import { MdVisibility } from "react-icons/md";
+import { MdVisibilityOff } from "react-icons/md";
 
 const api = axios.create({
   baseURL: `http://localhost:8000/`,
@@ -320,32 +321,28 @@ const page = () => {
                   <th>Name</th>
                   <th>Department</th>
                   <th>Designation</th>
-                  <th>Status</th>
+                  <th className="w-[200px]">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {data?.map((person: any) => {
                   return (
-<<<<<<< HEAD
                     // eslint-disable-next-line react/jsx-key
-                    <tr className="h-8 text-black text-center">
-=======
-                    <tr className="grid grid-cols-5 h-8 text-black text-center">
->>>>>>> 9d25bdbe0d21f3bb9aac27d3e53199bb1b72efe6
-                      <td>{person.eid.eid}</td>
-                      <td>{person.eid.first_name}</td>
-                      <td>{person.eid.department}</td>
-                      <td>{person.eid.designation}</td>
+                    <tr className="h-8 text-black text-center ">
+                      <td className="text-center">{person.eid.eid}</td>
+                      <td className="text-center">{person.eid.first_name}</td>
+                      <td className="text-center">{person.eid.department}</td>
+                      <td className="text-center">{person.eid.designation}</td>
                       <td>
-                        {person.status ? (
-                          <div>
-                            <h1>Viewed</h1>
-                            <BiSolidDoughnutChart color="green" />
+                        { !person.status ? (
+                          <div  className="flex justify-around">
+                          <h1>Viewed</h1>
+                            <MdVisibility color="green" />
                           </div>
-                        ) : (
-                          <div>
+                        ) : ( 
+                          <div className="flex justify-around">
                             <h1>Not Viewed</h1>
-                            <BiSolidDoughnutChart color="red" />
+                            <MdVisibilityOff color="red" />
                           </div>
                         )}
                       </td>
