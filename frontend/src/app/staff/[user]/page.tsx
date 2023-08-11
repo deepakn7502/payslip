@@ -140,7 +140,16 @@ export default function User({ params }: Params) {
           year: selectedYear,
         },
       });
-      console.log(res.data.eid);
+      // console.log(res.data)
+    
+      sessionStorage.setItem("data",  JSON.stringify( {
+        "month" : month,
+        "year": selectedYear ,
+        "data" : res.data
+       }));
+      push(`/payslip/${params.user}?month=${month}&year=${selectedYear}`);
+     
+      // console.log(res.data.eid);
 
       sessionStorage.setItem(
         "data",

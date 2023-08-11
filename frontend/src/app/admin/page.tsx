@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import { forwardRef, useEffect, useState } from "react";
 import { Poppins } from "next/font/google";
@@ -5,7 +6,7 @@ import Modal from "@mui/material/Modal";
 import { FileUploader } from "react-drag-drop-files";
 import Box from "@mui/material/Box";
 
-import dataset from "../../data/ret_data.json";
+// import dataset from "../images/data.json";
 import { IoIosCloseCircle } from "react-icons/io";
 import { MenuItem, TextField, Tooltip } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
@@ -17,7 +18,8 @@ import axios from "axios";
 // import api from "../axios";
 import Popper from "@/components/Popper";
 import Navbar from "@/components/Navbar";
-import { BiSolidDoughnutChart } from "react-icons/bi";
+import { MdVisibility } from "react-icons/md";
+import { MdVisibilityOff } from "react-icons/md";
 
 const api = axios.create({
   baseURL: `http://localhost:8000/`,
@@ -339,27 +341,27 @@ const page = () => {
                   <th>Name</th>
                   <th>Department</th>
                   <th>Designation</th>
-                  <th>Status</th>
+                  <th className="w-[200px]">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredData?.map((person: any) => {
                   return (
-                    <tr className="h-8 text-black text-center">
+                    <tr className="grid grid-cols-5 h-8 text-black text-center">
                       <td>{person.eid.eid}</td>
                       <td>{person.eid.first_name}</td>
                       <td>{person.eid.department}</td>
                       <td>{person.eid.designation}</td>
                       <td>
-                        {person.status ? (
-                          <div>
-                            <h1>Viewed</h1>
-                            <BiSolidDoughnutChart color="green" />
+                        { !person.status ? (
+                          <div  className="flex justify-around">
+                          <h1>Viewed</h1>
+                            <MdVisibility color="green" />
                           </div>
-                        ) : (
-                          <div>
+                        ) : ( 
+                          <div className="flex justify-around">
                             <h1>Not Viewed</h1>
-                            <BiSolidDoughnutChart color="red" />
+                            <MdVisibilityOff color="red" />
                           </div>
                         )}
                       </td>

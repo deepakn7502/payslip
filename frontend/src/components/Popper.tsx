@@ -1,6 +1,66 @@
-import { Alert, Box, Modal, Snackbar, Stack, Tooltip } from "@mui/material";
+
+"use client";
+import { Alert, Box, MenuItem, Modal, Snackbar, Stack, TextField, Tooltip } from "@mui/material";
+import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { IoIosCloseCircle } from "react-icons/io";
+const currencies = [
+  {
+    value: "jan",
+    label: "January",
+  },
+  {
+    value: "feb",
+    label: "February",
+  },
+  {
+    value: "mar",
+    label: "March",
+  },
+  {
+    value: "apr",
+    label: "April",
+  },
+  {
+    value: "may",
+    label: "May",
+  },
+  {
+    value: "jun",
+    label: "June",
+  },
+  {
+    value: "jul",
+    label: "July",
+  },
+  {
+    value: "aug",
+    label: "August",
+  },
+  {
+    value: "sep",
+    label: "September",
+  },
+  {
+    value: "oct",
+    label: "October",
+  },
+  {
+    value: "nov",
+    label: "November",
+  },
+  {
+    value: "dec",
+    label: "December",
+  },
+];
+const currentYear = new Date().getFullYear();
+const years = Array.from(
+  { length: currentYear - 2010 },
+  (_, index) => 2011 + index
+);
+
+
 
 export default function Popper({
   open,
@@ -17,6 +77,9 @@ export default function Popper({
   reload,
   setReload
 }: any) {
+  const [month, setmonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+
   return (
     <Modal
       open={open}
@@ -30,6 +93,38 @@ export default function Popper({
         <div className="grid h-full w-full grid-cols-1  place-items-center ">
           <h1 className='text-3xl font-bold '>UPLOAD FILE</h1>
           <div className="w-full flex flex-col items-center justify-evenly h-[200px]">
+            <div className="grid grid-cols-2 w-11/12 gap-3 h-[100px] items-center"><TextField
+              className="bg-white h-12 rounded-md"
+              label="Month"
+              select
+              onChange={(e) => {
+                setmonth(e.target.value);
+              }}
+            >
+
+              {currencies.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+
+            </TextField>
+              <TextField
+                className="bg-white  h-12  justify-between rounded-md border-transparent"
+                label="Year"
+                select
+                value={selectedYear}
+                onChange={(event) => {
+                  setSelectedYear(event.target.value);
+                }}
+              >
+                {years.map((year) => (
+                  <MenuItem key={year} value={year}>
+                    {year}
+                  </MenuItem>
+                ))}
+              </TextField></div>
+
             <h1 className='text-xl font-bold'>Drag and Drop files here or browse</h1>
             {reload == true ? <div><FileUploader handleChange={handleChange} label="Upload file" name="file" types={fileTypes} /></div> : <div> <FileUploader handleChange={handleChange} label="Upload file" name="file" types={fileTypes} /></div>}
           </div>
