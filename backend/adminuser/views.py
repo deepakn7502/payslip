@@ -19,7 +19,8 @@ from .models import *
 from .utils import *
 
 import json
-
+from bulk_update.helper import bulk_update
+import random
 
 
 class employees(viewsets.ModelViewSet):
@@ -35,6 +36,8 @@ class employees(viewsets.ModelViewSet):
           raise ParseError(detail=str(e.args[1]), code=400)
         except Exception  as e:
           raise ParseError(detail=str(e), code=400)
+
+   
 class receipts(viewsets.ModelViewSet):
     queryset = receipt.objects.all()
     serializer_class = rep_serialzer
