@@ -30,7 +30,7 @@ export default function Navbar({ params }: any) {
       </h1>
       <div className="col-start-10 col-end-13 flex items-center justify-around ">
         <Avatar src="/broken-image.jpg" />
-        <p className="text-xl">{params.user.replace("%20", " ")}</p>
+        <p className="text-xl capitalize">{params.user.replace("%20", " ")}</p>
         <ExitToAppIcon
           fontSize="large"
           className="cursor-pointer"
