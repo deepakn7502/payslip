@@ -35,7 +35,7 @@ tr td {
   border-collapse: collapse;
   text-transform: uppercase;
   text-align: left;
-  display: grid;
+  /* display: grid; */
   /* grid-template-columns: repeat(2,1fr); */
 }
 
@@ -55,3 +55,7 @@ td tr{
   padding: 0 1rem;
 }
 
+th,td{
+  border-collapse: collapse;
+
+}
