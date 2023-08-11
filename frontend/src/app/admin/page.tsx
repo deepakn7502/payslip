@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import { forwardRef, useEffect, useState } from "react";
 import { Poppins } from "next/font/google";
@@ -325,7 +326,12 @@ const page = () => {
               <tbody>
                 {data?.map((person: any) => {
                   return (
+<<<<<<< HEAD
+                    // eslint-disable-next-line react/jsx-key
+                    <tr className="h-8 text-black text-center">
+=======
                     <tr className="grid grid-cols-5 h-8 text-black text-center">
+>>>>>>> 9d25bdbe0d21f3bb9aac27d3e53199bb1b72efe6
                       <td>{person.eid.eid}</td>
                       <td>{person.eid.first_name}</td>
                       <td>{person.eid.department}</td>
