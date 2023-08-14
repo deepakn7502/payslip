@@ -143,7 +143,7 @@ const page = () => {
   const YearTextField = () => {
     return (
       <TextField
-        className="bg-white w-full h-12  justify-between rounded-md border-transparent"
+        className="bg-white w-full h-14  justify-between rounded-md border-transparent"
         label="Year"
         select
         value={selectedYear}
@@ -315,7 +315,7 @@ const page = () => {
       <div className="bg-blue-950 w-full h-24 mt-6 grid grid-cols-7 place-items-center gap-4 ">
         <div className="w-full grid grid-cols-5 col-span-3 gap-4 pl-4">
           <TextField
-            className="bg-white w-full h-12 rounded-md"
+            className="bg-white w-full h-14 rounded-md"
             label="Month"
             select
             onChange={(e) => {
@@ -330,15 +330,15 @@ const page = () => {
           </TextField>
           {YearTextField()}
           <button
-            className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black"
+            className="h-14 w-28 bg-yellow-300 col-span-1 rounded-lg text-black"
             onClick={handleSearch}
           >
             Search
           </button>
         </div>
-        <div className="w-full grid grid-cols-5 col-span-3 gap-4">
+        <div className="w-full grid grid-cols-5 col-span-3 gap-4 h-14">
           <TextField
-            className="bg-white w-full h-12 rounded-md"
+            className="bg-white w-full h-14 rounded-md"
             label="Search By"
             select
             onChange={(e) => {
@@ -354,13 +354,13 @@ const page = () => {
           <input
             type="text"
             placeholder="Type here..."
-            className="h-12 w-full col-span-2 rounded-md text-black pl-2"
+            className="h-14 w-full col-span-2 rounded-md text-black pl-2"
             onChange={(e) => {
               setSearch(e.target.value);
             }}
           />
           <button
-            className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black"
+            className="h-14 w-28 bg-yellow-300 col-span-1 rounded-lg text-black"
             onClick={handleFilter}
           >
             Filter
@@ -368,7 +368,7 @@ const page = () => {
         </div>
         <div className="w-full grid grid-cols-1 col-span-1 place-items-center">
           <button
-            className="h-12 w-28 bg-yellow-300 col-span-1 rounded-lg text-black"
+            className="h-14 w-28 bg-yellow-300 col-span-1 rounded-lg text-black"
             onClick={handleOpen}
           >
             Upload
