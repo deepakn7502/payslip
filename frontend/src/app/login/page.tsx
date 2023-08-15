@@ -9,8 +9,8 @@ const api = axios.create({
 });
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
-const [username, setUser] = useState("");
-const [password, setpass] = useState("");
+const [username, setUser] = useState<any>("");
+const [password, setpass] = useState<any>("");
 const { push } = useRouter();
 
 let login = async () => {
