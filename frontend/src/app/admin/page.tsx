@@ -52,114 +52,6 @@ const page = () => {
     p: 4,
   };
 
-  const fileTypes = ["xlsx", "xls"];
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [snack, setSnack] = useState(false);
-
-  const [isOpen, setIsOpen] = useState(false);
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const [file, setFile] = useState<any>([]);
-
-  const [show, setShow] = useState(false);
-
-  const [data, setData] = useState([]);
-  const [filterBy, setFilterBy] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
-  let file_data: any;
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [reload, setReload] = useState(false);
-
-  const handleChange = (file: any) => {
-    setFile(file);
-  };
-
-  const closeSnack = () => {
-    setSnack(false);
-  };
-
-  const Remove = () => {
-    setReload(!reload);
-    setSnack(true);
-
-    setFile([]);
-  };
-
-  const upload = () => {
-    const promise = new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsArrayBuffer(file);
-      reader.onload = (e) => {
-        const bufferArray = reader.result;
-        const wb = XLSX.read(bufferArray, {
-          type: "buffer",
-        });
-        const wsname = wb.SheetNames[0];
-
-        const ws = wb.Sheets[wsname];
-        file_data = XLSX.utils.sheet_to_json(ws);
-
-        resolve(data);
-      };
-      reader.onerror = (error) => {
-        reject(error);
-      };
-    });
-    promise.then(async (d) => {
-      try {
-        // console.table(file_data);
-        const res = await api.post("staff/receipt/", file_data);
-        alert("Upload success");
-      } catch (e: any) {
-        alert(e.response.data.detail);
-      }
-    });
-  };
-
-  const handleSearch = async (e: any) => {
-    e.preventDefault();
-    setShow(true);
-    try {
-      const res = await api.get("staff/receipt/");
-      // console.log(res.data);
-      setData(res.data);
-      setFilteredData(res.data);
-    } catch (e: any) {
-      alert(e.response.data.detail);
-    }
-  };
-
-  const currentYear = new Date().getFullYear();
-  const years = Array.from(
-    { length: currentYear - 2010 },
-    (_, index) => 2023 + index
-  );
-
-  const [selectedYear, setSelectedYear] = useState("");
-  const YearTextField = () => {
-    return (
-      <TextField
-        className="bg-white w-full h-14  justify-between rounded-md border-transparent"
-        label="Year"
-        select
-        value={selectedYear}
-        onChange={(event) => {
-          setSelectedYear(event.target.value);
-        }}
-      >
-        {years.map((year) => (
-          <MenuItem key={year} value={year}>
-            {year}
-          </MenuItem>
-        ))}
-      </TextField>
-    );
-  };
-
   const currencies = [
     {
       value: "jan",
@@ -258,7 +150,6 @@ const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [reload, setReload] = useState(false);
 
-
   const [month, setmonth] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
 
@@ -266,6 +157,9 @@ const page = () => {
   const [openAlert, setOpenAlert] = useState(false);
   const [alertContent, setAlertContent] = useState("");
   const [type, setType] = useState("");
+
+  const [filterBy, setFilterBy] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
 
   const handleChange = (file: any) => {
     setFile(file);
@@ -295,7 +189,7 @@ const page = () => {
 
         const ws = wb.Sheets[wsname];
         file_data = XLSX.utils.sheet_to_json(ws);
-        
+
         resolve(data);
       };
       reader.onerror = (error) => {
@@ -305,14 +199,11 @@ const page = () => {
     promise.then(async (d) => {
       try {
         // console.table(file_data);
-        const res = await api.post("staff/receipt/", 
-        {
-          data : file_data ,
-          month : month,
-          year : selectedYear
-
-        }
-        );
+        const res = await api.post("staff/receipt/", {
+          data: file_data,
+          month: month,
+          year: selectedYear,
+        });
         alert("Upload success");
       } catch (e: any) {
         alert(e.response.data.detail);
@@ -326,13 +217,12 @@ const page = () => {
       const res = await api.get("staff/receipt/", {
         params: { month: month, year: selectedYear },
       });
-      
+
       setData(res.data);
     } catch (e: any) {
       alert(e.response.data.detail);
     }
     setShow(true);
-
   };
 
   const currentYear = new Date().getFullYear();
@@ -360,9 +250,6 @@ const page = () => {
       </TextField>
     );
   };
-
-  
-
 
   let timebar = () => {
     let progressTimeout: any;
@@ -511,11 +398,10 @@ const page = () => {
               <tbody>
                 {filteredData?.map((person: any) => {
                   return (
-<<<<<<< HEAD
-                    <tr key={person.eid.eid} className="grid grid-cols-5 h-8 text-black text-center">
-=======
-                    <tr className="grid grid-cols-5 h-8 text-black text-center">
->>>>>>> a5558d29562127d6e5ddaf57dea215cef745bcd9
+                    <tr
+                      key={person.eid.eid}
+                      className="grid grid-cols-5 h-8 text-black text-center"
+                    >
                       <td>{person.eid.eid}</td>
                       <td>{person.eid.first_name}</td>
                       <td>{person.eid.department}</td>
