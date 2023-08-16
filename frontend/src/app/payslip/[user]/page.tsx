@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "axios";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import image from "../../images/pec-logo.png";
 import { Blinker } from "next/font/google";
@@ -18,9 +18,7 @@ interface Params {
   params: { user: string };
 }
 
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-});
+
 
 export default function PDF({ params }: Params) {
   // const router = useRouter();

@@ -5,7 +5,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import image from "../app/images/pec-logo.png";
 import { Blinker } from "next/font/google";
 import { Avatar } from "@mui/material";
-import axios from "axios";
+import api from "axios";
 import { useRouter } from "next/navigation";
 
 const blinker = Blinker({
@@ -14,18 +14,13 @@ const blinker = Blinker({
   style: "normal",
 });
 
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-});
-
 export default function Navbar({ params }: any) {
-
- const {push} = useRouter();
+  const { push } = useRouter();
 
   let logout = () => {
-        sessionStorage.clear();
-        push("/");
-  }
+    sessionStorage.clear();
+    push("/");
+  };
 
   return (
     <div className="bg-blue-950 h-[75px]  text-white w-full grid grid-cols-11 items-center text-center shadow-custom">
@@ -47,11 +42,11 @@ export default function Navbar({ params }: any) {
         <Avatar src="../app/images/tobi.png" />
         <p className="text-xl capitalize">{params.user.replace("%20", " ")}</p>
         <ExitToAppIcon
-        onClick={logout}
+          onClick={logout}
           fontSize="large"
           className="cursor-pointer"
-          />
-         {/* </ExitToAppIcon> */}
+        />
+        {/* </ExitToAppIcon> */}
       </div>
     </div>
   );

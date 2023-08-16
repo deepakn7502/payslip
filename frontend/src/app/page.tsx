@@ -26,13 +26,17 @@ let login = async () => {
         username: username,
         password: password,
       });
-      sessionStorage.setItem("access_token", res.data["access_token"]);
-      sessionStorage.setItem("refresh_token", res.data["refresh_token"]);
+      
       const user = res.data["user"];
       if (user === "admin") {
+      sessionStorage.setItem("access_token", res.data["access_token"]);
+      sessionStorage.setItem("refresh_token", res.data["refresh_token"]);
         push(`/admin`);
       } else {
+
       sessionStorage.setItem("eid", res.data["eid"]);
+      sessionStorage.setItem("access_token", res.data["access_token"]);
+      
         push(`/staff/${res.data["name"]}`);
       }
     } catch (e : any) {

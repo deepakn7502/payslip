@@ -14,16 +14,13 @@ import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import * as XLSX from "xlsx";
 
-import axios from "axios";
-// import api from "../axios";
+import api from "axios";
+
 import Popper from "@/components/Popper";
 import Navbar from "@/components/Navbar";
 import { MdVisibility } from "react-icons/md";
 import { MdVisibilityOff } from "react-icons/md";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-});
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,

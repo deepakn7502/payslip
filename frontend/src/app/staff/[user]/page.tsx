@@ -10,7 +10,7 @@ import Image from "next/image";
 import Avatar from "@mui/material/Avatar";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Blinker } from "next/font/google";
-import axios from "axios";
+import api from "axios";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/navigation";
 
@@ -23,9 +23,6 @@ interface Params {
   params: { user: string };
 }
 
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-});
 
 export default function User({ params }: Params) {
   const { push } = useRouter();

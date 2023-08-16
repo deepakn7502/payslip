@@ -1,12 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React, { useState } from "react";
-import axios from "axios";
+import api from "axios";
 import { useRouter } from "next/navigation";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-});
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const [username, setUser] = useState<any>("");
