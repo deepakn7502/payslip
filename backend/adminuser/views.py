@@ -23,6 +23,11 @@ import json
 import random
 
 
+
+from django_nextjs.render import render_nextjs_page_sync
+def index(request):
+    return render_nextjs_page_sync(request)
+
 class employees(viewsets.ModelViewSet):
     queryset = employee.objects.all()
     serializer_class = emp_serialzer
@@ -44,19 +49,18 @@ class receipts(viewsets.ModelViewSet):
  
     def create(self,request):
         try:
-            
-            receipt.objects.bulk_create([receipt(**data) for data in request.data] )
+            month =  request.query_params.get("month").upper() + "-" + request.query_params.get("year")[2:]
+            receipt.objects.bulk_create([receipt(**(data | {"month": month})) for data in request.data] )
             return Response("Success")
         except DatabaseError  as e:
           error_message = str(e.args[1]) if len(e.args) > 1 else str(e)
           raise ParseError(detail=str(e.args[1]), code=400)
         except Exception  as e:
           raise ParseError(detail=str(e), code=400)
-    def list(self, request, *args, **kwargs):
-            # print("data")
-            data = receipt.objects.select_related('eid').all()
+    def list(self, request, *args, **kwargs):     
+            month =  request.query_params.get("month").upper() + "-" + request.query_params.get("year")[2:]
+            data = receipt.objects.filter(month = month).select_related('eid').all()
             serializer = rep_serialzer(data, many=True)
-            print(data)
             return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
@@ -116,8 +120,7 @@ class login(APIView):
         fn=requset.data["fn"]
         if(fn == "send_otp"):
             try:
-              send_otp(requset)
-              return Response("OTP sent Successfully")
+              return Response(send_otp(requset))
             except Exception  as e:
               raise ParseError(detail=str(e), code=400)
             
@@ -128,9 +131,9 @@ class login(APIView):
                     emp = employee.objects.get(eid=requset.data["eid"])
                     emp.password = requset.data["password"]
                     emp.save()
-                    return Response("success")
+                    return Response("Pasword Changed Successfully")
                 except Exception as e:
-                 return Response(str(e))
+                  raise ParseError(detail=str(e), code=400)
                 
             else:
                 raise PermissionDenied(detail=res[1],code=400)
