@@ -1,51 +1,77 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { useState } from "react";
 // import api from "./axios";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Alert } from "@mui/material";
 
 export default function Login() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-const [username, setUser] = useState("");
-const [password, setpass] = useState("");
-const { push } = useRouter();
+  const [username, setUser] = useState("");
+  const [password, setpass] = useState("");
+  const [open, setopen] = useState(false);
+  const [openAlert, setOpenAlert] = useState(false);
+  const [alertContent, setAlertContent] = useState("");
+  const [type, setType] = useState<any>("");
+  const { push } = useRouter();
 
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-});
+  const api = axios.create({
+    baseURL: `http://localhost:8000/`,
+  });
+  let timebar = () => {
+    let progressTimeout: any;
+    let dismissTimeout: any;
+    const startDismissTimer = () => {
+      dismissTimeout = setTimeout(() => {
+        setOpenAlert(false);
+      }, 3000);
+    };
+    startDismissTimer();
+    return () => {
+      clearInterval(progressTimeout);
+      clearTimeout(dismissTimeout);
+    };
+  };
 
+  let login = async () => {
+    // e.preventDefault();
 
-let login = async () => {
-  // e.preventDefault();
+    if (username && password) {
+      try {
+        const res = await api.post("staff/login/", {
+          username: username,
+          password: password,
+        });
 
-  if (username && password) {
-   
-    try {
-      const res = await api.post("staff/login/", {
-        username: username,
-        password: password,
-      });
-      
-      const user = res.data["user"];
-      if (user === "admin") {
-      sessionStorage.setItem("access_token", res.data["access_token"]);
-      sessionStorage.setItem("refresh_token", res.data["refresh_token"]);
-        push(`/admin`);
-      } else {
+        const user = res.data["user"];
+        if (user === "admin") {
+          sessionStorage.setItem("access_token", res.data["access_token"]);
+          sessionStorage.setItem("refresh_token", res.data["refresh_token"]);
+          push(`/admin`);
+        } else {
+          sessionStorage.setItem("eid", res.data["eid"]);
+          sessionStorage.setItem("access_token", res.data["access_token"]);
 
-      sessionStorage.setItem("eid", res.data["eid"]);
-      sessionStorage.setItem("access_token", res.data["access_token"]);
-      
-        push(`/staff/${res.data["name"]}`);
+          push(`/staff/${res.data["name"]}`);
+        }
+      } catch (e: any) {
+        setopen(false);
+        setAlertContent(e.response.data.detail);
+        setType("error");
+        setOpenAlert(true);
+        timebar();
       }
-    } catch (e : any) {
-      alert(e.response.data.detail);
+    } else {
+      setopen(false);
+      setAlertContent("Fields Cannot Be Empty!!!");
+      setType("error");
+      setOpenAlert(true);
+      timebar();
     }
-  } else {
-    alert("Please enter your credentials!");
-  }
-};
+  };
 
   return (
     <div>
@@ -61,14 +87,14 @@ let login = async () => {
           className="h-14 w-10/12 px-4 text-black border-2 border-blue-950 rounded-lg"
           placeholder="Username"
           onChange={(e) => {
-            setUser(e.target.value)
+            setUser(e.target.value);
           }}
         />
         <input
           className="h-14 w-10/12 px-4 text-black border-2 border-blue-950 rounded-lg"
           placeholder="Password"
           onChange={(e) => {
-            setpass(e.target.value)
+            setpass(e.target.value);
           }}
         />
         <button
@@ -77,10 +103,40 @@ let login = async () => {
         >
           Login
         </button>
+        <Backdrop
+          sx={{
+            color: "rgb(255,0,0)",
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+          }}
+          open={open}
+        >
+          <CircularProgress color="primary" />
+        </Backdrop>
         <Link className="text-white hover:underline" href="/forgot-password">
           Forgot Password?
         </Link>
       </form>
+      {openAlert ? (
+        <Alert
+          variant="filled"
+          severity={type}
+          sx={{
+            top: "13%",
+            right: "1%",
+            width: "auto",
+            position: "absolute",
+            fontSize: "18px",
+            zIndex: 100,
+          }}
+          onClose={() => {
+            setOpenAlert(false);
+          }}
+        >
+          {alertContent}
+        </Alert>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
