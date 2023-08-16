@@ -29,27 +29,27 @@ export default function PDF({ params }: Params) {
   const [month, setmonth] = useState("");
   const [year, setyear] = useState("");
 
-  // useEffect(() => {
-  //   const info: any = JSON.parse(sessionStorage.getItem("data"));
-  //   setdata(info["data"]);
-
-  //   console.log(info);
-
-  //   setmonth(info["month"]);
-  //   setyear(info["year"]);
-
-  //   setshow(true);
-  // }, []);
-
-  const storedData = sessionStorage.getItem("data");
+  useEffect(() => {
+    const storedData =  sessionStorage.getItem("data");
   if (storedData) {
     const alldata: any = JSON.parse(storedData);
     setdata(alldata["data"]);
     setmonth(alldata["month"]);
     setyear(alldata["year"]);
     setshow(true);
-    console.log(alldata["data"]);
   }
+    // console.log(alldata["data"]);
+  }, []);
+
+  // const storedData =  sessionStorage.getItem("data");
+  // if (storedData) {
+  //   const alldata: any = JSON.parse(storedData);
+  //   setdata(alldata["data"]);
+  //   setmonth(alldata["month"]);
+  //   setyear(alldata["year"]);
+  //   setshow(true);
+  //   // console.log(alldata["data"]);
+  // }
 
   return (
     <div className="h-screen w-full bg-blue-500">

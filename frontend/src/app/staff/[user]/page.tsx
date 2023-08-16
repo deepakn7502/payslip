@@ -10,7 +10,9 @@ import Image from "next/image";
 import Avatar from "@mui/material/Avatar";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Blinker } from "next/font/google";
-import api from "axios";
+// import api from "axios";  
+import axios from "axios";
+
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/navigation";
 import Backdrop from "@mui/material/Backdrop";
@@ -26,6 +28,10 @@ interface Params {
   params: { user: string };
 }
 
+
+const api = axios.create({
+  baseURL: `http://localhost:8000/`,
+});
 
 export default function User({ params }: Params) {
   const [open,setopen] = useState(false);
