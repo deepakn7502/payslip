@@ -39,6 +39,7 @@ export default function Login() {
   };
 
   let login = async () => {
+    setopen(true);
     // e.preventDefault();
 
     if (username && password) {

@@ -76,7 +76,7 @@ export default function PDF({ params }: Params) {
   // }
 
   return (
-    <div className="h-screen w-full bg-blue-500">
+    <div className="h-screen w-full bg-[#B5B5FF]">
       <Navbar params={params} />
 
       {show ? (
@@ -126,76 +126,76 @@ export default function PDF({ params }: Params) {
               <tbody className="border-2 border-black">
                 <tr className="grid grid-cols-4">
                   <td className="col-span-2">
-                    <h1>Name:</h1>
+                    <h1  className="font-bold">Name:</h1>
                     <p>{data?.eid?.first_name}</p>
                   </td>
                   <td className="col-span-1">
-                    <h1>EMPID:</h1>
+                    <h1  className="font-bold">EMPID:</h1>
                     <p>{data?.eid?.eid}</p>
                   </td>
-                  <td className="col-span-1">
-                    <h1>A/C No:</h1>
+                  <td className="col-span-1 ">
+                    <h1 className="font-bold">A/C No:</h1>
                     <p>{data?.eid?.acc_no}</p>
                   </td>
                 </tr>
                 <tr className="grid grid-cols-4">
                   <td className="col-span-2">
-                    <h1>Department:</h1>
+                    <h1  className="font-bold">Department:</h1>
                     <p>{data?.eid?.department}</p>
                   </td>
                   <td className="col-span-1">
-                    <h1>Bank:</h1>
+                    <h1  className="font-bold">Bank:</h1>
                     <p>{data?.eid?.bank}</p>
                   </td>
                   <td className="col-span-1">
-                    <h1>Branch:</h1>
+                    <h1  className="font-bold">Branch:</h1>
                     <p>{data?.eid?.branch}</p>
                   </td>
                 </tr>
                 <tr className="grid grid-cols-4">
                   <td className="col-span-2">
-                    <h1>Designation:</h1>
+                    <h1  className="font-bold">Designation:</h1>
                     <p>{data?.eid?.designation}</p>
                   </td>
                   <td className="col-span-1">
-                    <h1>Pan:</h1>
+                    <h1  className="font-bold">Pan:</h1>
                     <p>{data?.eid?.pan}</p>
                   </td>
                   <td className="col-span-1">
-                    <h1>uan :</h1>
+                    <h1  className="font-bold">uan :</h1>
                     <p>{data?.eid?.uan}</p>
                   </td>
                 </tr>
                 <tr className="grid grid-cols-2">
                   <td className="col-span-1 text-center">
-                    <h1>earnings(₹)</h1>
+                    <h1  className="font-bold">earnings(₹)</h1>
                   </td>
                   <td className="col-span-1 text-center">
-                    <h1>deductions(₹)</h1>
+                    <h1  className="font-bold">deductions(₹)</h1>
                   </td>
                 </tr>
                 <tr className="grid grid-cols-4 ">
                   <td>
                     <tr className="">
-                      <h1>basic pay :</h1>
+                      <h1  className="font-bold">basic pay :</h1>
                       <p>{data?.basic}</p>
                     </tr>
                     <tr className="">
-                      <h1>da :</h1>
+                      <h1  className="font-bold">da :</h1>
                       <p>{data?.da}</p>
                     </tr>
                     <tr className="">
-                      <h1>leave :</h1>
+                      <h1  className="font-bold">leave :</h1>
                       <p>{data?.lop}</p>
                     </tr>
                   </td>
                   <td>
                     <tr className="">
-                      <h1>basic pay-1 :</h1>
+                      <h1  className="font-bold">basic pay-1 :</h1>
                       <p>{data?.basic1}</p>
                     </tr>
                     <tr className="">
-                      <h1>hra :</h1>
+                      <h1  className="font-bold">hra :</h1>
                       <p>{data?.hra}</p>
                     </tr>
                     <tr className="">
@@ -205,46 +205,46 @@ export default function PDF({ params }: Params) {
                   </td>
                   <td>
                     <tr className="">
-                      <h1>p f :</h1>
+                      <h1  className="font-bold">p f :</h1>
                       <p>{data?.pf}</p>
                     </tr>
                     <tr className="">
-                      <h1>p t :</h1>
+                      <h1  className="font-bold">p t :</h1>
                       <p>{data?.pt}</p>
                     </tr>
                     <tr className="">
-                      <h1>i t :</h1>
+                      <h1  className="font-bold">i t :</h1>
                       <p>{data?.it}</p>
                     </tr>
                   </td>
                   <td>
                     <tr className="">
-                      <h1>miscellaneous :</h1>
+                      <h1  className="font-bold">miscellaneous :</h1>
                       <p>{data?.miscellaneous}</p>
                     </tr>
                     <tr className="">
-                      <h1>esi :</h1>
+                      <h1  className="font-bold">esi :</h1>
                       <p>{data?.esi}</p>
                     </tr>
                     <tr className="">
-                      <h1>deductions :</h1>
+                      <h1  className="font-bold">deductions :</h1>
                       <p>{data?.deductions}</p>
                     </tr>
                   </td>
                 </tr>
                 <tr className="grid grid-cols-2">
                   <td className="col-span-1 text-center grid-cols-2">
-                    <h1>total earnings(₹) :</h1>
+                    <h1  className="font-bold">total earnings(₹) :</h1>
                     <p>{data?.total_earnings}/-</p>
                   </td>
                   <td className="col-span-1 text-center grid-cols-2">
-                    <h1>total deductions(₹) :</h1>
+                    <h1 className="font-bold">total deductions(₹) :</h1>
                     <p>{data?.total_deductions}/-</p>
                   </td>
                 </tr>
                 <tr className="grid grid-cols-1">
                   <td className="text-center grid-cols-4">
-                    <h1 className="col-start-2">net salary(₹) :</h1>
+                    <h1 className="col-start-2 font-bold">net salary(₹) :</h1>
                     <p>{data?.net_salary}/-</p>
                   </td>
                 </tr>

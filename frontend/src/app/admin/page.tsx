@@ -14,19 +14,23 @@ import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import * as XLSX from "xlsx";
 
-import api from "axios";
+// import api from "axios";
+import axios from "axios";
 
 import Popper from "@/components/Popper";
 import Navbar from "@/components/Navbar";
 import { MdVisibility } from "react-icons/md";
 import { MdVisibilityOff } from "react-icons/md";
 
-
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
   ref
 ) {
   return <MuiAlert elevation={10} ref={ref} variant="filled" {...props} />;
+});
+
+const api = axios.create({
+  baseURL: `http://localhost:8000/`,
 });
 
 const poppins = Poppins({
@@ -150,6 +154,10 @@ const page = () => {
   const [month, setmonth] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
 
+  const [upmonth, setupmonth] = useState("");
+  const [upselectedYear, setupSelectedYear] = useState("");
+
+
   const [search, setSearch] = useState("");
   const [openAlert, setOpenAlert] = useState(false);
   const [alertContent, setAlertContent] = useState("");
@@ -196,10 +204,12 @@ const page = () => {
     promise.then(async (d) => {
       try {
         // console.table(file_data);
+      console.log(upmonth+upselectedYear)
+
         const res = await api.post("staff/receipt/", {
           data: file_data,
-          month: month,
-          year: selectedYear,
+          month: upmonth,
+          year: upselectedYear,
         });
         alert("Upload success");
       } catch (e: any) {
@@ -211,11 +221,13 @@ const page = () => {
   const handleSearch = async (e: any) => {
     e.preventDefault();
     try {
+
       const res = await api.get("staff/receipt/", {
         params: { month: month, year: selectedYear },
       });
 
       setData(res.data);
+      setFilteredData(res.data);
     } catch (e: any) {
       alert(e.response.data.detail);
     }
@@ -419,7 +431,7 @@ const page = () => {
                     </tr>
                   );
                 })}
-                ;
+                
               </tbody>
             </table>
           </div>
@@ -439,9 +451,9 @@ const page = () => {
         Remove={Remove}
         snack={snack}
         closeSnack={closeSnack}
-        selectedYear={selectedYear}
-        setmonth={setmonth}
-        setSelectedYear={setSelectedYear}
+        selectedYear={upselectedYear}
+        setmonth={setupmonth}
+        setSelectedYear={setupSelectedYear}
       />
     </div>
   );
