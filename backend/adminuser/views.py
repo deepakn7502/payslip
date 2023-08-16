@@ -60,7 +60,7 @@ class receipts(viewsets.ModelViewSet):
             return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
-      #  try:
+       try:
           id = kwargs['pk']
           month =  request.query_params.get("month").upper() + "-" + request.query_params.get("year")[2:]
           data = receipt.objects.filter(eid=id,month = month).select_related('eid').all()
@@ -73,9 +73,9 @@ class receipts(viewsets.ModelViewSet):
               serializer["status"] = True
             return Response(serializer)
           else:
-             raise NotFound(detail="Not Found")
-      #  except Exception  as e:
-      #     raise ParseError(detail=str(e), code=400)
+             raise NotFound(detail="No Data Found")
+       except Exception  as e:
+          raise ParseError(detail=str(e), code=400)
       
     
 
