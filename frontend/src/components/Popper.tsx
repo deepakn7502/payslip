@@ -107,6 +107,7 @@ export default function Popper({
                 select
                 onChange={(e) => {
                   setmonth(e.target.value);
+                  
                 }}
               >
                 {currencies.map((option) => (
@@ -122,6 +123,7 @@ export default function Popper({
                 // value={selectedYear}
                 onChange={(event) => {
                   setSelectedYear(event.target.value);
+                  
                 }}
               >
                 {years.map((year) => (

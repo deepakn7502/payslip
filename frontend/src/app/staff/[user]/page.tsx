@@ -29,9 +29,9 @@ interface Params {
 }
 
 
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-});
+  const api = axios.create({
+    baseURL: `http://localhost:8000/`,
+  });
 
 export default function User({ params }: Params) {
   const [open,setopen] = useState(false);
@@ -142,7 +142,7 @@ export default function User({ params }: Params) {
     setopen(true);
     const eid = sessionStorage.getItem("eid");
     if (month && selectedYear) {
-      console.log(api.baseurl);
+      // console.log(api.baseurl);
       try {
         const res = await api.get("staff/receipt/" + eid + "/", {
           params: {

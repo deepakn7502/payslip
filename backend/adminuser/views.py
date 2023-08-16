@@ -59,8 +59,9 @@ class receipts(viewsets.ModelViewSet):
 
     def create(self,request):
         try:
-            month =  request.query_params.get("month").upper() + "-" + request.query_params.get("year")[2:]
-            receipt.objects.bulk_create([receipt(**(data | {"month": month})) for data in request.data] )
+            print( request.query_params.get("year"))
+            month = request.data["month"].upper() + "-" + str(request.data["year"])[2:]
+            receipt.objects.bulk_create([receipt(**(data | {"month": month})) for data in request.data["data"]] )
             return Response("Success")
         except DatabaseError  as e:
           error_message = str(e.args[1]) if len(e.args) > 1 else str(e)
