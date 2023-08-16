@@ -18,7 +18,31 @@ interface Params {
   params: { user: string };
 }
 
+const months = {
+  jan: "January",
 
+  feb: "February",
+
+  mar: "March",
+
+  apr: "April",
+
+  may: "May",
+
+  jun: "June",
+
+  jul: "July",
+
+  aug: "August",
+
+  sep: "September",
+
+  oct: "October",
+
+  nov: "November",
+
+  dec: "December",
+};
 
 export default function PDF({ params }: Params) {
   // const router = useRouter();
@@ -30,14 +54,14 @@ export default function PDF({ params }: Params) {
   const [year, setyear] = useState("");
 
   useEffect(() => {
-    const storedData =  sessionStorage.getItem("data");
-  if (storedData) {
-    const alldata: any = JSON.parse(storedData);
-    setdata(alldata["data"]);
-    setmonth(alldata["month"]);
-    setyear(alldata["year"]);
-    setshow(true);
-  }
+    const storedData = sessionStorage.getItem("data");
+    if (storedData) {
+      const alldata: any = JSON.parse(storedData);
+      setdata(alldata["data"]);
+      setmonth(alldata["month"]);
+      setyear(alldata["year"]);
+      setshow(true);
+    }
     // console.log(alldata["data"]);
   }, []);
 
@@ -94,7 +118,7 @@ export default function PDF({ params }: Params) {
                 <tr className="col-start-2 col-end-7">
                   <th className="text-base font-bold">
                     <h1>
-                      PaySlip for the Month {month} of {year}
+                      PaySlip - {months[month]} {year}
                     </h1>
                   </th>
                 </tr>

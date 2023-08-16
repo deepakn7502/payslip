@@ -49,27 +49,38 @@ def verify_otp(request):
 
 class CustomAuthentication(BaseAuthentication):
     def authenticate(self, request):
-
-        header= request.META.get('HTTP_AUTHORIZATION').split(' ')
-        id_token =header[1] # get the Firebase ID token from the Authorization header
-    
-        if(header[0]=="Bearer"):      
-            try:
-                 payload = jwt.decode(id_token, settings.SECRET_KEY, algorithms=['HS256'])
-                 print("Bearer",payload)
-                 return payload
-
-            except:
-                raise AuthenticationFailed('Invalid Firebase ID token')
-        elif(header[0]=="Token"):
-            try:
-                
-                payload = jwt.decode(id_token, settings.SECRET_KEY, algorithms=['HS256'])
-                eid = payload['eid']
-                return (eid, None)
-            except jwt.ExpiredSignatureError:
+        try:
+            header= request.META.get('HTTP_AUTHORIZATION').split(' ')
+            id_token =header[1] # get the Firebase ID token from the Authorization header
+        except:
+                raise AuthenticationFailed('Invalid token format')
+        try:
+            payload = jwt.decode(id_token, settings.SECRET_KEY, algorithms=['HS256'])
+            if("user_id" in payload):
+                 return (payload["user_id"], payload)
+            else:
+                payload["is_authenticated"]=True
+                return (payload["eid"], payload)
+        except jwt.ExpiredSignatureError:
                 raise AuthenticationFailed('Token has expired')
-            except jwt.InvalidTokenError:
+        except jwt.InvalidTokenError:
                 raise AuthenticationFailed('Invalid token')
-        else:
-            raise AuthenticationFailed('Invalid token format')
+        
+ 
+        #     try:
+        #          payload = jwt.decode(id_token, settings.SECRET_KEY, algorithms=['HS256'])
+        #          print("Bearer",payload)
+        #          return (payload["user_id"], None)
+        #     except:
+        #         raise AuthenticationFailed('Invalid Firebase ID token')
+      
+                
+        #         payload = jwt.decode(id_token, settings.SECRET_KEY, algorithms=['HS256'])
+        #         eid = payload['eid']
+        #         return (eid, None)
+        #     except jwt.ExpiredSignatureError:
+        #         raise AuthenticationFailed('Token has expired')
+        #     except jwt.InvalidTokenError:
+        #         raise AuthenticationFailed('Invalid token')
+        # else:
+        #     raise AuthenticationFailed('Invalid token format')
