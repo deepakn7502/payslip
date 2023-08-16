@@ -136,6 +136,7 @@ export default function User({ params }: Params) {
     setopen(true);
     const eid = sessionStorage.getItem("eid");
     if (month && selectedYear) {
+      console.log(api.baseurl);
       try {
         const res = await api.get("staff/receipt/" + eid + "/", {
           params: {

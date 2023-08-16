@@ -53,7 +53,7 @@ class employees(viewsets.ModelViewSet):
 class receipts(viewsets.ModelViewSet):
     queryset = receipt.objects.all()
     serializer_class = rep_serialzer
-    authentication_classes = [CustomAuthentication]
+    # authentication_classes = [CustomAuthentication]
     # permission_classes = [IsAuthenticated]
 
 
