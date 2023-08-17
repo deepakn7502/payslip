@@ -20,6 +20,7 @@ import Popper from "@/components/Popper";
 import Navbar from "@/components/Navbar";
 import { MdVisibility } from "react-icons/md";
 import { MdVisibilityOff } from "react-icons/md";
+import { Suspense } from 'react'
 
 const api = axios.create({
   baseURL: `http://localhost:8000/`,
@@ -311,6 +312,7 @@ const page = () => {
           </button>
         </div>
       </div>
+      <Suspense fallback={<p>Loading feed...</p>}>
       <div className="h-full">
         {show ? (
           <div>
@@ -356,6 +358,8 @@ const page = () => {
           <div></div>
         )}
       </div>
+      </Suspense>
+
       <Popper
         open={open}
         handleClose={handleClose}

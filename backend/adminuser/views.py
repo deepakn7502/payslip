@@ -19,8 +19,8 @@ from .models import *
 from .utils import *
 
 import json
-from bulk_update.helper import bulk_update
-import random
+
+
 
 
 class employees(viewsets.ModelViewSet):
