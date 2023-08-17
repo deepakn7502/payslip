@@ -1,10 +1,10 @@
-import React from 'react'
+// import React from 'react'
 
-export default function loading() {
-  return (
-    <div>loading</div>
-  )
-}
+// export default function loading() {
+//   return (
+//     <div>loading</div>
+//   )
+// }
 
 
 // import { Suspense } from 'react'
