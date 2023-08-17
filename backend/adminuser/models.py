@@ -29,7 +29,7 @@ class employee(AbstractUser):
     bank = models.CharField(max_length=50)
     branch = models.CharField(max_length=50)
     pan  = models.CharField(max_length=20)
-    uan  = models.IntegerField()
+    uan  = models.CharField(max_length=20)
    
     
    

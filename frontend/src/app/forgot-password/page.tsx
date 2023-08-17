@@ -2,13 +2,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import OTPInput from "react-otp-input";
-import axios from "axios";
+import api from "axios";
 import { useRouter } from "next/navigation";
 
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-  withCredentials: true,
-});
+
 
 export default function ForgotPassword() {
   const [eid, seteid] = useState("");

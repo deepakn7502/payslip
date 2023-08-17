@@ -10,24 +10,31 @@ import Image from "next/image";
 import Avatar from "@mui/material/Avatar";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Blinker } from "next/font/google";
+// import api from "axios";  
 import axios from "axios";
+
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/navigation";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const blinker = Blinker({
   weight: ["400"],
   subsets: ["latin"],
   style: "normal",
 });
+
 interface Params {
   params: { user: string };
 }
 
-const api = axios.create({
-  baseURL: `http://localhost:8000/`,
-});
+
+  const api = axios.create({
+    baseURL: `http://localhost:8000/`,
+  });
 
 export default function User({ params }: Params) {
+  const [open,setopen] = useState(false);
   const { push } = useRouter();
 
   const currentYear = new Date().getFullYear();
@@ -132,34 +139,34 @@ export default function User({ params }: Params) {
 
   //Pdf generation
   let generatePDF = async () => {
+    setopen(true);
     const eid = sessionStorage.getItem("eid");
     if (month && selectedYear) {
-      const res = await api.get("staff/receipt/" + eid + "/", {
-        params: {
-          month: month,
-          year: selectedYear,
-        },
-      });
-      // console.log(res.data)
-    
-      sessionStorage.setItem("data",  JSON.stringify( {
-        "month" : month,
-        "year": selectedYear ,
-        "data" : res.data
-       }));
-      push(`/payslip/${params.user}?month=${month}&year=${selectedYear}`);
-     
-      // console.log(res.data.eid);
-
-      sessionStorage.setItem(
-        "data",
-        JSON.stringify({
-          month: month,
-          year: selectedYear,
-          data: res.data,
-        })
-      );
-      push(`/payslip/${params.user}?month=${month}&year=${selectedYear}`);
+      // console.log(api.baseurl);
+      try {
+        const res = await api.get("staff/receipt/" + eid + "/", {
+          params: {
+            month: month,
+            year: selectedYear,
+          },
+        });
+        sessionStorage.setItem(
+          "data",
+          JSON.stringify({
+            month: month,
+            year: selectedYear,
+            data: res.data,
+          })
+        );
+        push(`/payslip/${params.user}?month=${month}&year=${selectedYear}`);
+      } catch (e: any) {
+        setopen(false);
+        setAlertContent(e.response.data.detail);
+        setType("error");
+        setOpenAlert(true);
+        timebar();
+        
+      }
 
       // setAlertContent("Payslip");
       // setType("success");
@@ -167,11 +174,12 @@ export default function User({ params }: Params) {
       // timebar();
       // console.log("if");
     } else {
+      setopen(false);
       setAlertContent("Field cannot be empty!!");
       setType("error");
       setOpenAlert(true);
       timebar();
-      console.log("else");
+      // console.log("else");
     }
   };
 
@@ -206,6 +214,15 @@ export default function User({ params }: Params) {
             <p>Generate Pay Slip</p>
             <ContactlessIcon></ContactlessIcon>
           </button>
+          <Backdrop
+              sx={{
+                color: "rgb(255,0,0)",
+                zIndex: (theme) => theme.zIndex.drawer + 1,
+              }}
+              open={open}
+            >
+              <CircularProgress color="primary" />
+            </Backdrop>
         </div>
       </div>
       {openAlert ? (
@@ -213,10 +230,11 @@ export default function User({ params }: Params) {
           variant="filled"
           severity={type}
           sx={{
-            bottom: "3",
-            left: "5%",
+            top: "13%",
+            right: "1%",
             width: "auto",
             position: "absolute",
+            fontSize: "18px",
             zIndex: 100,
           }}
           onClose={() => {
