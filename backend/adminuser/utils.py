@@ -3,6 +3,13 @@ from django.core.mail import send_mail
 
 from datetime import datetime,timedelta
 import pyotp as pt
+from .models import employee
+
+import jwt
+from rest_framework.authentication import BaseAuthentication
+from rest_framework.exceptions import AuthenticationFailed
+from django.conf import settings
+
 
 def send_otp(request):
     totp = pt. TOTP (pt.random_base32(), interval=300)
@@ -10,14 +17,16 @@ def send_otp(request):
     request.session ['otp_secret_key'] = totp.secret
     request.session ['for_time'] = str(datetime.now())
 
-    # subject = 'OTP Verification'
-    # message = f'Your OTP for email verification is: {otp}'
-    # from_email = 'your_email@example.com'
-    # recipient_list = [request.data["email"]]
+    eid = employee.objects.get(eid=request.data["eid"])  
+    subject = 'OTP Verification'
+    message = f'Your OTP for email verification is: {otp}'
+    from_email = 'your_email@example.com'
+    recipient_list = [eid.email]
 
-    # send_mail(subject, message, from_email, recipient_list)
+    send_mail(subject, message, from_email, recipient_list)
 
-    return True
+    return request.session.session_key
+
 
 def verify_otp(request):
     
@@ -36,3 +45,42 @@ def verify_otp(request):
             return False,"Expired"
     else: 
         return False,"Error"
+    
+
+class CustomAuthentication(BaseAuthentication):
+    def authenticate(self, request):
+        try:
+            header= request.META.get('HTTP_AUTHORIZATION').split(' ')
+            id_token =header[1] # get the Firebase ID token from the Authorization header
+        except:
+                raise AuthenticationFailed('Invalid token format')
+        try:
+            payload = jwt.decode(id_token, settings.SECRET_KEY, algorithms=['HS256'])
+            if("user_id" in payload):
+                 return (payload["user_id"], payload)
+            else:
+                payload["is_authenticated"]=True
+                return (payload["eid"], payload)
+        except jwt.ExpiredSignatureError:
+                raise AuthenticationFailed('Token has expired')
+        except jwt.InvalidTokenError:
+                raise AuthenticationFailed('Invalid token')
+        
+ 
+        #     try:
+        #          payload = jwt.decode(id_token, settings.SECRET_KEY, algorithms=['HS256'])
+        #          print("Bearer",payload)
+        #          return (payload["user_id"], None)
+        #     except:
+        #         raise AuthenticationFailed('Invalid Firebase ID token')
+      
+                
+        #         payload = jwt.decode(id_token, settings.SECRET_KEY, algorithms=['HS256'])
+        #         eid = payload['eid']
+        #         return (eid, None)
+        #     except jwt.ExpiredSignatureError:
+        #         raise AuthenticationFailed('Token has expired')
+        #     except jwt.InvalidTokenError:
+        #         raise AuthenticationFailed('Invalid token')
+        # else:
+        #     raise AuthenticationFailed('Invalid token format')

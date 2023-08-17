@@ -13,6 +13,8 @@ router.register(r'receipt', receipts)
 
 urlpatterns = [
     path("login/", login.as_view()),
+    path("", index, name="index"),
+
     # path("validate/", employees.as_view()),
 
 ] + router.urls
