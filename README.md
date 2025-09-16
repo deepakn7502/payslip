@@ -76,6 +76,3 @@ npm run dev
 * **Employee**: View payslips, tax deductions, and attendance history.
 
 ---
-
-
-Do you also want me to **add badges** (tech stack icons: Vite, Django, MySQL) at the top, like I did for the aptitude tool suggestion, so it looks visually stronger on GitHub?
